@@ -1800,9 +1800,96 @@
         <div class="demo-box" style="background:#fbbf24;opacity:0.5;flex:1;color:#000;min-width:80px">opacity 0.5<br><small>גם הטקסט שקוף</small></div>
         <div class="demo-box" style="background:rgba(34,211,238,0.3);color:var(--text-primary);flex:1;border:1px solid var(--cyan);min-width:80px">rgba bg<br><small>טקסט אטום</small></div>
         </div></div>
-    </div>
 
-    <div class="section" id="s6"><div class="section-header"><div class="section-num">06</div><h2>טיפוגרפיה ויחידות מידה</h2></div>
+        <h3>Background Properties - רקעים</h3>
+        <table>
+            <thead><tr><th>תכונה</th><th>מה עושה</th><th>ערכים</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">background-color</span></td><td>צבע רקע</td><td>#f0f4f8, lightblue, rgba(0,0,0,0.5)</td></tr>
+                <tr><td><span class="inline-code">background-image</span></td><td>תמונת רקע</td><td>url("bg.jpg"), linear-gradient(...)</td></tr>
+                <tr><td><span class="inline-code">background-size</span></td><td>גודל תמונה</td><td>cover (ממלא), contain (מכיל), 100%</td></tr>
+                <tr><td><span class="inline-code">background-repeat</span></td><td>חזרה</td><td>no-repeat, repeat, repeat-x, repeat-y</td></tr>
+                <tr><td><span class="inline-code">background-position</span></td><td>מיקום</td><td>center, top left, 50% 50%</td></tr>
+                <tr><td><span class="inline-code">background-attachment</span></td><td>גלילה</td><td>scroll (רגיל), fixed (פרלקס)</td></tr>
+            </tbody>
+        </table>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* תמונת רקע */</span>
+<span class="tg">.hero</span> {
+    <span class="pr">background-image</span>: <span class="vl">url("hero-bg.jpg")</span>;
+    <span class="pr">background-size</span>: <span class="vl">cover</span>;           <span class="cm">/* ממלא את כל האלמנט */</span>
+    <span class="pr">background-position</span>: <span class="vl">center</span>;      <span class="cm">/* ממרכז את התמונה */</span>
+    <span class="pr">background-repeat</span>: <span class="vl">no-repeat</span>;     <span class="cm">/* לא חוזר */</span>
+}
+
+<span class="cm">/* Shorthand */</span>
+<span class="tg">.bg</span> {
+    <span class="pr">background</span>: <span class="vl">url("bg.jpg") center/cover no-repeat</span>;
+}
+
+<span class="cm">/* שכבות מרובות */</span>
+<span class="tg">.layered</span> {
+    <span class="pr">background</span>:
+        <span class="vl">linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))</span>,
+        <span class="vl">url("photo.jpg") center/cover</span>;
+    <span class="cm">/* gradient שקוף מעל תמונה = אפקט כהה */</span>
+}</code></pre></div>
+
+        <h3>כל סוגי ה-Cursor (סמן עכבר)</h3>
+        <p>
+            <span class="inline-code">cursor: pointer</span> (יד - לחיצה) |
+            <span class="inline-code">cursor: default</span> (חץ רגיל) |
+            <span class="inline-code">cursor: text</span> (I-beam - טקסט) |
+            <span class="inline-code">cursor: grab</span> (יד פתוחה) |
+            <span class="inline-code">cursor: not-allowed</span> (אסור) |
+            <span class="inline-code">cursor: wait</span> (שעון חול) |
+            <span class="inline-code">cursor: crosshair</span> (צלב)
+        </p>
+    </div><div class="section-header"><div class="section-num">06</div><h2>טיפוגרפיה ויחידות מידה</h2></div>
+
+        <h3>כל תכונות הטקסט והפונט</h3>
+        <table>
+            <thead><tr><th>תכונה</th><th>מה עושה</th><th>ערכים נפוצים</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">color</span></td><td>צבע הטקסט</td><td>red, #3b82f6, rgb(59,130,246)</td></tr>
+                <tr><td><span class="inline-code">font-family</span></td><td>סוג הגופן (עם fallbacks)</td><td>"Arial", Georgia, sans-serif</td></tr>
+                <tr><td><span class="inline-code">font-size</span></td><td>גודל הטקסט</td><td>16px, 1.2em, 2rem, 120%</td></tr>
+                <tr><td><span class="inline-code">font-weight</span></td><td>עובי הטקסט</td><td>normal(400), bold(700), 100-900</td></tr>
+                <tr><td><span class="inline-code">font-style</span></td><td>סגנון</td><td>normal, italic, oblique</td></tr>
+                <tr><td><span class="inline-code">text-align</span></td><td>יישור אופקי</td><td>left, center, right, justify</td></tr>
+                <tr><td><span class="inline-code">text-decoration</span></td><td>קישוט</td><td>none, underline, overline, line-through</td></tr>
+                <tr><td><span class="inline-code">text-transform</span></td><td>המרת אותיות</td><td>uppercase, lowercase, capitalize</td></tr>
+                <tr><td><span class="inline-code">letter-spacing</span></td><td>ריווח בין אותיות</td><td>2px, 0.1em, -1px</td></tr>
+                <tr><td><span class="inline-code">word-spacing</span></td><td>ריווח בין מילים</td><td>5px, 0.2em</td></tr>
+                <tr><td><span class="inline-code">line-height</span></td><td>גובה שורה</td><td>1.5, 24px, 150% (מומלץ: 1.5-1.8)</td></tr>
+                <tr><td><span class="inline-code">text-indent</span></td><td>הזחת שורה ראשונה</td><td>30px, 2em</td></tr>
+                <tr><td><span class="inline-code">text-shadow</span></td><td>צל לטקסט</td><td>2px 2px 4px rgba(0,0,0,0.3)</td></tr>
+                <tr><td><span class="inline-code">white-space</span></td><td>טיפול ברווחים</td><td>normal, nowrap, pre, pre-wrap</td></tr>
+                <tr><td><span class="inline-code">overflow-wrap</span></td><td>שבירת מילים ארוכות</td><td>normal, break-word</td></tr>
+            </tbody>
+        </table>
+
+        <h3>קטגוריות פונטים גנריות</h3>
+        <table>
+            <thead><tr><th>קטגוריה</th><th>מאפיין</th><th>דוגמאות</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">serif</span></td><td>אותיות עם "רגליים" - רשמי</td><td>Times New Roman, Georgia</td></tr>
+                <tr><td><span class="inline-code">sans-serif</span></td><td>אותיות חלקות - מודרני</td><td>Arial, Helvetica, Verdana</td></tr>
+                <tr><td><span class="inline-code">monospace</span></td><td>כל אות באותו רוחב - לקוד</td><td>Courier New, Consolas</td></tr>
+                <tr><td><span class="inline-code">cursive</span></td><td>כתב יד</td><td>Comic Sans MS, Brush Script</td></tr>
+                <tr><td><span class="inline-code">fantasy</span></td><td>דקורטיבי</td><td>Impact, Papyrus</td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>Google Fonts</strong> - פונטים חינמיים באיכות גבוהה. מוסיפים link ב-head ומשתמשים ב-font-family:</p>
+        <div class="code-wrapper"><span class="code-lang">HTML+CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">&lt;!-- ב-head של ה-HTML: --&gt;</span>
+<span class="tg">&lt;link</span> <span class="at">href</span>=<span class="st">"https://fonts.googleapis.com/css2?family=Rubik&amp;display=swap"</span>
+      <span class="at">rel</span>=<span class="st">"stylesheet"</span><span class="tg">&gt;</span>
+
+<span class="cm">/* ב-CSS: */</span>
+<span class="tg">body</span> { <span class="pr">font-family</span>: <span class="vl">'Rubik', sans-serif</span>; }</code></pre></div>
         <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code><span class="tg">h1</span> {
     <span class="pr">font-family</span>: <span class="vl">Georgia, "Times New Roman", serif</span>; <span class="cm">/* גופן + fallbacks */</span>
@@ -2372,6 +2459,386 @@ input[type="password"]</span> {
         <span class="cm">&lt;!-- חזרו x8 עם מוצרים שונים --&gt;</span>
     <span class="tg">&lt;/div&gt;</span>
 <span class="tg">&lt;/body&gt;&lt;/html&gt;</span></code></pre></div>
+
+        <h3>index.html - דף ראשי (הקוד המלא)</h3>
+        <div class="code-wrapper"><span class="code-lang">index.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="tg">&lt;!DOCTYPE html&gt;</span>
+<span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="st">"he"</span> <span class="at">dir</span>=<span class="st">"rtl"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;head&gt;</span>
+    <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="st">"UTF-8"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;meta</span> <span class="at">name</span>=<span class="st">"viewport"</span> <span class="at">content</span>=<span class="st">"width=device-width, initial-scale=1.0"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;title&gt;</span>TechStore - חנות טכנולוגיה<span class="tg">&lt;/title&gt;</span>
+    <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="st">"stylesheet"</span> <span class="at">href</span>=<span class="st">"style.css"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;/head&gt;</span>
+<span class="tg">&lt;body&gt;</span>
+    <span class="cm">&lt;!-- ניווט - חייב להיות בכל דף! --&gt;</span>
+    <span class="tg">&lt;nav&gt;</span>
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"index.html"</span><span class="tg">&gt;</span>ראשי<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"products.html"</span><span class="tg">&gt;</span>מוצרים<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"info.html"</span><span class="tg">&gt;</span>מידע<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"order.html"</span><span class="tg">&gt;</span>הזמנה<span class="tg">&lt;/a&gt;</span>
+    <span class="tg">&lt;/nav&gt;</span>
+
+    <span class="tg">&lt;h1&gt;</span>ברוכים הבאים ל-TechStore<span class="tg">&lt;/h1&gt;</span>
+    <span class="tg">&lt;p&gt;</span>
+        החנות המובילה למוצרי טכנולוגיה באיכות גבוהה.
+        אצלנו תמצאו מחשבים, מקלדות, עכברים ואביזרים נוספים
+        במחירים תחרותיים.
+    <span class="tg">&lt;/p&gt;</span>
+
+    <span class="cm">&lt;!-- תמונה עם alt חובה! --&gt;</span>
+    <span class="tg">&lt;img</span> <span class="at">src</span>=<span class="st">"https://via.placeholder.com/800x300/1e293b/22d3ee?text=TechStore"</span>
+         <span class="at">alt</span>=<span class="st">"באנר חנות TechStore"</span>
+         <span class="at">style</span>=<span class="st">"border-radius: 12px; margin: 20px 0;"</span><span class="tg">&gt;</span>
+
+    <span class="tg">&lt;h2&gt;</span>מוצרים מומלצים ברשת<span class="tg">&lt;/h2&gt;</span>
+    <span class="cm">&lt;!-- קישורים חיצוניים עם target="_blank" --&gt;</span>
+    <span class="tg">&lt;ul&gt;</span>
+        <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="st">"https://ksp.co.il"</span> <span class="at">target</span>=<span class="st">"_blank"</span><span class="tg">&gt;</span>KSP - מחשבים ואלקטרוניקה<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="st">"https://www.ivory.co.il"</span> <span class="at">target</span>=<span class="st">"_blank"</span><span class="tg">&gt;</span>Ivory - קניון הייטק<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="tg">&lt;li&gt;&lt;a</span> <span class="at">href</span>=<span class="st">"https://www.amazon.com"</span> <span class="at">target</span>=<span class="st">"_blank"</span><span class="tg">&gt;</span>Amazon - משלוח בינלאומי<span class="tg">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="tg">&lt;/ul&gt;</span>
+
+    <span class="cm">&lt;!-- הטמעת YouTube - לחצן ימני => "העתקת קוד הטמעה" --&gt;</span>
+    <span class="tg">&lt;h2&gt;</span>סרטון על המוצרים שלנו<span class="tg">&lt;/h2&gt;</span>
+    <span class="tg">&lt;iframe</span>
+        <span class="at">width</span>=<span class="st">"560"</span> <span class="at">height</span>=<span class="st">"315"</span>
+        <span class="at">src</span>=<span class="st">"https://www.youtube.com/embed/dQw4w9WgXcQ"</span>
+        <span class="at">title</span>=<span class="st">"סרטון מוצרים"</span>
+        <span class="at">allowfullscreen</span>
+    <span class="tg">&gt;&lt;/iframe&gt;</span>
+<span class="tg">&lt;/body&gt;</span>
+<span class="tg">&lt;/html&gt;</span></code></pre></div>
+
+        <h3>info.html - דף מידע על מוצר (הקוד המלא)</h3>
+        <div class="code-wrapper"><span class="code-lang">info.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="tg">&lt;!DOCTYPE html&gt;</span>
+<span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="st">"he"</span> <span class="at">dir</span>=<span class="st">"rtl"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;head&gt;</span>
+    <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="st">"UTF-8"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;title&gt;</span>מחשב נייד Gaming - TechStore<span class="tg">&lt;/title&gt;</span>
+    <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="st">"stylesheet"</span> <span class="at">href</span>=<span class="st">"style.css"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;/head&gt;</span>
+<span class="tg">&lt;body&gt;</span>
+    <span class="tg">&lt;nav&gt;</span>
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"index.html"</span><span class="tg">&gt;</span>ראשי<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"products.html"</span><span class="tg">&gt;</span>מוצרים<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"info.html"</span><span class="tg">&gt;</span>מידע<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"order.html"</span><span class="tg">&gt;</span>הזמנה<span class="tg">&lt;/a&gt;</span>
+    <span class="tg">&lt;/nav&gt;</span>
+
+    <span class="tg">&lt;h1&gt;</span>מחשב נייד Gaming<span class="tg">&lt;/h1&gt;</span>
+
+    <span class="cm">&lt;!-- תמונה גדולה של המוצר --&gt;</span>
+    <span class="tg">&lt;img</span> <span class="at">src</span>=<span class="st">"https://via.placeholder.com/600x400/1e293b/22d3ee?text=Gaming+Laptop"</span>
+         <span class="at">alt</span>=<span class="st">"מחשב נייד Gaming שחור עם מסך 15 אינץ'"</span>
+         <span class="at">style</span>=<span class="st">"border-radius: 12px; margin: 15px 0;"</span><span class="tg">&gt;</span>
+
+    <span class="tg">&lt;h2</span> <span class="at">style</span>=<span class="st">"color: #2563eb;"</span><span class="tg">&gt;</span>4,500 ש"ח<span class="tg">&lt;/h2&gt;</span>
+
+    <span class="tg">&lt;p&gt;</span>
+        מחשב נייד עוצמתי לגיימרים ואנשי מקצוע. מעבד חזק,
+        כרטיס מסך ייעודי, ומסך 15.6 אינץ' באיכות Full HD.
+        מושלם לעבודה, למידה ומשחקים.
+    <span class="tg">&lt;/p&gt;</span>
+
+    <span class="cm">&lt;!-- טבלת מפרט טכני --&gt;</span>
+    <span class="tg">&lt;h3&gt;</span>מפרט טכני<span class="tg">&lt;/h3&gt;</span>
+    <span class="tg">&lt;table</span> <span class="at">border</span>=<span class="st">"1"</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;thead&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;th&gt;</span>תכונה<span class="tg">&lt;/th&gt;&lt;th&gt;</span>פרטים<span class="tg">&lt;/th&gt;&lt;/tr&gt;</span>
+        <span class="tg">&lt;/thead&gt;</span>
+        <span class="tg">&lt;tbody&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>מעבד<span class="tg">&lt;/td&gt;&lt;td&gt;</span>Intel i7 12th Gen<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>זיכרון<span class="tg">&lt;/td&gt;&lt;td&gt;</span>16GB DDR5<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>אחסון<span class="tg">&lt;/td&gt;&lt;td&gt;</span>512GB SSD NVMe<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>מסך<span class="tg">&lt;/td&gt;&lt;td&gt;</span>15.6" Full HD 144Hz<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>כרטיס מסך<span class="tg">&lt;/td&gt;&lt;td&gt;</span>NVIDIA RTX 3060<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>משקל<span class="tg">&lt;/td&gt;&lt;td&gt;</span>2.3 ק"ג<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+            <span class="tg">&lt;tr&gt;&lt;td&gt;</span>צבע<span class="tg">&lt;/td&gt;&lt;td&gt;</span>שחור<span class="tg">&lt;/td&gt;&lt;/tr&gt;</span>
+        <span class="tg">&lt;/tbody&gt;</span>
+    <span class="tg">&lt;/table&gt;</span>
+
+    <span class="cm">&lt;!-- קישור עם תמונה - לוגו שמוביל לרכישה --&gt;</span>
+    <span class="tg">&lt;h3&gt;</span>רכישה באתרים חיצוניים:<span class="tg">&lt;/h3&gt;</span>
+    <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"https://ksp.co.il"</span> <span class="at">target</span>=<span class="st">"_blank"</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;img</span> <span class="at">src</span>=<span class="st">"https://via.placeholder.com/120x50/2563eb/fff?text=KSP"</span>
+             <span class="at">alt</span>=<span class="st">"לוגו KSP - לחץ לרכישה"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;/a&gt;</span>
+
+    <span class="cm">&lt;!-- כפתור הזמנה --&gt;</span>
+    <span class="tg">&lt;br&gt;&lt;br&gt;</span>
+    <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"order.html"</span> <span class="at">style</span>=<span class="st">"
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        text-decoration: none;
+    "</span><span class="tg">&gt;</span>הזמן עכשיו!<span class="tg">&lt;/a&gt;</span>
+<span class="tg">&lt;/body&gt;</span>
+<span class="tg">&lt;/html&gt;</span></code></pre></div>
+
+        <h3>order.html - טופס הזמנה (הקוד המלא)</h3>
+        <div class="code-wrapper"><span class="code-lang">order.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="tg">&lt;!DOCTYPE html&gt;</span>
+<span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="st">"he"</span> <span class="at">dir</span>=<span class="st">"rtl"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;head&gt;</span>
+    <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="st">"UTF-8"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;title&gt;</span>טופס הזמנה - TechStore<span class="tg">&lt;/title&gt;</span>
+    <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="st">"stylesheet"</span> <span class="at">href</span>=<span class="st">"style.css"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;/head&gt;</span>
+<span class="tg">&lt;body&gt;</span>
+    <span class="tg">&lt;nav&gt;</span>
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"index.html"</span><span class="tg">&gt;</span>ראשי<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"products.html"</span><span class="tg">&gt;</span>מוצרים<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"info.html"</span><span class="tg">&gt;</span>מידע<span class="tg">&lt;/a&gt;</span> |
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"order.html"</span><span class="tg">&gt;</span>הזמנה<span class="tg">&lt;/a&gt;</span>
+    <span class="tg">&lt;/nav&gt;</span>
+
+    <span class="tg">&lt;h1&gt;</span>טופס הזמנה<span class="tg">&lt;/h1&gt;</span>
+
+    <span class="cm">&lt;!-- method="POST" כי יש מידע רגיש --&gt;</span>
+    <span class="cm">&lt;!-- action="#" כי אין שרת --&gt;</span>
+    <span class="tg">&lt;form</span> <span class="at">action</span>=<span class="st">"#"</span> <span class="at">method</span>=<span class="st">"POST"</span><span class="tg">&gt;</span>
+
+        <span class="cm">&lt;!-- כל שדה חייב: name, id, label עם for תואם --&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"name"</span><span class="tg">&gt;</span>שם מלא:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"text"</span> <span class="at">id</span>=<span class="st">"name"</span> <span class="at">name</span>=<span class="st">"name"</span> <span class="at">required</span>
+               <span class="at">placeholder</span>=<span class="st">"ישראל ישראלי"</span><span class="tg">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"email"</span><span class="tg">&gt;</span>אימייל:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"email"</span> <span class="at">id</span>=<span class="st">"email"</span> <span class="at">name</span>=<span class="st">"email"</span> <span class="at">required</span>
+               <span class="at">placeholder</span>=<span class="st">"you@mail.com"</span><span class="tg">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"phone"</span><span class="tg">&gt;</span>טלפון:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"tel"</span> <span class="at">id</span>=<span class="st">"phone"</span> <span class="at">name</span>=<span class="st">"phone"</span>
+               <span class="at">placeholder</span>=<span class="st">"050-1234567"</span><span class="tg">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"address"</span><span class="tg">&gt;</span>כתובת למשלוח:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"text"</span> <span class="at">id</span>=<span class="st">"address"</span> <span class="at">name</span>=<span class="st">"address"</span>
+               <span class="at">placeholder</span>=<span class="st">"רחוב, מספר, עיר"</span><span class="tg">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="cm">&lt;!-- תפריט נפתח --&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"product"</span><span class="tg">&gt;</span>בחר מוצר:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;select</span> <span class="at">id</span>=<span class="st">"product"</span> <span class="at">name</span>=<span class="st">"product"</span><span class="tg">&gt;</span>
+            <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="st">""</span><span class="tg">&gt;</span>בחרו מוצר...<span class="tg">&lt;/option&gt;</span>
+            <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="st">"laptop"</span><span class="tg">&gt;</span>מחשב נייד - 4,500 ש"ח<span class="tg">&lt;/option&gt;</span>
+            <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="st">"keyboard"</span><span class="tg">&gt;</span>מקלדת מכנית - 350 ש"ח<span class="tg">&lt;/option&gt;</span>
+            <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="st">"mouse"</span><span class="tg">&gt;</span>עכבר אלחוטי - 150 ש"ח<span class="tg">&lt;/option&gt;</span>
+            <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="st">"headphones"</span><span class="tg">&gt;</span>אוזניות גיימינג - 280 ש"ח<span class="tg">&lt;/option&gt;</span>
+            <span class="tg">&lt;option</span> <span class="at">value</span>=<span class="st">"monitor"</span><span class="tg">&gt;</span>מסך 27" - 1,200 ש"ח<span class="tg">&lt;/option&gt;</span>
+        <span class="tg">&lt;/select&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="cm">&lt;!-- כמות --&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"qty"</span><span class="tg">&gt;</span>כמות:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"number"</span> <span class="at">id</span>=<span class="st">"qty"</span> <span class="at">name</span>=<span class="st">"quantity"</span>
+               <span class="at">min</span>=<span class="st">"1"</span> <span class="at">max</span>=<span class="st">"10"</span> <span class="at">value</span>=<span class="st">"1"</span><span class="tg">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="cm">&lt;!-- תאריך --&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"date"</span><span class="tg">&gt;</span>תאריך משלוח רצוי:<span class="tg">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"date"</span> <span class="at">id</span>=<span class="st">"date"</span> <span class="at">name</span>=<span class="st">"delivery_date"</span><span class="tg">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="cm">&lt;!-- הסכמה --&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"checkbox"</span> <span class="at">id</span>=<span class="st">"terms"</span> <span class="at">name</span>=<span class="st">"terms"</span> <span class="at">required</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"terms"</span><span class="tg">&gt;</span>אני מסכים לתנאי השימוש<span class="tg">&lt;/label&gt;&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="tg">&lt;button</span> <span class="at">type</span>=<span class="st">"submit"</span><span class="tg">&gt;</span>שלח הזמנה<span class="tg">&lt;/button&gt;</span>
+    <span class="tg">&lt;/form&gt;</span>
+
+    <span class="cm">&lt;!-- מפת Google --&gt;</span>
+    <span class="tg">&lt;h3&gt;</span>מיקום החנות:<span class="tg">&lt;/h3&gt;</span>
+    <span class="tg">&lt;iframe</span>
+        <span class="at">src</span>=<span class="st">"https://www.google.com/maps/embed?pb=!1m18!..."</span>
+        <span class="at">width</span>=<span class="st">"100%"</span> <span class="at">height</span>=<span class="st">"300"</span>
+        <span class="at">style</span>=<span class="st">"border:0; border-radius: 12px;"</span>
+        <span class="at">loading</span>=<span class="st">"lazy"</span>
+        <span class="at">title</span>=<span class="st">"מיקום החנות על המפה"</span>
+    <span class="tg">&gt;&lt;/iframe&gt;</span>
+<span class="tg">&lt;/body&gt;</span>
+<span class="tg">&lt;/html&gt;</span></code></pre></div>
+
+        <h3>style.css - העיצוב המשותף לכל הדפים (הקוד המלא)</h3>
+        <div class="code-wrapper"><span class="code-lang">style.css</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* ===== RESET ===== */</span>
+<span class="tg">*</span> { <span class="pr">box-sizing</span>: <span class="vl">border-box</span>; <span class="pr">margin</span>: <span class="vl">0</span>; <span class="pr">padding</span>: <span class="vl">0</span>; }
+
+<span class="cm">/* ===== GENERAL ===== */</span>
+<span class="tg">body</span> {
+    <span class="pr">font-family</span>: <span class="vl">"Segoe UI", Arial, sans-serif</span>;
+    <span class="pr">background-color</span>: <span class="vl">#f0f4f8</span>;
+    <span class="pr">color</span>: <span class="vl">#1e293b</span>;
+    <span class="pr">padding</span>: <span class="vl">20px</span>;
+    <span class="pr">direction</span>: <span class="vl">rtl</span>;
+    <span class="pr">line-height</span>: <span class="vl">1.6</span>;
+}
+
+<span class="cm">/* ===== NAVIGATION ===== */</span>
+<span class="tg">nav</span> {
+    <span class="pr">background</span>: <span class="vl">#1e293b</span>;
+    <span class="pr">padding</span>: <span class="vl">12px 20px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+    <span class="pr">margin-bottom</span>: <span class="vl">20px</span>;
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+}
+
+<span class="tg">nav a</span> {
+    <span class="pr">color</span>: <span class="vl">#93c5fd</span>;
+    <span class="pr">text-decoration</span>: <span class="vl">none</span>;
+    <span class="pr">margin</span>: <span class="vl">0 10px</span>;
+    <span class="pr">transition</span>: <span class="vl">color 0.3s</span>;
+}
+
+<span class="tg">nav a:hover</span> { <span class="pr">color</span>: <span class="vl">white</span>; }
+
+<span class="cm">/* ===== HEADINGS ===== */</span>
+<span class="tg">h1</span> { <span class="pr">color</span>: <span class="vl">#1e40af</span>; <span class="pr">margin-bottom</span>: <span class="vl">15px</span>; }
+<span class="tg">h2</span> { <span class="pr">color</span>: <span class="vl">#334155</span>; <span class="pr">margin</span>: <span class="vl">15px 0</span>; }
+<span class="tg">h3</span> { <span class="pr">color</span>: <span class="vl">#475569</span>; <span class="pr">margin</span>: <span class="vl">10px 0</span>; }
+
+<span class="cm">/* ===== PRODUCTS GRID ===== */</span>
+<span class="tg">.products</span> {
+    <span class="pr">display</span>: <span class="vl">grid</span>;
+    <span class="pr">grid-template-columns</span>: <span class="vl">repeat(3, 1fr)</span>;
+    <span class="pr">gap</span>: <span class="vl">20px</span>;
+    <span class="pr">padding</span>: <span class="vl">20px 0</span>;
+}
+
+<span class="tg">.card</span> {
+    <span class="pr">border</span>: <span class="vl">1px solid #ddd</span>;
+    <span class="pr">border-radius</span>: <span class="vl">12px</span>;
+    <span class="pr">padding</span>: <span class="vl">15px</span>;
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+    <span class="pr">background</span>: <span class="vl">white</span>;
+    <span class="pr">transition</span>: <span class="vl">all 0.3s ease</span>;
+}
+
+<span class="tg">.card:hover</span> {
+    <span class="pr">transform</span>: <span class="vl">translateY(-5px)</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 10px 25px rgba(0,0,0,0.1)</span>;
+}
+
+<span class="tg">.card img</span> { <span class="pr">width</span>: <span class="vl">100%</span>; <span class="pr">border-radius</span>: <span class="vl">8px</span>; }
+<span class="tg">.card a</span>   { <span class="pr">text-decoration</span>: <span class="vl">none</span>; <span class="pr">color</span>: <span class="vl">inherit</span>; }
+<span class="tg">.price</span>    { <span class="pr">color</span>: <span class="vl">#2563eb</span>; <span class="pr">font-weight</span>: <span class="vl">bold</span>; <span class="pr">font-size</span>: <span class="vl">1.1em</span>; }
+
+<span class="cm">/* ===== TABLES ===== */</span>
+<span class="tg">table</span> { <span class="pr">width</span>: <span class="vl">100%</span>; <span class="pr">border-collapse</span>: <span class="vl">collapse</span>; <span class="pr">margin</span>: <span class="vl">15px 0</span>; }
+<span class="tg">th</span>    { <span class="pr">background</span>: <span class="vl">#1e293b</span>; <span class="pr">color</span>: <span class="vl">white</span>; <span class="pr">padding</span>: <span class="vl">10px</span>; }
+<span class="tg">td</span>    { <span class="pr">padding</span>: <span class="vl">10px</span>; <span class="pr">border-bottom</span>: <span class="vl">1px solid #ddd</span>; }
+
+<span class="cm">/* ===== FORMS ===== */</span>
+<span class="tg">form</span> {
+    <span class="pr">background</span>: <span class="vl">white</span>;
+    <span class="pr">padding</span>: <span class="vl">25px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">12px</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 4px 15px rgba(0,0,0,0.1)</span>;
+    <span class="pr">max-width</span>: <span class="vl">500px</span>;
+}
+
+<span class="tg">input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select</span> {
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+    <span class="pr">padding</span>: <span class="vl">10px</span>;
+    <span class="pr">border</span>: <span class="vl">2px solid #e2e8f0</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+    <span class="pr">font-size</span>: <span class="vl">1em</span>;
+    <span class="pr">transition</span>: <span class="vl">border-color 0.3s</span>;
+}
+
+<span class="tg">input:focus, select:focus</span> {
+    <span class="pr">border-color</span>: <span class="vl">#667eea</span>;
+    <span class="pr">outline</span>: <span class="vl">none</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 0 0 3px rgba(102,126,234,0.2)</span>;
+}
+
+<span class="tg">button[type="submit"]</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #667eea, #764ba2)</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+    <span class="pr">padding</span>: <span class="vl">12px 30px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+    <span class="pr">font-size</span>: <span class="vl">1.1em</span>;
+    <span class="pr">transition</span>: <span class="vl">all 0.3s</span>;
+}
+
+<span class="tg">button[type="submit"]:hover</span> {
+    <span class="pr">transform</span>: <span class="vl">translateY(-2px)</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 6px 20px rgba(102,126,234,0.4)</span>;
+}
+
+<span class="cm">/* ===== RESPONSIVE ===== */</span>
+<span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="vl">768px</span>) {
+    <span class="tg">.products</span> {
+        <span class="pr">grid-template-columns</span>: <span class="vl">repeat(2, 1fr)</span>;
+    }
+}
+
+<span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="vl">480px</span>) {
+    <span class="tg">.products</span> {
+        <span class="pr">grid-template-columns</span>: <span class="vl">1fr</span>;
+    }
+}
+
+<span class="cm">/* ===== IMAGES ===== */</span>
+<span class="tg">img</span> { <span class="pr">max-width</span>: <span class="vl">100%</span>; <span class="pr">height</span>: <span class="vl">auto</span>; }</code></pre></div>
+
+        <div class="card card-accent">
+            <div class="card-title">מבנה תיקיות של הפרויקט</div>
+            <p style="margin:0;font-family:var(--font-code);font-size:.82rem;line-height:2">
+                my-store/<br>
+                ├── index.html &nbsp;&nbsp;&nbsp; (דף ראשי)<br>
+                ├── products.html &nbsp;(גריד מוצרים)<br>
+                ├── info.html &nbsp;&nbsp;&nbsp;&nbsp; (מידע מוצר)<br>
+                ├── order.html &nbsp;&nbsp;&nbsp; (טופס הזמנה)<br>
+                ├── style.css &nbsp;&nbsp;&nbsp;&nbsp; (עיצוב לכל הדפים)<br>
+                └── images/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (תמונות)<br>
+                &nbsp;&nbsp;&nbsp; ├── laptop.jpg<br>
+                &nbsp;&nbsp;&nbsp; ├── keyboard.jpg<br>
+                &nbsp;&nbsp;&nbsp; └── mouse.jpg
+            </p>
+        </div>
+
+        <h3>סיכום סוגי Input בטפסים</h3>
+        <table>
+            <thead><tr><th>type</th><th>מה עושה</th><th>דוגמה</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">text</span></td><td>שדה טקסט חופשי</td><td><span class="inline-code">&lt;input type="text"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">password</span></td><td>מסתיר תווים (נקודות)</td><td><span class="inline-code">&lt;input type="password"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">email</span></td><td>מוודא פורמט מייל</td><td><span class="inline-code">&lt;input type="email"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">number</span></td><td>מספרים + חצים</td><td><span class="inline-code">&lt;input type="number" min="1" max="10"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">tel</span></td><td>טלפון - מקלדת מספרים במובייל</td><td><span class="inline-code">&lt;input type="tel"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">date</span></td><td>בוחר תאריך</td><td><span class="inline-code">&lt;input type="date"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">checkbox</span></td><td>תיבת סימון (כן/לא)</td><td><span class="inline-code">&lt;input type="checkbox"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">radio</span></td><td>בחירה אחת מכמה (אותו name)</td><td><span class="inline-code">&lt;input type="radio" name="group"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">file</span></td><td>העלאת קובץ</td><td><span class="inline-code">&lt;input type="file"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">hidden</span></td><td>שדה מוסתר (לא נראה)</td><td><span class="inline-code">&lt;input type="hidden" name="token"&gt;</span></td></tr>
+                <tr><td><span class="inline-code">submit</span></td><td>כפתור שליחה</td><td><span class="inline-code">&lt;input type="submit" value="שלח"&gt;</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="card card-danger">
+            <div class="card-title">GET vs POST - מתי משתמשים במה?</div>
+            <p><strong>GET</strong> - המידע מופיע ב-URL (למשל <span class="inline-code">google.com/search?q=css</span>). משמש לחיפוש, פילטרים. המידע גלוי ומוגבל באורך.</p>
+            <p style="margin:0"><strong>POST</strong> - המידע נשלח בגוף הבקשה, לא ב-URL. משמש להתחברות, הרשמה, הזמנות. <strong>תמיד POST לסיסמאות!</strong> גם POST לא מוצפן בפני עצמו - לכן חובה HTTPS.</p>
+        </div>
+
+        <div class="card card-warn">
+            <div class="card-title">3 attributes קריטיים בכל שדה בטופס</div>
+            <p style="margin:0">
+                <strong>name</strong> - השם שהשרת מקבל. בלי name המידע לא נשלח!<br>
+                <strong>id</strong> - מזהה ייחודי. מקשר ל-label.<br>
+                <strong>for</strong> (ב-label) - חייב להתאים ל-id של ה-input. ככה לחיצה על הכותרת מפעילה את השדה.
+                זה גם קריטי לנגישות.
+            </p>
+        </div>
 
         <h3>תוצאה ויזואלית - products.html (hover עובד!)</h3>
         <div class="demo-area">
