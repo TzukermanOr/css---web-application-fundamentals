@@ -1,1271 +1,1510 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSS Fundamentals - HackerU | Elite Guide v3</title>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#080d18;--bg2:#0f1629;--bg3:#172038;--surface:#1e2a4a;--border:#253356;--border2:#2d4070;--text:#e8ecf4;--text2:#8496b8;--text3:#5a6d8e;--accent:#38bdf8;--accent2:#22d3ee;--green:#34d399;--orange:#fbbf24;--red:#f87171;--pink:#f472b6;--purple:#a78bfa;--radius:12px;--font:'Heebo',sans-serif;--mono:'IBM Plex Mono',monospace}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
-::selection{background:var(--accent);color:#000}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Masterclass - מאפס לפרו</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS VARIABLES - CYBER THEME
+        ======================================== */
+        :root {
+            --bg-deep: #060a14;
+            --bg-panel: #0c1220;
+            --bg-card: #111827;
+            --bg-code: #0d1117;
+            --cyan: #22d3ee;
+            --cyan-dim: rgba(34, 211, 238, 0.15);
+            --cyan-glow: rgba(34, 211, 238, 0.4);
+            --magenta: #f472b6;
+            --magenta-dim: rgba(244, 114, 182, 0.15);
+            --green: #34d399;
+            --green-dim: rgba(52, 211, 153, 0.12);
+            --amber: #fbbf24;
+            --amber-dim: rgba(251, 191, 36, 0.12);
+            --red: #f87171;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-dim: #64748b;
+            --border: rgba(34, 211, 238, 0.12);
+            --border-hover: rgba(34, 211, 238, 0.35);
+            --font-body: 'IBM Plex Sans Hebrew', 'Heebo', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+            --font-display: 'Heebo', sans-serif;
+            --radius: 10px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
 
-.top-bar{position:sticky;top:0;z-index:100;background:rgba(8,13,24,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0}
-.tabs-wrap{max-width:1100px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;padding:0 .5rem}
-.tabs-wrap::-webkit-scrollbar{display:none}
-.tab-btn{background:none;border:none;color:var(--text2);padding:15px 16px;font-family:var(--font);font-size:.84rem;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.25s;position:relative}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
-.tab-btn .num{font-size:.6rem;background:var(--bg3);color:var(--text3);padding:1px 5px;border-radius:8px;margin-right:4px;vertical-align:middle}
-.tab-btn.active .num{background:rgba(56,189,248,.15);color:var(--accent)}
+        /* ========================================
+           RESET & BASE
+        ======================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem 8rem}
-.tab-content{display:none;animation:fadeUp .45s ease}
-.tab-content.active{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
 
-h1{font-size:2.2rem;font-weight:900;margin-bottom:.4rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px}
-.subtitle{color:var(--text2);font-size:1rem;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem}
-h2{font-size:1.45rem;font-weight:700;margin:2.8rem 0 1rem;padding-right:14px;border-right:3px solid var(--accent);color:var(--text)}
-h3{font-size:1.05rem;font-weight:600;color:var(--accent2);margin:1.5rem 0 .5rem}
-h4{font-size:.92rem;font-weight:600;color:var(--text);margin:1rem 0 .4rem}
-p{color:var(--text2);font-size:.95rem;margin-bottom:.9rem}
-strong{color:var(--text);font-weight:600}
-code{font-family:var(--mono);background:var(--bg3);color:var(--orange);padding:1px 6px;border-radius:4px;font-size:.85em}
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.75;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.5rem}
-.card-title{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
-.badge{font-size:.68rem;padding:3px 10px;border-radius:50px;font-weight:600;letter-spacing:.3px}
-.b-blue{background:rgba(56,189,248,.12);color:var(--accent);border:1px solid rgba(56,189,248,.2)}
-.b-green{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.2)}
-.b-orange{background:rgba(251,191,36,.12);color:var(--orange);border:1px solid rgba(251,191,36,.2)}
-.b-red{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.2)}
-.b-purple{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
-.b-pink{background:rgba(244,114,182,.12);color:var(--pink);border:1px solid rgba(244,114,182,.2)}
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-/* Code + Preview */
-.demo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0 1.5rem}
-.demo.full{grid-template-columns:1fr}
-.demo.triple{grid-template-columns:1fr 1fr 1fr}
-.code-pane{background:#060a12;padding:1.3rem;font-family:var(--mono);font-size:.8rem;color:#c9d1d9;direction:ltr;text-align:left;overflow-x:auto;position:relative;line-height:1.7;border-left:1px solid var(--border)}
-.code-pane .label{position:absolute;top:8px;right:10px;font-size:.6rem;color:var(--text3);background:var(--bg3);padding:2px 8px;border-radius:4px;font-family:var(--mono)}
-.preview-pane{background:#fff;padding:1.5rem;display:flex;align-items:center;justify-content:center;flex-direction:column;min-height:120px;position:relative}
-.preview-pane .label{position:absolute;top:8px;left:10px;font-size:.6rem;color:#94a3b8;background:#f1f5f9;padding:2px 8px;border-radius:4px}
-.preview-pane.dark{background:var(--bg2);border:none}
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(34,211,238,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(244,114,182,0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-.ct{color:#f472b6}.ca{color:#7dd3fc}.cv{color:#a5f3fc}.cp{color:#93c5fd}.cs{color:#fbbf24}.cc{color:#6b7280;font-style:italic}.cg{color:#86efac}.ck{color:#c084fc}
+        /* ========================================
+           LAYOUT
+        ======================================== */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-.tbl{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
-.tbl th{background:var(--bg3);padding:10px 12px;text-align:right;color:var(--accent);font-weight:600;border:1px solid var(--border);font-size:.82rem}
-.tbl td{padding:9px 12px;border:1px solid var(--border);color:var(--text2)}
-.tbl td:first-child{font-family:var(--mono);color:var(--orange);font-size:.82rem;direction:ltr;text-align:left}
-.tbl tr:hover td{background:rgba(56,189,248,.03)}
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+        }
 
-.info{padding:1rem 1.2rem;border-radius:var(--radius);margin:1rem 0;font-size:.9rem;line-height:1.7}
-.info.tip{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.15);border-right:3px solid var(--green)}
-.info.warn{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15);border-right:3px solid var(--orange)}
-.info.err{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.15);border-right:3px solid var(--red)}
-.info.note{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.15);border-right:3px solid var(--accent)}
+        .hero-badge {
+            display: inline-block;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(34,211,238,0.2);
+            margin-bottom: 24px;
+        }
 
-.mission{background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(34,211,238,.06));border:1px solid rgba(56,189,248,.15);border-radius:var(--radius);padding:1.5rem;margin:1.5rem 0}
-.mission-t{font-size:1.15rem;font-weight:700;color:var(--accent);margin-bottom:.8rem}
-.steps{counter-reset:s}
-.steps li{counter-increment:s;padding:.45rem 0 .45rem 0;color:var(--text2);position:relative;padding-right:34px;list-style:none;font-size:.92rem}
-.steps li::before{content:counter(s);position:absolute;right:0;top:.45rem;width:22px;height:22px;background:var(--accent);color:#000;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
 
-.file-tree{display:flex;gap:6px;flex-wrap:wrap;margin:1rem 0}
-.file-node{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-align:center;flex:1;min-width:100px}
-.file-node .ic{font-size:1.4rem;margin-bottom:2px}
-.file-node .nm{font-family:var(--mono);font-size:.8rem;color:var(--accent2)}
-.file-node .ds{font-size:.68rem;color:var(--text3);margin-top:2px}
-.file-arr{display:flex;align-items:center;color:var(--text3);font-size:1rem}
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
 
-.spec-bar{display:flex;border-radius:8px;overflow:hidden;margin:1rem 0;direction:ltr;font-size:.8rem}
-.spec-bar div{flex:1;padding:10px 6px;text-align:center;color:#fff;font-weight:600}
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-.bm-viz{direction:ltr;text-align:center;margin:1.5rem auto;max-width:360px}
-.bm-m{border:2px dashed var(--text3);padding:18px;border-radius:8px;position:relative;background:rgba(100,116,139,.04)}
-.bm-b{border:3px solid var(--accent);padding:16px;background:rgba(56,189,248,.05);position:relative}
-.bm-p{background:rgba(244,114,182,.06);padding:16px;position:relative}
-.bm-c{background:var(--accent);color:#000;padding:8px;border-radius:4px;font-weight:700;font-size:.85rem}
-.bm-l{position:absolute;top:2px;left:5px;font-size:.6rem;font-weight:600}
+        .hero-stat {
+            text-align: center;
+        }
 
-.flex-pg{background:var(--bg);padding:1rem;border-radius:10px;border:1px solid var(--border)}
-.flex-ctrls{display:flex;gap:5px;margin-bottom:.8rem;flex-wrap:wrap}
-.cbtn{background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:.78rem;font-family:var(--font);transition:.2s}
-.cbtn:hover{border-color:var(--accent)}
-.cbtn.on{background:var(--accent);color:#000;border-color:var(--accent)}
-.flex-area{min-height:80px;background:rgba(255,255,255,.02);border-radius:8px;display:flex;align-items:center;transition:.3s;padding:6px;gap:5px}
-.flex-box{width:40px;height:40px;background:var(--accent);border-radius:5px}
+        .hero-stat .num {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
 
-/* Section separator */
-.sep{border:none;border-top:1px dashed var(--border);margin:2.5rem 0}
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-/* Two-pane file view */
-.file-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0}
-.file-split .code-pane{border-left:1px solid var(--border)}
-.file-split .code-pane:first-child{border-left:none}
+        /* ========================================
+           NAV / TOC
+        ======================================== */
+        .toc {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 0 auto 48px;
+            max-width: 700px;
+        }
 
-@media(max-width:768px){
-  .demo,.file-split,.demo.triple{grid-template-columns:1fr}
-  main{padding:1rem .8rem 6rem}
-  h1{font-size:1.7rem}
-  .tab-btn{padding:12px 10px;font-size:.76rem}
-}
-</style>
+        .toc h2 {
+            font-size: 1rem;
+            color: var(--cyan);
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 24px;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 4px 0;
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .toc a:hover {
+            color: var(--cyan);
+        }
+
+        .toc a .num {
+            color: var(--text-dim);
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            margin-left: 6px;
+        }
+
+        /* ========================================
+           SECTIONS
+        ======================================== */
+        .section {
+            margin-bottom: 64px;
+            scroll-margin-top: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-num {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            color: var(--bg-deep);
+            background: var(--cyan);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: var(--cyan);
+            margin: 28px 0 12px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: var(--magenta);
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ========================================
+           CODE BLOCKS
+        ======================================== */
+        pre {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            overflow-x: auto;
+            margin: 12px 0 20px;
+            position: relative;
+        }
+
+        pre::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-family: var(--font-code);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        code, .code {
+            font-family: var(--font-code);
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .inline-code {
+            font-family: var(--font-code);
+            font-size: 0.82rem;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            padding: 2px 7px;
+            border-radius: 4px;
+            border: 1px solid rgba(34,211,238,0.1);
+        }
+
+        /* Syntax coloring */
+        .kw { color: #c084fc; }   /* keyword */
+        .pr { color: #67e8f9; }   /* property */
+        .vl { color: #fbbf24; }   /* value */
+        .cm { color: #64748b; font-style: italic; }  /* comment */
+        .tg { color: #f472b6; }   /* tag/selector */
+        .st { color: #34d399; }   /* string */
+        .at { color: #fb923c; }   /* attribute */
+
+        /* ========================================
+           CARDS & PANELS
+        ======================================== */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+
+        .card-accent {
+            border-right: 3px solid var(--cyan);
+        }
+
+        .card-warn {
+            border-right: 3px solid var(--amber);
+            background: rgba(251,191,36,0.04);
+        }
+
+        .card-danger {
+            border-right: 3px solid var(--red);
+            background: rgba(248,113,113,0.04);
+        }
+
+        .card-success {
+            border-right: 3px solid var(--green);
+            background: rgba(52,211,153,0.04);
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .card-accent .card-title { color: var(--cyan); }
+        .card-warn .card-title { color: var(--amber); }
+        .card-danger .card-title { color: var(--red); }
+        .card-success .card-title { color: var(--green); }
+
+        /* ========================================
+           TABLES
+        ======================================== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: rgba(34,211,238,0.08);
+            color: var(--cyan);
+            text-align: right;
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(34,211,238,0.03);
+        }
+
+        td code, td .inline-code {
+            font-size: 0.78rem;
+        }
+
+        /* ========================================
+           DEMO BOXES
+        ======================================== */
+        .demo-area {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 16px 0 24px;
+            position: relative;
+        }
+
+        .demo-area::before {
+            content: 'LIVE DEMO';
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            background: var(--green);
+            color: var(--bg-deep);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+
+        .demo-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .demo-box {
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        /* ========================================
+           COMPARISON BLOCKS
+        ======================================== */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .compare-good {
+            background: var(--green-dim);
+            border: 1px solid rgba(52,211,153,0.2);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+        }
+
+        .compare-bad {
+            background: rgba(248,113,113,0.06);
+            border: 1px solid rgba(248,113,113,0.2);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+        }
+
+        .compare-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .compare-good .compare-label { color: var(--green); }
+        .compare-bad .compare-label { color: var(--red); }
+
+        /* ========================================
+           SPECIFICITY VISUAL
+        ======================================== */
+        .spec-bar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .spec-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 36px;
+            border-radius: 6px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-right: 8px;
+        }
+
+        /* ========================================
+           MISSION SECTION
+        ======================================== */
+        .mission {
+            background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(244,114,182,0.06));
+            border: 1px solid var(--border-hover);
+            border-radius: 14px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .mission h3 {
+            color: var(--magenta);
+            font-size: 1.3rem;
+            margin-top: 0;
+        }
+
+        .mission ol {
+            padding-right: 24px;
+            color: var(--text-secondary);
+        }
+
+        .mission ol li {
+            margin-bottom: 8px;
+        }
+
+        .mission ol li strong {
+            color: var(--cyan);
+        }
+
+        /* ========================================
+           INTERACTIVE HOVER DEMO
+        ======================================== */
+        .hover-demo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.35s ease;
+        }
+
+        .hover-demo:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(34,211,238,0.15);
+            border-color: var(--cyan);
+        }
+
+        .hover-demo:active {
+            transform: scale(0.97);
+            background: var(--cyan-dim);
+        }
+
+        .hover-demo .emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* ========================================
+           LOGIN FORM DEMO
+        ======================================== */
+        .form-demo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            max-width: 380px;
+            margin: 20px auto;
+        }
+
+        .form-demo h4 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .form-demo label {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .form-demo input[type="text"],
+        .form-demo input[type="password"],
+        .form-demo input[type="email"] {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-demo input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px var(--cyan-dim);
+        }
+
+        .form-demo .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .form-demo button {
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, var(--cyan), #0ea5e9);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-demo button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34,211,238,0.3);
+        }
+
+        .form-demo button:active {
+            transform: scale(0.97);
+        }
+
+        /* ========================================
+           BOX MODEL VISUAL
+        ======================================== */
+        .box-model-visual {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .bm-outer {
+            background: rgba(251,191,36,0.12);
+            border: 2px dashed rgba(251,191,36,0.4);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .bm-border {
+            background: rgba(248,113,113,0.12);
+            border: 3px solid var(--red);
+            padding: 16px;
+            border-radius: 6px;
+        }
+
+        .bm-padding {
+            background: rgba(52,211,153,0.12);
+            border: 2px dashed rgba(52,211,153,0.4);
+            padding: 16px;
+            border-radius: 4px;
+        }
+
+        .bm-content {
+            background: rgba(34,211,238,0.15);
+            border: 1px solid var(--cyan);
+            padding: 16px 24px;
+            border-radius: 4px;
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .bm-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        footer {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (max-width: 640px) {
+            .toc-grid { grid-template-columns: 1fr; }
+            .compare { grid-template-columns: 1fr; }
+            .demo-row { flex-direction: column; }
+            .hero-stats { gap: 20px; }
+            .mission { padding: 20px; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.3); border-radius: 3px; }
+
+        /* Selection */
+        ::selection {
+            background: var(--cyan);
+            color: var(--bg-deep);
+        }
+
+        /* Lists inside sections */
+        .section ul, .section ol {
+            padding-right: 22px;
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+        }
+
+        .section li {
+            margin-bottom: 6px;
+        }
+
+        /* Separator */
+        .sep {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body>
 
-<div class="top-bar">
-<div class="tabs-wrap" id="tabs">
-  <button class="tab-btn active" data-tab="intro"><span class="num">01</span>מבוא</button>
-  <button class="tab-btn" data-tab="props"><span class="num">02</span>תכונות CSS</button>
-  <button class="tab-btn" data-tab="selectors"><span class="num">03</span>סלקטורים</button>
-  <button class="tab-btn" data-tab="methods"><span class="num">04</span>3 שיטות</button>
-  <button class="tab-btn" data-tab="boxmodel"><span class="num">05</span>Box Model</button>
-  <button class="tab-btn" data-tab="layout"><span class="num">06</span>Layout</button>
-  <button class="tab-btn" data-tab="m1"><span class="num">07</span>משימה 1</button>
-  <button class="tab-btn" data-tab="m2"><span class="num">08</span>משימה 2</button>
-</div>
-</div>
+<div class="container">
 
-<main>
-
-<!-- ==================== TAB 1: INTRO ==================== -->
-<div class="tab-content active" id="tab-intro">
-<h1>CSS Fundamentals</h1>
-<p class="subtitle">HackerU | Ethical Hacking Program - Web Fundamentals</p>
-
-<h2>מה זה CSS?</h2>
-<div class="card">
-  <p><strong>Cascading Style Sheets</strong> היא שפה שאחראית על <strong>המראה</strong> של דפי אינטרנט. HTML = מבנה (שלד), CSS = עיצוב (עור ובגדים).</p>
-  <p><strong>Cascading = מדורג</strong> - כשיש כמה חוקים על אותו אלמנט, הדפדפן מחליט מי מנצח לפי סדר עדיפויות (Specificity).</p>
-  <div class="info tip"><strong>הנקודה המרכזית:</strong> CSS מפריד בין תוכן לעיצוב. אתה יכול לשנות את כל המראה של אתר שלם ע"י עריכת קובץ CSS אחד בלבד, בלי לגעת ב-HTML.</div>
-</div>
-
-<h2>התחביר הבסיסי</h2>
-<div class="card">
-  <p>כל חוק CSS בנוי מ-3 חלקים: <strong>סלקטור</strong> (מי), <strong>תכונה</strong> (מה), <strong>ערך</strong> (איך).</p>
-  <div class="demo">
-    <div class="code-pane"><span class="label">CSS</span>
-<span class="cc">/* הסלקטור בוחר את האלמנט */</span>
-<span class="cs">body</span> {
-    <span class="cp">background-color</span>: <span class="cv">lightblue</span>;
-}
-
-<span class="cs">h1</span> {
-    <span class="cp">color</span>: <span class="cv">navy</span>;          <span class="cc">/* צבע טקסט */</span>
-    <span class="cp">margin-left</span>: <span class="cv">20px</span>;   <span class="cc">/* מרווח שמאלי */</span>
-}
-
-<span class="cs">p</span> {
-    <span class="cp">text-decoration</span>: <span class="cv">underline</span>;
-}</div>
-    <div class="preview-pane" style="background:lightblue"><span class="label">Result</span>
-      <div style="text-align:left;direction:ltr;width:100%">
-        <h1 style="color:navy;margin-left:20px;font-size:24px;margin-bottom:8px">Welcome to my site</h1>
-        <p style="text-decoration:underline;font-size:15px;color:#333">this is paragraph</p>
-      </div>
+    <!-- ======== HERO ======== -->
+    <div class="hero">
+        <div class="hero-badge">HackerU - Web Fundamentals</div>
+        <h1>CSS Masterclass<br>מאפס לפרופשינל</h1>
+        <p>כל מה שצריך לדעת על CSS - סינטקס, סלקטורים, Box Model, Flexbox, Grid, אנימציות, ועוד. מדריך אינטראקטיבי אחד עם דוגמאות חיות.</p>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="num">12</div><div class="label">נושאים</div></div>
+            <div class="hero-stat"><div class="num">50+</div><div class="label">דוגמאות קוד</div></div>
+            <div class="hero-stat"><div class="num">1</div><div class="label">משימה מסכמת</div></div>
+        </div>
     </div>
-  </div>
-  <table class="tbl">
-    <tr><th>חלק</th><th>תפקיד</th><th>דוגמאות</th></tr>
-    <tr><td>Selector</td><td>בוחר אלמנטים לעיצוב</td><td>h1 &nbsp; .btn &nbsp; #header &nbsp; div p</td></tr>
-    <tr><td>Property</td><td>התכונה שמשתנה</td><td>color &nbsp; font-size &nbsp; margin &nbsp; background</td></tr>
-    <tr><td>Value</td><td>הערך החדש</td><td>red &nbsp; 16px &nbsp; center &nbsp; #3b82f6</td></tr>
-  </table>
-</div>
 
-<h2>יתרונות CSS</h2>
-<div class="card">
-  <h4>Grouping - עיצוב קבוצתי</h4>
-  <p>אפשר לעצב כמה אלמנטים בו-זמנית. למשל, כל הפסקאות באתר בגופן אחיד:</p>
-  <div class="demo full"><div class="code-pane"><span class="label">CSS</span>
-<span class="cc">/* כל הפסקאות + כל הכותרות בבת אחת */</span>
-<span class="cs">p, h1, h2, h3</span> {
-    <span class="cp">font-family</span>: <span class="cv">"Segoe UI", sans-serif</span>;
-}</div></div>
-
-  <h4>Avoid Duplication - מניעת כפילות</h4>
-  <p>קובץ CSS אחד משרת כמה דפי HTML. שינוי אחד = שינוי בכל האתר.</p>
-
-  <h4>Clean Code - קוד נקי</h4>
-  <p>הפרדה בין HTML (מבנה) ל-CSS (עיצוב). קל יותר לקרוא, לתחזק ולשנות.</p>
-</div>
-
-<h2>יחידות מידה</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>יחידה</th><th>סוג</th><th>הסבר</th><th>דוגמה</th></tr>
-    <tr><td>px</td><td>קבוע</td><td>פיקסלים. גודל קבוע שלא משתנה</td><td>font-size: 16px;</td></tr>
-    <tr><td>em</td><td>יחסי</td><td>יחסי לגופן ההורה. 2em = פי 2</td><td>font-size: 1.5em;</td></tr>
-    <tr><td>rem</td><td>יחסי</td><td>יחסי לגופן הבסיס (html). עדיף על em</td><td>font-size: 1rem;</td></tr>
-    <tr><td>%</td><td>יחסי</td><td>אחוז מגודל ההורה</td><td>width: 50%;</td></tr>
-    <tr><td>vw / vh</td><td>יחסי</td><td>אחוז מרוחב/גובה חלון הדפדפן</td><td>height: 100vh;</td></tr>
-  </table>
-</div>
-
-<h2>HTML vs CSS - עיצוב טקסט</h2>
-<div class="card">
-  <p>ב-HTML יש תגיות עיצוב בסיסיות. ב-CSS אפשר להשיג את אותו דבר בצורה טובה יותר:</p>
-  <div class="demo">
-    <div class="code-pane"><span class="label">HTML way</span>
-<span class="ct">&lt;b&gt;</span>Bold text<span class="ct">&lt;/b&gt;</span>
-<span class="ct">&lt;i&gt;</span>Italic text<span class="ct">&lt;/i&gt;</span>
-<span class="ct">&lt;u&gt;</span>Underline<span class="ct">&lt;/u&gt;</span>
-<span class="ct">&lt;mark&gt;</span>Highlight<span class="ct">&lt;/mark&gt;</span>
-<span class="ct">&lt;small&gt;</span>Small<span class="ct">&lt;/small&gt;</span></div>
-    <div class="code-pane"><span class="label">CSS way (עדיף!)</span>
-<span class="cs">element</span> { <span class="cp">font-weight</span>: <span class="cv">bold</span>; }
-<span class="cs">element</span> { <span class="cp">font-style</span>: <span class="cv">italic</span>; }
-<span class="cs">element</span> { <span class="cp">text-decoration</span>: <span class="cv">underline</span>; }
-<span class="cs">element</span> { <span class="cp">background-color</span>: <span class="cv">yellow</span>; }
-<span class="cs">element</span> { <span class="cp">font-size</span>: <span class="cv">smaller</span>; }</div>
-  </div>
-</div>
-</div>
-
-<!-- ==================== TAB 2: PROPERTIES ==================== -->
-<div class="tab-content" id="tab-props">
-<h1>תכונות CSS - כל מה שצריך לדעת</h1>
-<p class="subtitle">5 קטגוריות מרכזיות עם קוד מלא + תוצאה ויזואלית לכל דוגמה</p>
-
-<h2>1. Typography - טקסט וגופנים</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>תכונה</th><th>מה עושה</th><th>ערכים נפוצים</th></tr>
-    <tr><td>color</td><td>צבע הטקסט</td><td>red, #3b82f6, rgb(59,130,246), hsl(217,91%,60%)</td></tr>
-    <tr><td>font-family</td><td>סוג הגופן</td><td>"Arial", "Georgia", sans-serif, serif, monospace</td></tr>
-    <tr><td>font-size</td><td>גודל הטקסט</td><td>16px, 1.2em, 2rem, 120%</td></tr>
-    <tr><td>font-weight</td><td>עובי הטקסט</td><td>normal(400), bold(700), 100-900</td></tr>
-    <tr><td>font-style</td><td>סגנון</td><td>normal, italic, oblique</td></tr>
-    <tr><td>text-align</td><td>יישור</td><td>left, center, right, justify</td></tr>
-    <tr><td>text-decoration</td><td>קישוט</td><td>none, underline, overline, line-through</td></tr>
-    <tr><td>text-transform</td><td>שינוי אותיות</td><td>uppercase, lowercase, capitalize</td></tr>
-    <tr><td>letter-spacing</td><td>ריווח אותיות</td><td>2px, 0.1em, -1px</td></tr>
-    <tr><td>line-height</td><td>גובה שורה</td><td>1.5, 24px, 150%</td></tr>
-    <tr><td>text-shadow</td><td>צל לטקסט</td><td>2px 2px 4px rgba(0,0,0,0.3)</td></tr>
-  </table>
-
-  <h3>דוגמה מלאה - קוד + תוצאה:</h3>
-  <div class="demo">
-    <div class="code-pane"><span class="label">style.css</span>
-<span class="cc">/* עיצוב כותרת ראשית */</span>
-<span class="cs">h1</span> {
-    <span class="cp">color</span>: <span class="cv">#1e40af</span>;
-    <span class="cp">font-family</span>: <span class="cv">Georgia, serif</span>;
-    <span class="cp">font-size</span>: <span class="cv">32px</span>;
-    <span class="cp">font-weight</span>: <span class="cv">bold</span>;
-    <span class="cp">text-align</span>: <span class="cv">center</span>;
-    <span class="cp">letter-spacing</span>: <span class="cv">3px</span>;
-    <span class="cp">text-transform</span>: <span class="cv">uppercase</span>;
-    <span class="cp">text-shadow</span>: <span class="cv">1px 1px 3px rgba(0,0,0,0.2)</span>;
-}
-
-<span class="cc">/* עיצוב פסקאות */</span>
-<span class="cs">p</span> {
-    <span class="cp">color</span>: <span class="cv">#475569</span>;
-    <span class="cp">font-family</span>: <span class="cv">"Segoe UI", sans-serif</span>;
-    <span class="cp">font-size</span>: <span class="cv">16px</span>;
-    <span class="cp">line-height</span>: <span class="cv">1.8</span>;
-    <span class="cp">text-decoration</span>: <span class="cv">underline</span>;
-    <span class="cp">text-decoration-color</span>: <span class="cv">#93c5fd</span>;
-}</div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="text-align:center;direction:ltr;width:100%">
-        <h1 style="color:#1e40af;font-family:Georgia,serif;font-size:28px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;text-shadow:1px 1px 3px rgba(0,0,0,.2);margin-bottom:12px">Hello World</h1>
-        <p style="color:#475569;font-family:'Segoe UI',sans-serif;font-size:15px;line-height:1.8;text-decoration:underline;text-decoration-color:#93c5fd;text-align:left">This paragraph has custom typography styling. Notice the underline color, line-height spacing, and serif heading above.</p>
-      </div>
+    <!-- ======== TOC ======== -->
+    <div class="toc">
+        <h2>תוכן עניינים</h2>
+        <div class="toc-grid">
+            <a href="#s1"><span class="num">01</span> מה זה CSS</a>
+            <a href="#s7"><span class="num">07</span> Box Model</a>
+            <a href="#s2"><span class="num">02</span> 3 שיטות הטמעה</a>
+            <a href="#s8"><span class="num">08</span> Position & Layout</a>
+            <a href="#s3"><span class="num">03</span> סלקטורים</a>
+            <a href="#s9"><span class="num">09</span> Flexbox & Grid</a>
+            <a href="#s4"><span class="num">04</span> ID, Class, Div, Span</a>
+            <a href="#s10"><span class="num">10</span> Pseudo & Effects</a>
+            <a href="#s5"><span class="num">05</span> צבעים ושקיפות</a>
+            <a href="#s11"><span class="num">11</span> Responsive & Variables</a>
+            <a href="#s6"><span class="num">06</span> טיפוגרפיה ויחידות</a>
+            <a href="#s12"><span class="num">12</span> משימה מסכמת</a>
+        </div>
     </div>
-  </div>
-</div>
 
-<h2>2. Backgrounds & Colors - רקעים</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>תכונה</th><th>מה עושה</th><th>ערכים</th></tr>
-    <tr><td>background-color</td><td>צבע רקע</td><td>#f0f4f8, lightblue, rgba(0,0,0,0.5)</td></tr>
-    <tr><td>background-image</td><td>תמונת רקע</td><td>url("bg.jpg"), linear-gradient(...)</td></tr>
-    <tr><td>background-size</td><td>גודל תמונה</td><td>cover (ממלא), contain (מכיל), 100%</td></tr>
-    <tr><td>background-repeat</td><td>חזרה</td><td>no-repeat, repeat, repeat-x</td></tr>
-    <tr><td>background-position</td><td>מיקום</td><td>center, top left, 50% 50%</td></tr>
-    <tr><td>opacity</td><td>שקיפות 0-1</td><td>0=שקוף, 0.5=חצי, 1=מלא</td></tr>
-  </table>
+    <!-- ======== 01: WHAT IS CSS ======== -->
+    <div class="section" id="s1">
+        <div class="section-header">
+            <div class="section-num">01</div>
+            <h2>מה זה CSS</h2>
+        </div>
 
-  <h3>דוגמאות צבעים ושקיפויות:</h3>
-  <div class="demo">
-    <div class="code-pane"><span class="label">CSS</span>
-<span class="cc">/* צבע רקע רגיל */</span>
-<span class="cs">.box1</span> { <span class="cp">background-color</span>: <span class="cv">#3b82f6</span>; }
+        <p><strong>CSS = Cascading Style Sheets</strong> - שפה שמגדירה את המראה של דפי HTML. בלי CSS כל דף נראה כמו מסמך לבן משעמם.</p>
 
-<span class="cc">/* גרדיאנט - מעבר צבעים */</span>
-<span class="cs">.box2</span> {
-    <span class="cp">background</span>: <span class="cv">linear-gradient(
-        135deg,
-        #f472b6,
-        #7c3aed
-    )</span>;
+        <p><strong>Cascading = מדורג</strong> - כשכמה כללים חלים על אותו אלמנט, יש סדר עדיפויות שקובע מי "מנצח".</p>
+
+        <div class="card card-accent">
+            <div class="card-title">הפרדת אחריות</div>
+            <p style="margin:0"><strong>HTML</strong> = מבנה ותוכן (מה יש בדף) &nbsp;|&nbsp; <strong>CSS</strong> = עיצוב ומראה (איך נראה) &nbsp;|&nbsp; <strong>JavaScript</strong> = התנהגות (מה עושה)</p>
+        </div>
+
+        <h3>התחביר הבסיסי</h3>
+        <p>כל חוק CSS בנוי מ-3 חלקים: <span class="inline-code">selector</span> (מי), <span class="inline-code">property</span> (מה), <span class="inline-code">value</span> (איך).</p>
+
+        <pre data-lang="CSS"><code><span class="tg">body</span> {
+    <span class="pr">background-color</span>: <span class="vl">lightblue</span>;
 }
-
-<span class="cc">/* שקיפות */</span>
-<span class="cs">.box3</span> {
-    <span class="cp">background-color</span>: <span class="cv">#fbbf24</span>;
-    <span class="cp">opacity</span>: <span class="cv">0.5</span>;
+<span class="tg">h1</span> {
+    <span class="pr">color</span>: <span class="vl">navy</span>;
+    <span class="pr">margin-left</span>: <span class="vl">20px</span>;
 }
+<span class="tg">p</span> {
+    <span class="pr">text-decoration</span>: <span class="vl">underline</span>;
+}</code></pre>
 
-<span class="cc">/* שקיפות רק ברקע (לא בטקסט) */</span>
-<span class="cs">.box4</span> {
-    <span class="cp">background-color</span>: <span class="cv">rgba(59, 130, 246, 0.3)</span>;
-}</div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">
-        <div style="background:#3b82f6;color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:12px">solid color</div>
-        <div style="background:linear-gradient(135deg,#f472b6,#7c3aed);color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:12px">gradient</div>
-        <div style="background:#fbbf24;opacity:.5;padding:14px;border-radius:8px;text-align:center;font-size:12px">opacity: 0.5</div>
-        <div style="background:rgba(59,130,246,.3);padding:14px;border-radius:8px;text-align:center;font-size:12px;color:#333">rgba (only bg)</div>
-      </div>
+        <table>
+            <thead><tr><th>חלק</th><th>תפקיד</th><th>דוגמאות</th></tr></thead>
+            <tbody>
+                <tr><td>Selector</td><td>בוחר אלמנטים לעיצוב</td><td><span class="inline-code">h1</span> &nbsp; <span class="inline-code">.btn</span> &nbsp; <span class="inline-code">#header</span></td></tr>
+                <tr><td>Property</td><td>התכונה שמשתנה</td><td><span class="inline-code">color</span> &nbsp; <span class="inline-code">font-size</span> &nbsp; <span class="inline-code">margin</span></td></tr>
+                <tr><td>Value</td><td>הערך החדש</td><td><span class="inline-code">red</span> &nbsp; <span class="inline-code">16px</span> &nbsp; <span class="inline-code">#3b82f6</span></td></tr>
+            </tbody>
+        </table>
     </div>
-  </div>
-  <div class="info note"><strong>הבדל חשוב:</strong> <code>opacity</code> משנה שקיפות של כל האלמנט (כולל הטקסט). <code>rgba()</code> משנה שקיפות רק של הצבע עצמו. לרוב עדיף rgba.</div>
-</div>
 
-<h2>3. Borders & Radius - גבולות ופינות</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>תכונה</th><th>דוגמה</th><th>הסבר</th></tr>
-    <tr><td>border</td><td>2px solid #333</td><td>קיצור: עובי + סגנון + צבע</td></tr>
-    <tr><td>border-style</td><td>solid, dashed, dotted, double</td><td>סגנון הגבול</td></tr>
-    <tr><td>border-width</td><td>1px, 3px, thin, thick</td><td>עובי</td></tr>
-    <tr><td>border-color</td><td>#3b82f6, red</td><td>צבע</td></tr>
-    <tr><td>border-radius</td><td>8px, 50%, 10px 0 10px 0</td><td>עיגול פינות</td></tr>
-    <tr><td>border-right</td><td>4px solid blue</td><td>גבול צד ימין בלבד</td></tr>
-  </table>
-  <div class="demo">
-    <div class="code-pane"><span class="label">CSS</span>
-<span class="cs">.solid</span>   { <span class="cp">border</span>: <span class="cv">2px solid #333</span>; }
-<span class="cs">.dashed</span>  { <span class="cp">border</span>: <span class="cv">2px dashed #e11d48</span>; }
-<span class="cs">.rounded</span> { <span class="cp">border</span>: <span class="cv">2px solid #3b82f6</span>;
-               <span class="cp">border-radius</span>: <span class="cv">12px</span>; }
-<span class="cs">.circle</span>  { <span class="cp">border</span>: <span class="cv">2px solid #8b5cf6</span>;
-               <span class="cp">border-radius</span>: <span class="cv">50%</span>; }
-<span class="cs">.partial</span> { <span class="cp">border-right</span>: <span class="cv">4px solid #10b981</span>;
-               <span class="cp">border-bottom</span>: <span class="cv">1px solid #ddd</span>; }</div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;width:100%;justify-content:center">
-        <div style="border:2px solid #333;padding:10px;text-align:center;font-size:11px;width:80px">solid</div>
-        <div style="border:2px dashed #e11d48;padding:10px;text-align:center;font-size:11px;width:80px">dashed</div>
-        <div style="border:2px solid #3b82f6;border-radius:12px;padding:10px;text-align:center;font-size:11px;width:80px">rounded</div>
-        <div style="border:2px solid #8b5cf6;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:11px">circle</div>
-        <div style="border-right:4px solid #10b981;border-bottom:1px solid #ddd;padding:10px;text-align:center;font-size:11px;width:80px">partial</div>
-      </div>
+    <!-- ======== 02: 3 METHODS ======== -->
+    <div class="section" id="s2">
+        <div class="section-header">
+            <div class="section-num">02</div>
+            <h2>3 שיטות הטמעת CSS</h2>
+        </div>
+
+        <h3>1. Inline CSS - בתוך התגית</h3>
+        <pre data-lang="HTML"><code><span class="tg">&lt;h1</span> <span class="at">style</span>=<span class="st">"color: blue; font-size: 24px;"</span><span class="tg">&gt;</span>כותרת<span class="tg">&lt;/h1&gt;</span></code></pre>
+        <div class="card card-danger">
+            <div class="card-title">למה לא מומלץ</div>
+            <p style="margin:0">אין שימוש חוזר, קשה לתחזק, Specificity גבוה מדי (1000). משתמשים רק לבדיקות מהירות.</p>
+        </div>
+
+        <h3>2. Internal CSS - בתוך &lt;style&gt;</h3>
+        <pre data-lang="HTML"><code><span class="tg">&lt;head&gt;</span>
+    <span class="tg">&lt;style&gt;</span>
+        <span class="tg">h1</span> { <span class="pr">color</span>: <span class="vl">darkblue</span>; <span class="pr">text-align</span>: <span class="vl">center</span>; }
+        <span class="tg">p</span>  { <span class="pr">color</span>: <span class="vl">#333</span>; <span class="pr">line-height</span>: <span class="vl">1.6</span>; }
+    <span class="tg">&lt;/style&gt;</span>
+<span class="tg">&lt;/head&gt;</span></code></pre>
+        <p>שימושי לדף בודד עם עיצוב ייחודי. Specificity תלוי בסלקטור.</p>
+
+        <h3>3. External CSS - קובץ נפרד (מומלץ!)</h3>
+        <pre data-lang="HTML"><code><span class="tg">&lt;head&gt;</span>
+    <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="st">"stylesheet"</span> <span class="at">href</span>=<span class="st">"style.css"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;/head&gt;</span></code></pre>
+        <div class="card card-success">
+            <div class="card-title">למה זו הדרך המומלצת</div>
+            <p style="margin:0">הפרדה מלאה HTML/CSS, שימוש חוזר על מספר דפים, הדפדפן עושה cache, קל לתחזק.</p>
+        </div>
+
+        <h3>סדר עדיפויות בין השיטות</h3>
+        <div class="spec-bar">
+            <span class="spec-block" style="background:var(--red);color:white">1</span>
+            <span class="spec-label">Inline (הכי חזק)</span>
+        </div>
+        <div class="spec-bar">
+            <span class="spec-block" style="background:var(--amber);color:#000">2</span>
+            <span class="spec-label">Internal</span>
+        </div>
+        <div class="spec-bar">
+            <span class="spec-block" style="background:var(--green);color:#000">3</span>
+            <span class="spec-label">External (הכי חלש)</span>
+        </div>
     </div>
-  </div>
-</div>
 
-<h2>4. Layout - Flexbox & Grid</h2>
-<div class="card">
-  <h3>Flexbox - סידור בשורה/עמודה:</h3>
-  <div class="demo">
-    <div class="code-pane"><span class="label">CSS</span>
-<span class="cc">/* ההורה הופך ל-flex container */</span>
-<span class="cs">.container</span> {
-    <span class="cp">display</span>: <span class="cv">flex</span>;
-    <span class="cp">justify-content</span>: <span class="cv">space-between</span>; <span class="cc">/* חלוקה אופקית */</span>
-    <span class="cp">align-items</span>: <span class="cv">center</span>;         <span class="cc">/* יישור אנכי */</span>
-    <span class="cp">gap</span>: <span class="cv">12px</span>;                    <span class="cc">/* רווח בין items */</span>
+    <!-- ======== 03: SELECTORS ======== -->
+    <div class="section" id="s3">
+        <div class="section-header">
+            <div class="section-num">03</div>
+            <h2>Selectors - סלקטורים</h2>
+        </div>
+
+        <p>סלקטורים הם הדרך "לכוון" לאלמנטים ספציפיים ב-HTML ולהחיל עליהם עיצוב.</p>
+
+        <table>
+            <thead><tr><th>סלקטור</th><th>דוגמה</th><th>מה בוחר</th><th>Specificity</th></tr></thead>
+            <tbody>
+                <tr><td>Tag</td><td><span class="inline-code">p { }</span></td><td>כל תגיות &lt;p&gt;</td><td>1</td></tr>
+                <tr><td>#ID</td><td><span class="inline-code">#header { }</span></td><td>אלמנט עם id="header"</td><td>100</td></tr>
+                <tr><td>.Class</td><td><span class="inline-code">.btn { }</span></td><td>כל אלמנט עם class="btn"</td><td>10</td></tr>
+                <tr><td>*</td><td><span class="inline-code">* { }</span></td><td>כל האלמנטים בדף</td><td>0</td></tr>
+                <tr><td>Parent Child</td><td><span class="inline-code">div p { }</span></td><td>כל p בתוך div</td><td>2</td></tr>
+                <tr><td>Parent > Child</td><td><span class="inline-code">div > p { }</span></td><td>רק p ילד ישיר של div</td><td>2</td></tr>
+                <tr><td>el1 + el2</td><td><span class="inline-code">h1 + p { }</span></td><td>p מיד אחרי h1</td><td>2</td></tr>
+                <tr><td>Element.Class</td><td><span class="inline-code">p.intro { }</span></td><td>רק p עם class intro</td><td>11</td></tr>
+                <tr><td>el1, el2</td><td><span class="inline-code">h1, h2 { }</span></td><td>גם h1 וגם h2</td><td>-</td></tr>
+                <tr><td>[attr]</td><td><span class="inline-code">a[target] { }</span></td><td>קישורים עם target</td><td>10</td></tr>
+                <tr><td>:hover</td><td><span class="inline-code">a:hover { }</span></td><td>עכבר מעל</td><td>10</td></tr>
+                <tr><td>:active</td><td><span class="inline-code">btn:active { }</span></td><td>בזמן לחיצה</td><td>10</td></tr>
+                <tr><td>:focus</td><td><span class="inline-code">input:focus { }</span></td><td>שדה בפוקוס</td><td>10</td></tr>
+                <tr><td>::before</td><td><span class="inline-code">p::before { }</span></td><td>תוכן וירטואלי לפני</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Specificity - סדר עדיפויות</h3>
+        <div class="card card-warn">
+            <div class="card-title">כלל הזהב</div>
+            <p style="margin:0"><span class="inline-code">!important</span> (10000) > <strong>Inline</strong> (1000) > <strong>ID #</strong> (100) > <strong>Class .</strong> (10) > <strong>Tag</strong> (1)</p>
+            <p style="margin:8px 0 0">אם ה-specificity שווה, הכלל האחרון שנכתב גובר. <span class="inline-code">!important</span> זה anti-pattern - אם אתה צריך אותו, כנראה שיש בעיה בארכיטקטורה.</p>
+        </div>
+    </div>
+
+    <!-- ======== 04: ID, CLASS, DIV, SPAN ======== -->
+    <div class="section" id="s4">
+        <div class="section-header">
+            <div class="section-num">04</div>
+            <h2>ID, Class, Div & Span</h2>
+        </div>
+
+        <h3>ID vs Class</h3>
+        <div class="compare">
+            <div class="compare-good">
+                <div class="compare-label">#ID - תעודת זהות</div>
+                <p style="margin:0;font-size:0.88rem">ייחודי - פעם אחת בדף. סלקטור <span class="inline-code">#name</span>. Specificity: 100.</p>
+            </div>
+            <div class="compare-good" style="border-color:rgba(34,211,238,0.2);background:var(--cyan-dim)">
+                <div class="compare-label" style="color:var(--cyan)">.Class - שם משפחה</div>
+                <p style="margin:0;font-size:0.88rem">שימוש חוזר על מספר אלמנטים. סלקטור <span class="inline-code">.name</span>. Specificity: 10. אלמנט יכול לקבל כמה classes.</p>
+            </div>
+        </div>
+
+        <pre data-lang="HTML"><code><span class="tg">&lt;h1</span> <span class="at">id</span>=<span class="st">"main-title"</span> <span class="at">class</span>=<span class="st">"header highlight"</span><span class="tg">&gt;</span>כותרת<span class="tg">&lt;/h1&gt;</span>
+<span class="tg">&lt;p</span> <span class="at">class</span>=<span class="st">"highlight"</span><span class="tg">&gt;</span>שימוש חוזר בclass<span class="tg">&lt;/p&gt;</span></code></pre>
+
+        <div class="card card-warn">
+            <div class="card-title">חוקי שמות</div>
+            <p style="margin:0">שמות id/class <strong>לא יכולים להתחיל בספרה</strong>. מותר: אותיות, מקף (-), קו תחתון (_), ספרות (לא בהתחלה).</p>
+        </div>
+
+        <h3>Div vs Span</h3>
+        <table>
+            <thead><tr><th>&lt;div&gt; - Block</th><th>&lt;span&gt; - Inline</th></tr></thead>
+            <tbody>
+                <tr><td>תופס שורה שלמה, שובר שורה</td><td>תופס רק את הרוחב הנדרש</td></tr>
+                <tr><td>לקיבוץ אלמנטים (sections, cards)</td><td>לעיצוב חלק מטקסט בתוך פסקה</td></tr>
+                <tr><td>מקבל width/height</td><td>לא מקבל width/height</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Semantic HTML5 - חלופות ל-div</h3>
+        <pre data-lang="HTML"><code><span class="tg">&lt;header&gt;</span>כותרת עליונה<span class="tg">&lt;/header&gt;</span>
+<span class="tg">&lt;nav&gt;</span>ניווט<span class="tg">&lt;/nav&gt;</span>
+<span class="tg">&lt;main&gt;</span>תוכן ראשי<span class="tg">&lt;/main&gt;</span>
+<span class="tg">&lt;article&gt;</span>מאמר<span class="tg">&lt;/article&gt;</span>
+<span class="tg">&lt;section&gt;</span>חלק/קטע<span class="tg">&lt;/section&gt;</span>
+<span class="tg">&lt;aside&gt;</span>תוכן צדדי<span class="tg">&lt;/aside&gt;</span>
+<span class="tg">&lt;footer&gt;</span>תחתית<span class="tg">&lt;/footer&gt;</span>
+<span class="cm">&lt;!-- מתנהגים כמו div אבל עם משמעות סמנטית --&gt;</span></code></pre>
+    </div>
+
+    <!-- ======== 05: COLORS ======== -->
+    <div class="section" id="s5">
+        <div class="section-header">
+            <div class="section-num">05</div>
+            <h2>צבעים ושקיפות</h2>
+        </div>
+
+        <table>
+            <thead><tr><th>שיטה</th><th>דוגמה</th><th>הסבר</th></tr></thead>
+            <tbody>
+                <tr><td>Named</td><td><span class="inline-code">red</span>, <span class="inline-code">navy</span></td><td>147 שמות מוגדרים מראש</td></tr>
+                <tr><td>Hex</td><td><span class="inline-code">#ff0000</span>, <span class="inline-code">#333</span></td><td>6 ספרות הקס (או 3 בקיצור)</td></tr>
+                <tr><td>RGB</td><td><span class="inline-code">rgb(255, 0, 0)</span></td><td>ערוצי אדום, ירוק, כחול (0-255)</td></tr>
+                <tr><td>RGBA</td><td><span class="inline-code">rgba(0, 0, 0, 0.5)</span></td><td>RGB + שקיפות (0-1)</td></tr>
+                <tr><td>HSL</td><td><span class="inline-code">hsl(0, 100%, 50%)</span></td><td>גוון, רוויה, בהירות</td></tr>
+                <tr><td>Gradient</td><td><span class="inline-code">linear-gradient(...)</span></td><td>מעבר צבעים ליניארי/רדיאלי</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Opacity vs RGBA</h3>
+        <div class="card card-accent">
+            <div class="card-title">הבדל קריטי</div>
+            <p style="margin:0"><span class="inline-code">opacity: 0.5</span> משנה שקיפות של <strong>כל</strong> האלמנט כולל ילדים וטקסט.</p>
+            <p style="margin:4px 0 0"><span class="inline-code">rgba(0,0,0,0.5)</span> משנה שקיפות רק של הצבע עצמו. <strong>לרוב עדיף rgba.</strong></p>
+        </div>
+
+        <pre data-lang="CSS"><code><span class="cm">/* Gradient */</span>
+<span class="tg">.hero</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #667eea, #764ba2)</span>;
+}
+<span class="cm">/* Opacity - משפיע על הכל */</span>
+<span class="tg">.faded</span> { <span class="pr">opacity</span>: <span class="vl">0.5</span>; }
+<span class="cm">/* RGBA - רק הרקע שקוף */</span>
+<span class="tg">.glass</span> { <span class="pr">background</span>: <span class="vl">rgba(0,0,0,0.5)</span>; <span class="pr">color</span>: <span class="vl">white</span>; }</code></pre>
+
+        <div class="demo-area">
+            <div class="demo-row">
+                <div class="demo-box" style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;flex:1">Gradient</div>
+                <div class="demo-box" style="background:#fbbf24;opacity:0.5;flex:1;color:#000">opacity: 0.5</div>
+                <div class="demo-box" style="background:rgba(34,211,238,0.3);color:white;flex:1;border:1px solid var(--cyan)">rgba bg only</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== 06: TYPOGRAPHY & UNITS ======== -->
+    <div class="section" id="s6">
+        <div class="section-header">
+            <div class="section-num">06</div>
+            <h2>טיפוגרפיה ויחידות מידה</h2>
+        </div>
+
+        <pre data-lang="CSS"><code><span class="tg">h1</span> {
+    <span class="pr">font-family</span>: <span class="vl">Georgia, serif</span>;
+    <span class="pr">font-size</span>: <span class="vl">32px</span>;
+    <span class="pr">font-weight</span>: <span class="vl">bold</span>;        <span class="cm">/* 100-900 */</span>
+    <span class="pr">font-style</span>: <span class="vl">italic</span>;
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+    <span class="pr">text-decoration</span>: <span class="vl">underline</span>;
+    <span class="pr">text-transform</span>: <span class="vl">uppercase</span>;
+    <span class="pr">letter-spacing</span>: <span class="vl">3px</span>;
+    <span class="pr">line-height</span>: <span class="vl">1.6</span>;
+    <span class="pr">text-shadow</span>: <span class="vl">2px 2px 4px rgba(0,0,0,0.3)</span>;
+}</code></pre>
+
+        <h3>יחידות מידה</h3>
+        <table>
+            <thead><tr><th>יחידה</th><th>סוג</th><th>הסבר</th><th>שימוש נפוץ</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">px</span></td><td>מוחלט</td><td>פיקסלים - גודל קבוע</td><td>borders, shadows</td></tr>
+                <tr><td><span class="inline-code">rem</span></td><td>יחסי</td><td>יחסי ל-root (html)</td><td>font-size, spacing</td></tr>
+                <tr><td><span class="inline-code">em</span></td><td>יחסי</td><td>יחסי לגודל הורה</td><td>padding פנימי</td></tr>
+                <tr><td><span class="inline-code">%</span></td><td>יחסי</td><td>אחוז מהמכולה</td><td>width, height</td></tr>
+                <tr><td><span class="inline-code">vw/vh</span></td><td>יחסי</td><td>אחוז מהחלון</td><td>hero sections</td></tr>
+            </tbody>
+        </table>
+
+        <pre data-lang="CSS"><code><span class="cm">/* calc - חישובים */</span>
+<span class="pr">width</span>: <span class="vl">calc(100% - 250px)</span>;
+<span class="cm">/* clamp - מינימום, מועדף, מקסימום */</span>
+<span class="pr">font-size</span>: <span class="vl">clamp(14px, 2.5vw, 24px)</span>;</code></pre>
+    </div>
+
+    <!-- ======== 07: BOX MODEL ======== -->
+    <div class="section" id="s7">
+        <div class="section-header">
+            <div class="section-num">07</div>
+            <h2>Box Model - מודל הקופסה</h2>
+        </div>
+
+        <p>כל אלמנט HTML הוא קופסה מלבנית עם 4 שכבות:</p>
+
+        <div class="box-model-visual">
+            <div class="bm-outer">
+                <div class="bm-label" style="color:var(--amber)">MARGIN</div>
+                <div class="bm-border">
+                    <div class="bm-label" style="color:var(--red)">BORDER</div>
+                    <div class="bm-padding">
+                        <div class="bm-label" style="color:var(--green)">PADDING</div>
+                        <div class="bm-content">CONTENT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <pre data-lang="CSS"><code><span class="tg">div</span> {
+    <span class="pr">width</span>: <span class="vl">300px</span>;          <span class="cm">/* תוכן */</span>
+    <span class="pr">padding</span>: <span class="vl">20px</span>;         <span class="cm">/* ריפוד פנימי */</span>
+    <span class="pr">border</span>: <span class="vl">4px solid red</span>; <span class="cm">/* גבול */</span>
+    <span class="pr">margin</span>: <span class="vl">30px auto</span>;     <span class="cm">/* שוליים + מרכוז */</span>
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;    <span class="cm">/* פינות מעוגלות */</span>
+}
+<span class="cm">/* SHORTHAND - כיוון השעון: top right bottom left */</span>
+<span class="pr">padding</span>: <span class="vl">10px 20px 30px 40px</span>;
+<span class="pr">margin</span>: <span class="vl">0 auto</span>;  <span class="cm">/* מרכוז אופקי! */</span></code></pre>
+
+        <div class="card card-danger">
+            <div class="card-title">box-sizing: border-box - חובה!</div>
+            <p style="margin:0">בברירת מחדל, width לא כולל padding ו-border (אז 300px + 20px*2 + 4px*2 = 348px!). עם <span class="inline-code">box-sizing: border-box</span>, ה-width כולל הכל ונשאר 300px. Best practice:</p>
+            <pre style="margin:8px 0 0"><code><span class="tg">*, *::before, *::after</span> { <span class="pr">box-sizing</span>: <span class="vl">border-box</span>; }</code></pre>
+        </div>
+
+        <h3>Border Styles</h3>
+        <pre data-lang="CSS"><code><span class="pr">border</span>: <span class="vl">2px solid #333</span>;     <span class="cm">/* קו רציף */</span>
+<span class="pr">border</span>: <span class="vl">2px dashed #e11d48</span>;  <span class="cm">/* מקווקו */</span>
+<span class="pr">border</span>: <span class="vl">2px dotted #7c3aed</span>;  <span class="cm">/* נקודות */</span>
+<span class="pr">border-radius</span>: <span class="vl">50%</span>;         <span class="cm">/* עיגול (אם width=height) */</span>
+<span class="pr">box-shadow</span>: <span class="vl">0 4px 15px rgba(0,0,0,0.2)</span>;</code></pre>
+    </div>
+
+    <!-- ======== 08: POSITION ======== -->
+    <div class="section" id="s8">
+        <div class="section-header">
+            <div class="section-num">08</div>
+            <h2>Position & Display</h2>
+        </div>
+
+        <h3>5 סוגי Position</h3>
+        <table>
+            <thead><tr><th>ערך</th><th>התנהגות</th><th>שימוש נפוץ</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">static</span></td><td>ברירת מחדל. בזרימה הרגילה. top/left לא עובדים</td><td>כל אלמנט רגיל</td></tr>
+                <tr><td><span class="inline-code">relative</span></td><td>כמו static + אפשר להזיז עם top/left יחסית למיקום מקורי</td><td>הורה ל-absolute</td></tr>
+                <tr><td><span class="inline-code">absolute</span></td><td>יוצא מהזרימה! ממוקם יחסית להורה relative הקרוב</td><td>dropdown, badge, tooltip</td></tr>
+                <tr><td><span class="inline-code">fixed</span></td><td>קבוע יחסית לחלון. לא זז בגלילה</td><td>navbar קבוע, כפתור צף</td></tr>
+                <tr><td><span class="inline-code">sticky</span></td><td>relative עד שגוללים, ואז נדבק</td><td>header שנדבק</td></tr>
+            </tbody>
+        </table>
+
+        <pre data-lang="CSS"><code><span class="cm">/* Badge על תמונה */</span>
+<span class="tg">.image-container</span> { <span class="pr">position</span>: <span class="vl">relative</span>; }
+<span class="tg">.badge</span> {
+    <span class="pr">position</span>: <span class="vl">absolute</span>;
+    <span class="pr">top</span>: <span class="vl">-10px</span>;
+    <span class="pr">right</span>: <span class="vl">-10px</span>;
+    <span class="pr">background</span>: <span class="vl">red</span>;
+    <span class="pr">border-radius</span>: <span class="vl">50%</span>;
+}
+<span class="cm">/* z-index - שכבתיות (עובד רק עם position!) */</span>
+<span class="tg">.behind</span> { <span class="pr">z-index</span>: <span class="vl">1</span>; }
+<span class="tg">.front</span>  { <span class="pr">z-index</span>: <span class="vl">100</span>; }</code></pre>
+
+        <h3>Display</h3>
+        <table>
+            <thead><tr><th>ערך</th><th>התנהגות</th><th>אלמנטים</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">block</span></td><td>שורה שלמה, מקבל width/height</td><td>div, h1-h6, p, section</td></tr>
+                <tr><td><span class="inline-code">inline</span></td><td>רוחב מינימלי, לא שובר שורה, לא מקבל w/h</td><td>span, a, strong, em</td></tr>
+                <tr><td><span class="inline-code">inline-block</span></td><td>inline שמקבל width/height</td><td>כפתורים</td></tr>
+                <tr><td><span class="inline-code">none</span></td><td>נעלם לגמרי, לא תופס מקום</td><td>הסתרה</td></tr>
+                <tr><td><span class="inline-code">flex</span></td><td>פריסה גמישה 1D</td><td>שורות, תפריטים</td></tr>
+                <tr><td><span class="inline-code">grid</span></td><td>פריסת רשת 2D</td><td>דפים, גלריות</td></tr>
+            </tbody>
+        </table>
+        <p><span class="inline-code">visibility: hidden</span> - לא נראה אבל עדיין תופס מקום (בניגוד ל-display: none).</p>
+    </div>
+
+    <!-- ======== 09: FLEXBOX & GRID ======== -->
+    <div class="section" id="s9">
+        <div class="section-header">
+            <div class="section-num">09</div>
+            <h2>Flexbox & Grid</h2>
+        </div>
+
+        <h3>Flexbox - פריסה 1D</h3>
+        <pre data-lang="CSS"><code><span class="tg">.container</span> {
+    <span class="pr">display</span>: <span class="vl">flex</span>;
+    <span class="pr">flex-direction</span>: <span class="vl">row</span>;          <span class="cm">/* row | column */</span>
+    <span class="pr">justify-content</span>: <span class="vl">center</span>;     <span class="cm">/* ציר ראשי */</span>
+    <span class="pr">align-items</span>: <span class="vl">center</span>;         <span class="cm">/* ציר משני */</span>
+    <span class="pr">gap</span>: <span class="vl">20px</span>;                   <span class="cm">/* רווח בין פריטים */</span>
+    <span class="pr">flex-wrap</span>: <span class="vl">wrap</span>;             <span class="cm">/* גלישה לשורה חדשה */</span>
+}
+<span class="tg">.item</span> {
+    <span class="pr">flex</span>: <span class="vl">1</span>;          <span class="cm">/* grow:1 shrink:1 basis:0 */</span>
+    <span class="pr">flex</span>: <span class="vl">0 0 200px</span>;  <span class="cm">/* לא גדל, לא מתכווץ, 200px */</span>
+}
+<span class="cm">/* מרכוז מושלם */</span>
+<span class="tg">.perfect-center</span> {
+    <span class="pr">display</span>: <span class="vl">flex</span>;
+    <span class="pr">justify-content</span>: <span class="vl">center</span>;
+    <span class="pr">align-items</span>: <span class="vl">center</span>;
+    <span class="pr">min-height</span>: <span class="vl">100vh</span>;
+}</code></pre>
+
+        <div class="demo-area">
+            <div style="display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap">
+                <div class="demo-box" style="background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.3);color:var(--cyan);flex:1;min-width:80px">Item 1</div>
+                <div class="demo-box" style="background:var(--magenta-dim);border:1px solid rgba(244,114,182,0.3);color:var(--magenta);flex:1;min-width:80px">Item 2</div>
+                <div class="demo-box" style="background:var(--green-dim);border:1px solid rgba(52,211,153,0.3);color:var(--green);flex:1;min-width:80px">Item 3</div>
+                <div class="demo-box" style="background:var(--amber-dim);border:1px solid rgba(251,191,36,0.3);color:var(--amber);flex:1;min-width:80px">Item 4</div>
+            </div>
+        </div>
+
+        <h3>CSS Grid - פריסה 2D</h3>
+        <pre data-lang="CSS"><code><span class="tg">.grid</span> {
+    <span class="pr">display</span>: <span class="vl">grid</span>;
+    <span class="pr">grid-template-columns</span>: <span class="vl">repeat(3, 1fr)</span>;       <span class="cm">/* 3 עמודות שוות */</span>
+    <span class="pr">grid-template-columns</span>: <span class="vl">200px 1fr 200px</span>;      <span class="cm">/* sidebar-main-sidebar */</span>
+    <span class="pr">grid-template-columns</span>: <span class="vl">repeat(auto-fill, minmax(250px, 1fr))</span>; <span class="cm">/* responsive! */</span>
+    <span class="pr">gap</span>: <span class="vl">20px</span>;
+}
+<span class="tg">.wide-item</span> { <span class="pr">grid-column</span>: <span class="vl">span 2</span>; } <span class="cm">/* תופס 2 עמודות */</span></code></pre>
+
+        <div class="card card-accent">
+            <div class="card-title">מתי להשתמש במה?</div>
+            <p style="margin:0"><strong>Flexbox</strong> - כיוון אחד: שורת כפתורים, תפריט, מרכוז. <strong>Grid</strong> - שני ממדים: דף שלם, גלריה, דשבורד. אפשר ורצוי לשלב!</p>
+        </div>
+    </div>
+
+    <!-- ======== 10: PSEUDO & EFFECTS ======== -->
+    <div class="section" id="s10">
+        <div class="section-header">
+            <div class="section-num">10</div>
+            <h2>Pseudo-classes, Effects & Transitions</h2>
+        </div>
+
+        <pre data-lang="CSS"><code><span class="cm">/* Hover + Transition + Transform */</span>
+<span class="tg">.card</span> {
+    <span class="pr">transition</span>: <span class="vl">all 0.3s ease</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+}
+<span class="tg">.card:hover</span> {
+    <span class="pr">transform</span>: <span class="vl">translateY(-8px)</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 15px 35px rgba(0,0,0,0.12)</span>;
+    <span class="pr">border-color</span>: <span class="vl">#3b82f6</span>;
+}
+<span class="tg">.card:active</span> {
+    <span class="pr">transform</span>: <span class="vl">scale(0.97)</span>;
+}
+<span class="cm">/* Form Pseudo-classes */</span>
+<span class="tg">input:focus</span>   { <span class="pr">border-color</span>: <span class="vl">blue</span>; }
+<span class="tg">input:valid</span>   { <span class="pr">border-color</span>: <span class="vl">green</span>; }
+<span class="tg">input:invalid</span> { <span class="pr">border-color</span>: <span class="vl">red</span>; }
+<span class="cm">/* nth-child */</span>
+<span class="tg">li:nth-child(odd)</span>  { <span class="pr">background</span>: <span class="vl">#f0f0f0</span>; }
+<span class="tg">li:nth-child(even)</span> { <span class="pr">background</span>: <span class="vl">white</span>; }</code></pre>
+
+        <h3>נסו בעצמכם - Hover & Active</h3>
+        <div class="demo-area">
+            <div class="demo-row" style="justify-content:center">
+                <div class="hover-demo" style="flex:0 0 200px">
+                    <span class="emoji">🎯</span>
+                    <span>העבירו עכבר + לחצו</span>
+                </div>
+            </div>
+        </div>
+
+        <h3>Animations</h3>
+        <pre data-lang="CSS"><code><span class="kw">@keyframes</span> <span class="tg">fadeIn</span> {
+    <span class="kw">from</span> { <span class="pr">opacity</span>: <span class="vl">0</span>; <span class="pr">transform</span>: <span class="vl">translateY(20px)</span>; }
+    <span class="kw">to</span>   { <span class="pr">opacity</span>: <span class="vl">1</span>; <span class="pr">transform</span>: <span class="vl">translateY(0)</span>; }
+}
+<span class="tg">.element</span> {
+    <span class="pr">animation</span>: <span class="vl">fadeIn 0.5s ease-out</span>;
+    <span class="cm">/* animation: name duration timing delay count direction fill */</span>
+}</code></pre>
+    </div>
+
+    <!-- ======== 11: RESPONSIVE & VARIABLES ======== -->
+    <div class="section" id="s11">
+        <div class="section-header">
+            <div class="section-num">11</div>
+            <h2>Responsive Design & CSS Variables</h2>
+        </div>
+
+        <h3>Meta Viewport - חובה!</h3>
+        <pre data-lang="HTML"><code><span class="tg">&lt;meta</span> <span class="at">name</span>=<span class="st">"viewport"</span> <span class="at">content</span>=<span class="st">"width=device-width, initial-scale=1.0"</span><span class="tg">&gt;</span></code></pre>
+
+        <h3>Media Queries</h3>
+        <pre data-lang="CSS"><code><span class="cm">/* Mobile-first: בסיס למובייל, מרחיבים למסך גדול */</span>
+<span class="tg">.card</span> { <span class="pr">width</span>: <span class="vl">100%</span>; }
+
+<span class="kw">@media</span> (<span class="pr">min-width</span>: <span class="vl">768px</span>) {
+    <span class="tg">.card</span> { <span class="pr">width</span>: <span class="vl">50%</span>; }
+}
+<span class="kw">@media</span> (<span class="pr">min-width</span>: <span class="vl">1024px</span>) {
+    <span class="tg">.card</span> { <span class="pr">width</span>: <span class="vl">33.33%</span>; }
+}
+<span class="cm">/* Dark mode */</span>
+<span class="kw">@media</span> (<span class="pr">prefers-color-scheme</span>: <span class="vl">dark</span>) {
+    <span class="tg">body</span> { <span class="pr">background</span>: <span class="vl">#1a1a1a</span>; <span class="pr">color</span>: <span class="vl">#e0e0e0</span>; }
+}</code></pre>
+
+        <h3>CSS Variables</h3>
+        <pre data-lang="CSS"><code><span class="tg">:root</span> {
+    <span class="pr">--primary</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">--bg</span>: <span class="vl">#0a0e1a</span>;
+    <span class="pr">--radius</span>: <span class="vl">12px</span>;
+    <span class="pr">--spacing</span>: <span class="vl">16px</span>;
+}
+<span class="tg">.button</span> {
+    <span class="pr">background</span>: <span class="kw">var</span>(<span class="vl">--primary</span>);
+    <span class="pr">border-radius</span>: <span class="kw">var</span>(<span class="vl">--radius</span>);
+    <span class="pr">padding</span>: <span class="kw">var</span>(<span class="vl">--spacing</span>);
+}
+<span class="cm">/* שינוי ערך אחד = שינוי בכל האתר */</span></code></pre>
+    </div>
+
+    <hr class="sep">
+
+    <!-- ======== 12: MISSION ======== -->
+    <div class="section" id="s12">
+        <div class="section-header">
+            <div class="section-num">12</div>
+            <h2>משימה מסכמת</h2>
+        </div>
+
+        <div class="mission">
+            <h3>צרו 2 קבצים: index.html + style.css</h3>
+            <ol>
+                <li>צרו <strong>3 כותרות</strong> (h1, h2, h3) - כל אחת מעוצבת אחרת</li>
+                <li>השתמשו ב-<strong>id</strong> לאחת ו-<strong>class</strong> לשתיים</li>
+                <li>הגדירו CSS בכל <strong>3 השיטות</strong>: inline, internal, external</li>
+                <li>הוסיפו <strong>:hover</strong> (שינוי צבע במעבר עכבר)</li>
+                <li>הוסיפו <strong>:active</strong> (שינוי צבע בלחיצה)</li>
+                <li>הוסיפו <strong>טופס login</strong> בסיסי (username, password, checkbox, submit)</li>
+                <li>הוסיפו <strong>פסקה</strong> עם inline CSS</li>
+            </ol>
+        </div>
+
+        <h3>style.css - הקובץ החיצוני</h3>
+        <pre data-lang="style.css"><code><span class="cm">/* ========================
+   EXTERNAL CSS
+======================== */</span>
+<span class="tg">body</span> {
+    <span class="pr">font-family</span>: <span class="vl">"Segoe UI", Arial, sans-serif</span>;
+    <span class="pr">background-color</span>: <span class="vl">#f0f4f8</span>;
+    <span class="pr">color</span>: <span class="vl">#1e293b</span>;
+    <span class="pr">margin</span>: <span class="vl">0</span>;
+    <span class="pr">padding</span>: <span class="vl">20px</span>;
+    <span class="pr">direction</span>: <span class="vl">rtl</span>;
 }
 
-<span class="cc">/* הילדים */</span>
-<span class="cs">.item</span> {
-    <span class="cp">flex</span>: <span class="cv">1</span>;  <span class="cc">/* כולם באותו רוחב */</span>
-}</div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="display:flex;gap:10px;width:100%">
-        <div style="flex:1;padding:16px;background:#4f46e5;color:#fff;border-radius:8px;text-align:center;font-size:13px">Item 1</div>
-        <div style="flex:1;padding:16px;background:#7c3aed;color:#fff;border-radius:8px;text-align:center;font-size:13px">Item 2</div>
-        <div style="flex:1;padding:16px;background:#a855f7;color:#fff;border-radius:8px;text-align:center;font-size:13px">Item 3</div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Grid 3x3 - רשת דו-מימדית:</h3>
-  <div class="demo">
-    <div class="code-pane"><span class="label">CSS</span>
-<span class="cs">.products</span> {
-    <span class="cp">display</span>: <span class="cv">grid</span>;
-    <span class="cp">grid-template-columns</span>: <span class="cv">repeat(3, 1fr)</span>; <span class="cc">/* 3 עמודות שוות */</span>
-    <span class="cp">gap</span>: <span class="cv">16px</span>;
-    <span class="cp">padding</span>: <span class="cv">20px</span>;
+<span class="cm">/* h1 with ID - External CSS */</span>
+<span class="tg">#main-header</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #667eea, #764ba2)</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">padding</span>: <span class="vl">25px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">12px</span>;
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+    <span class="pr">font-size</span>: <span class="vl">2.2em</span>;
+    <span class="pr">transition</span>: <span class="vl">all 0.3s ease</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
 }
 
-<span class="cs">.card</span> {
-    <span class="cp">border</span>: <span class="cv">1px solid #ddd</span>;
-    <span class="cp">border-radius</span>: <span class="cv">10px</span>;
-    <span class="cp">padding</span>: <span class="cv">15px</span>;
-    <span class="cp">text-align</span>: <span class="cv">center</span>;
-}</div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%">
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">💻 מחשב<br><b style="color:#2563eb">4,500₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">⌨️ מקלדת<br><b style="color:#2563eb">350₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">🖱️ עכבר<br><b style="color:#2563eb">150₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">🎧 אוזניות<br><b style="color:#2563eb">280₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">🖥️ מסך<br><b style="color:#2563eb">1,200₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">📱 טלפון<br><b style="color:#2563eb">3,200₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">🎮 בקר<br><b style="color:#2563eb">220₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">💾 SSD<br><b style="color:#2563eb">400₪</b></div>
-        <div style="background:#f1f5f9;padding:14px 8px;border-radius:6px;text-align:center;font-size:11px;border:1px solid #e2e8f0">🔌 מטען<br><b style="color:#2563eb">120₪</b></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h2>5. Effects - אפקטים ומעברים</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>תכונה</th><th>מה עושה</th><th>דוגמה</th></tr>
-    <tr><td>box-shadow</td><td>צל לאלמנט</td><td>0 4px 15px rgba(0,0,0,0.2)</td></tr>
-    <tr><td>transition</td><td>מעבר חלק בין מצבים</td><td>all 0.3s ease</td></tr>
-    <tr><td>transform</td><td>הזזה/סיבוב/שינוי גודל</td><td>translateY(-5px), scale(1.1), rotate(45deg)</td></tr>
-    <tr><td>cursor</td><td>צורת סמן העכבר</td><td>pointer, grab, not-allowed</td></tr>
-  </table>
-  <h3>Hover + Transition + Transform - אפקט מלא (העבירו עכבר!):</h3>
-  <div class="demo">
-    <div class="code-pane"><span class="label">CSS</span>
-<span class="cs">.card</span> {
-    <span class="cp">background</span>: <span class="cv">white</span>;
-    <span class="cp">border</span>: <span class="cv">1px solid #e2e8f0</span>;
-    <span class="cp">border-radius</span>: <span class="cv">12px</span>;
-    <span class="cp">padding</span>: <span class="cv">20px</span>;
-    <span class="cp">cursor</span>: <span class="cv">pointer</span>;
-
-    <span class="cc">/* transition = מעבר חלק */</span>
-    <span class="cp">transition</span>: <span class="cv">all 0.3s ease</span>;
+<span class="tg">#main-header:hover</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #f093fb, #f5576c)</span>;
+    <span class="pr">transform</span>: <span class="vl">scale(1.02)</span>;
 }
 
-<span class="cc">/* :hover = כשעכבר מעל */</span>
-<span class="cs">.card:hover</span> {
-    <span class="cp">transform</span>: <span class="cv">translateY(-8px)</span>;
-    <span class="cp">box-shadow</span>: <span class="cv">0 15px 35px
-        rgba(0,0,0,0.12)</span>;
-    <span class="cp">border-color</span>: <span class="cv">#3b82f6</span>;
+<span class="tg">#main-header:active</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #11998e, #38ef7d)</span>;
+    <span class="pr">transform</span>: <span class="vl">scale(0.98)</span>;
 }
 
-<span class="cc">/* :active = כשלוחצים */</span>
-<span class="cs">.card:active</span> {
-    <span class="cp">transform</span>: <span class="cv">scale(0.97)</span>;
-}</div>
-    <div class="preview-pane"><span class="label">Result - Hover!</span>
-      <div style="padding:20px;border:1px solid #e2e8f0;border-radius:12px;text-align:center;transition:all .3s ease;cursor:pointer;background:#fff;width:80%" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.12)';this.style.borderColor='#3b82f6'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#e2e8f0'">
-        <div style="font-size:20px;margin-bottom:6px;color:#1e293b">Hover Me</div>
-        <div style="font-size:12px;color:#94a3b8">העבירו עכבר</div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- ==================== TAB 3: SELECTORS ==================== -->
-<div class="tab-content" id="tab-selectors">
-<h1>Selectors - סלקטורים</h1>
-<p class="subtitle">הדרך שלנו "לבחור" אלמנטים בדף ולהחיל עליהם עיצוב</p>
-
-<h2>סלקטור Tag - לפי תגית</h2>
-<div class="card">
-  <p>בוחר <strong>את כל</strong> האלמנטים מאותו סוג. <span class="badge b-green">Specificity: 1</span></p>
-  <div class="demo">
-    <div class="code-pane"><span class="label">קובץ שלם</span>
-<span class="ct">&lt;!DOCTYPE html&gt;</span>
-<span class="ct">&lt;html&gt;</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;style&gt;</span>
-        <span class="cc">/* כל הפסקאות בדף = אדומות */</span>
-        <span class="cs">p</span> {
-            <span class="cp">color</span>: <span class="cv">red</span>;
-        }
-    <span class="ct">&lt;/style&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="ct">&lt;p&gt;</span>This is text 1<span class="ct">&lt;/p&gt;</span>
-    <span class="ct">&lt;p&gt;</span>This is text 2<span class="ct">&lt;/p&gt;</span>
-<span class="ct">&lt;/body&gt;</span>
-<span class="ct">&lt;/html&gt;</span></div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="direction:ltr;text-align:left;width:100%">
-        <p style="color:red;margin:6px 0;font-size:15px">This is text 1</p>
-        <p style="color:red;margin:6px 0;font-size:15px">This is text 2</p>
-        <p style="font-size:11px;color:#94a3b8;margin-top:10px">שני הפסקאות אדומות כי הסלקטור p משפיע על כולן</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h2>סלקטור #ID - ייחודי</h2>
-<div class="card">
-  <p>בוחר אלמנט <strong>אחד בלבד</strong> לפי ה-id. אסור 2 אלמנטים עם אותו id! <span class="badge b-orange">Specificity: 100</span></p>
-  <div class="info warn">ID = תעודת זהות. ייחודי לאדם/אלמנט אחד. ב-CSS כותבים # לפני השם.</div>
-  <div class="demo">
-    <div class="code-pane"><span class="label">index.html + style</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;style&gt;</span>
-        <span class="cc">/* # = סלקטור ID */</span>
-        <span class="cs">#first</span> {
-            <span class="cp">color</span>: <span class="cv">red</span>;
-            <span class="cp">font-size</span>: <span class="cv">24px</span>;
-        }
-        <span class="cs">#second</span> {
-            <span class="cp">color</span>: <span class="cv">blue</span>;
-            <span class="cp">font-size</span>: <span class="cv">18px</span>;
-        }
-    <span class="ct">&lt;/style&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="ct">&lt;p</span> <span class="ca">id</span>=<span class="cg">"first"</span><span class="ct">&gt;</span>First paragraph<span class="ct">&lt;/p&gt;</span>
-    <span class="ct">&lt;p</span> <span class="ca">id</span>=<span class="cg">"second"</span><span class="ct">&gt;</span>Second paragraph<span class="ct">&lt;/p&gt;</span>
-<span class="ct">&lt;/body&gt;</span></div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="direction:ltr;text-align:left;width:100%">
-        <p style="color:red;font-size:22px;margin:6px 0">First paragraph</p>
-        <p style="color:blue;font-size:16px;margin:6px 0">Second paragraph</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h2>סלקטור .Class - קבוצה</h2>
-<div class="card">
-  <p>בוחר <strong>קבוצת אלמנטים</strong> שחולקים class. ניתן לשימוש חוזר על כמה אלמנטים! <span class="badge b-blue">Specificity: 10</span></p>
-  <div class="info tip"><strong>Class = שם משפחה.</strong> כמה אנשים (אלמנטים) יכולים לחלוק אותו שם משפחה (class). אלמנט אחד יכול גם להשתייך לכמה משפחות: <code>&lt;div class="card big highlight"&gt;</code></div>
-  <div class="demo">
-    <div class="code-pane"><span class="label">קוד מלא</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;style&gt;</span>
-        <span class="cc">/* . = סלקטור Class */</span>
-        <span class="cs">.highlight</span> {
-            <span class="cp">color</span>: <span class="cv">blueviolet</span>;
-            <span class="cp">font-weight</span>: <span class="cv">bold</span>;
-            <span class="cp">background-color</span>: <span class="cv">#f3e8ff</span>;
-            <span class="cp">padding</span>: <span class="cv">8px 12px</span>;
-            <span class="cp">border-radius</span>: <span class="cv">6px</span>;
-        }
-
-        <span class="cc">/* class שני - לטקסט רגיל */</span>
-        <span class="cs">.normal-text</span> {
-            <span class="cp">color</span>: <span class="cv">gray</span>;
-            <span class="cp">font-size</span>: <span class="cv">14px</span>;
-        }
-    <span class="ct">&lt;/style&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="cc">&lt;!-- שימוש חוזר באותו class --&gt;</span>
-    <span class="ct">&lt;h2</span> <span class="ca">class</span>=<span class="cg">"highlight"</span><span class="ct">&gt;</span>Header A<span class="ct">&lt;/h2&gt;</span>
-    <span class="ct">&lt;h3</span> <span class="ca">class</span>=<span class="cg">"highlight"</span><span class="ct">&gt;</span>Header B<span class="ct">&lt;/h3&gt;</span>
-    <span class="ct">&lt;p</span> <span class="ca">class</span>=<span class="cg">"highlight"</span><span class="ct">&gt;</span>Paragraph<span class="ct">&lt;/p&gt;</span>
-    <span class="ct">&lt;p</span> <span class="ca">class</span>=<span class="cg">"normal-text"</span><span class="ct">&gt;</span>Regular text<span class="ct">&lt;/p&gt;</span>
-<span class="ct">&lt;/body&gt;</span></div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="direction:ltr;text-align:left;width:100%">
-        <h2 style="color:blueviolet;font-weight:bold;background:#f3e8ff;padding:8px 12px;border-radius:6px;font-size:20px;margin:4px 0">Header A</h2>
-        <h3 style="color:blueviolet;font-weight:bold;background:#f3e8ff;padding:8px 12px;border-radius:6px;font-size:16px;margin:4px 0">Header B</h3>
-        <p style="color:blueviolet;font-weight:bold;background:#f3e8ff;padding:8px 12px;border-radius:6px;font-size:14px;margin:4px 0">Paragraph</p>
-        <p style="color:gray;font-size:13px;margin:4px 0">Regular text</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h2>סלקטורים מתקדמים</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>סלקטור</th><th>דוגמה</th><th>מה בוחר</th></tr>
-    <tr><td>parent child</td><td>div p { }</td><td>כל p שנמצא בתוך div</td></tr>
-    <tr><td>element.class</td><td>h3.special { }</td><td>רק h3 שיש לו class="special"</td></tr>
-    <tr><td>el1, el2</td><td>h1, h2 { }</td><td>גם h1 וגם h2 (קיבוץ)</td></tr>
-    <tr><td>el1 + el2</td><td>h1 + p { }</td><td>p שמופיע מיד אחרי h1</td></tr>
-    <tr><td>*</td><td>* { }</td><td>כל האלמנטים בדף</td></tr>
-    <tr><td>:hover</td><td>a:hover { }</td><td>כשעכבר מעל</td></tr>
-    <tr><td>:active</td><td>button:active { }</td><td>בזמן לחיצה</td></tr>
-    <tr><td>:focus</td><td>input:focus { }</td><td>כשהשדה מקבל פוקוס</td></tr>
-    <tr><td>:first-child</td><td>li:first-child { }</td><td>הילד הראשון</td></tr>
-    <tr><td>:nth-child(n)</td><td>li:nth-child(odd) { }</td><td>ילדים אי-זוגיים</td></tr>
-    <tr><td>::before</td><td>p::before { content:"" }</td><td>תוכן לפני האלמנט</td></tr>
-  </table>
-  <div class="demo full">
-    <div class="code-pane"><span class="label">דוגמאות</span>
-<span class="cc">/* כל p בתוך div */</span>
-<span class="cs">div p</span> { <span class="cp">color</span>: <span class="cv">navy</span>; }
-
-<span class="cc">/* רק h3 עם class "special" */</span>
-<span class="cs">h3.special</span> { <span class="cp">color</span>: <span class="cv">crimson</span>; }
-
-<span class="cc">/* קיבוץ: h1 וגם h2 */</span>
-<span class="cs">h1, h2</span> { <span class="cp">font-family</span>: <span class="cv">Georgia</span>; }
-
-<span class="cc">/* hover על קישורים */</span>
-<span class="cs">a:hover</span> { <span class="cp">color</span>: <span class="cv">red</span>; <span class="cp">text-decoration</span>: <span class="cv">none</span>; }
-<span class="cs">a:visited</span> { <span class="cp">color</span>: <span class="cv">purple</span>; }
-
-<span class="cc">/* כל האלמנטים */</span>
-<span class="cs">*</span> { <span class="cp">box-sizing</span>: <span class="cv">border-box</span>; <span class="cp">margin</span>: <span class="cv">0</span>; }</div>
-  </div>
-</div>
-
-<h2>Specificity - סדר עדיפויות</h2>
-<div class="card">
-  <p>כשכמה חוקים סותרים על אותו אלמנט, הדפדפן מחשב ניקוד ומחליט מי מנצח:</p>
-  <div class="spec-bar">
-    <div style="background:#dc2626">!important<br>10000</div>
-    <div style="background:#ea580c">Inline<br>1000</div>
-    <div style="background:#d97706">ID #<br>100</div>
-    <div style="background:#ca8a04">Class .<br>10</div>
-    <div style="background:#16a34a">Tag<br>1</div>
-  </div>
-  <div class="info err"><strong>!important</strong> דורס הכל אבל זה anti-pattern. כלל אצבע: אם אתה צריך !important, כנראה שיש בעיה בארכיטקטורה של ה-CSS שלך.</div>
-</div>
-</div>
-
-<!-- ==================== TAB 4: 3 METHODS ==================== -->
-<div class="tab-content" id="tab-methods">
-<h1>3 שיטות הטמעת CSS</h1>
-<p class="subtitle">Inline, Internal, External - כל שיטה עם קוד מלא, תוצאה ויזואלית, ויתרונות/חסרונות</p>
-
-<h2>שיטה 1: Inline CSS</h2>
-<div class="card">
-  <div class="card-title"><span class="badge b-red">Specificity: 1000</span><span class="badge b-orange">לא מומלץ</span></div>
-  <p>עיצוב ישירות על התגית באמצעות <code>style="..."</code>. כל אלמנט מעוצב בנפרד.</p>
-  <div class="demo">
-    <div class="code-pane"><span class="label">index.html</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="ct">&lt;h1</span> <span class="ca">style</span>=<span class="cg">"background-color: peru;
-             color: white;
-             padding: 15px;
-             text-align: center;"</span><span class="ct">&gt;</span>
-        I have a dream!
-    <span class="ct">&lt;/h1&gt;</span>
-
-    <span class="ct">&lt;p</span> <span class="ca">style</span>=<span class="cg">"color: royalblue;
-            font-family: cursive;"</span><span class="ct">&gt;</span>
-        It took me 2 hours to pick colors
-    <span class="ct">&lt;/p&gt;</span>
-<span class="ct">&lt;/body&gt;</span></div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="direction:ltr;text-align:left;width:100%">
-        <h1 style="background:peru;color:#fff;padding:14px;text-align:center;font-size:22px;margin-bottom:10px;border-radius:4px">I have a dream!</h1>
-        <p style="color:royalblue;font-family:cursive;font-size:14px">It took me 2 hours to pick colors</p>
-      </div>
-    </div>
-  </div>
-  <div class="info err"><strong>חסרונות:</strong> קוד מבולגן, אי אפשר לעשות שימוש חוזר, אי אפשר להגדיר hover/animation, לא ניתן לתחזוקה.</div>
-</div>
-
-<h2>שיטה 2: Internal CSS</h2>
-<div class="card">
-  <div class="card-title"><span class="badge b-blue">בתוך &lt;style&gt;</span><span class="badge b-orange">דף בודד</span></div>
-  <p>CSS בתוך תגית <code>&lt;style&gt;</code> ב-<code>&lt;head&gt;</code>. חל על הדף הנוכחי בלבד.</p>
-  <div class="demo">
-    <div class="code-pane"><span class="label">index.html - קוד מלא</span>
-<span class="ct">&lt;!DOCTYPE html&gt;</span>
-<span class="ct">&lt;html</span> <span class="ca">lang</span>=<span class="cg">"en"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;style&gt;</span>
-        <span class="cc">/* סלקטור Tag */</span>
-        <span class="cs">h1</span> {
-            <span class="cp">font-family</span>: <span class="cv">"Franklin Gothic Medium"</span>;
-            <span class="cp">font-size</span>: <span class="cv">40px</span>;
-            <span class="cp">text-align</span>: <span class="cv">center</span>;
-        }
-
-        <span class="cc">/* סלקטור ID */</span>
-        <span class="cs">#login-header</span> {
-            <span class="cp">color</span>: <span class="cv">green</span>;
-            <span class="cp">font-size</span>: <span class="cv">30px</span>;
-        }
-
-        <span class="cc">/* סלקטור Class */</span>
-        <span class="cs">.third-header</span> {
-            <span class="cp">color</span>: <span class="cv">blueviolet</span>;
-            <span class="cp">font-size</span>: <span class="cv">24px</span>;
-        }
-    <span class="ct">&lt;/style&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="ct">&lt;h1&gt;</span>good morning<span class="ct">&lt;/h1&gt;</span>
-    <span class="ct">&lt;h2</span> <span class="ca">id</span>=<span class="cg">"login-header"</span><span class="ct">&gt;</span>login page<span class="ct">&lt;/h2&gt;</span>
-    <span class="ct">&lt;h3</span> <span class="ca">class</span>=<span class="cg">"third-header"</span><span class="ct">&gt;</span>welcome<span class="ct">&lt;/h3&gt;</span>
-<span class="ct">&lt;/body&gt;</span>
-<span class="ct">&lt;/html&gt;</span></div>
-    <div class="preview-pane"><span class="label">Result</span>
-      <div style="direction:ltr;text-align:left;width:100%">
-        <h1 style="font-size:30px;text-align:center;margin-bottom:8px">good morning</h1>
-        <h2 style="color:green;font-size:22px;margin:6px 0">login page</h2>
-        <h3 style="color:blueviolet;font-size:18px;margin:6px 0">welcome</h3>
-      </div>
-    </div>
-  </div>
-  <div class="info tip"><strong>מתי להשתמש:</strong> כשיש דף אחד עם עיצוב ייחודי. כלל אצבע: אם אותו סגנון מופיע ב-3 דפים או יותר, תעבירו אותו לקובץ חיצוני.</div>
-</div>
-
-<h2>שיטה 3: External CSS (מומלץ!)</h2>
-<div class="card">
-  <div class="card-title"><span class="badge b-green">Best Practice</span><span class="badge b-blue">קובץ נפרד</span></div>
-  <p>יוצרים קובץ <code>style.css</code> נפרד ומקשרים ל-HTML עם תגית <code>&lt;link&gt;</code>.</p>
-  <h3>2 קבצים נפרדים:</h3>
-  <div class="file-split">
-    <div class="code-pane"><span class="label">index.html</span>
-<span class="ct">&lt;!DOCTYPE html&gt;</span>
-<span class="ct">&lt;html&gt;</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;title&gt;</span>My Site<span class="ct">&lt;/title&gt;</span>
-    <span class="cc">&lt;!-- קישור לקובץ CSS --&gt;</span>
-    <span class="ct">&lt;link</span> <span class="ca">rel</span>=<span class="cg">"stylesheet"</span>
-          <span class="ca">href</span>=<span class="cg">"style.css"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="ct">&lt;h1</span> <span class="ca">id</span>=<span class="cg">"alpha"</span>
-        <span class="ca">class</span>=<span class="cg">"best"</span><span class="ct">&gt;</span>
-        better design
-    <span class="ct">&lt;/h1&gt;</span>
-    <span class="ct">&lt;p</span> <span class="ca">id</span>=<span class="cg">"par"</span><span class="ct">&gt;</span>
-        i think it is a
-        better design
-    <span class="ct">&lt;/p&gt;</span>
-<span class="ct">&lt;/body&gt;</span>
-<span class="ct">&lt;/html&gt;</span></div>
-    <div class="code-pane"><span class="label">style.css</span>
-<span class="cc">/* עיצוב כללי */</span>
-<span class="cs">body</span> {
-    <span class="cp">background-color</span>: <span class="cv">aquamarine</span>;
+<span class="cm">/* Form */</span>
+<span class="tg">form</span> {
+    <span class="pr">background</span>: <span class="vl">white</span>;
+    <span class="pr">padding</span>: <span class="vl">25px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">12px</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 4px 15px rgba(0,0,0,0.1)</span>;
+    <span class="pr">max-width</span>: <span class="vl">400px</span>;
+    <span class="pr">margin</span>: <span class="vl">20px auto</span>;
 }
 
-<span class="cc">/* סלקטור ID */</span>
-<span class="cs">#alpha</span> {
-    <span class="cp">background-color</span>: <span class="cv">blue</span>;
-    <span class="cp">color</span>: <span class="cv">white</span>;
-    <span class="cp">padding</span>: <span class="cv">15px</span>;
-}
-
-<span class="cc">/* סלקטור Class */</span>
-<span class="cs">.best</span> {
-    <span class="cp">font-family</span>: <span class="cv">fantasy</span>;
-    <span class="cp">font-size</span>: <span class="cv">28px</span>;
-}</div>
-  </div>
-  <h3>התוצאה המשולבת:</h3>
-  <div class="demo full">
-    <div class="preview-pane" style="background:aquamarine;align-items:stretch"><span class="label">Combined Result</span>
-      <div style="direction:ltr;text-align:left;width:100%">
-        <h1 style="background:blue;color:#fff;padding:14px;font-family:fantasy;font-size:24px;margin-bottom:10px">better design</h1>
-        <p style="font-size:15px;color:#333">i think it is a better design</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h2>סדר עדיפויות בין 3 השיטות</h2>
-<div class="card">
-  <div class="spec-bar">
-    <div style="background:#dc2626">1. Inline<br>מנצח תמיד</div>
-    <div style="background:#d97706">2. Internal<br>מנצח External</div>
-    <div style="background:#16a34a">3. External<br>עדיפות בסיסית</div>
-  </div>
-  <div class="info note">אם יש Inline על אלמנט, הוא ידרוס כל דבר אחר. אם יש Internal וגם External, Internal מנצח כי הוא "קרוב יותר" לאלמנט.</div>
-</div>
-</div>
-
-<!-- ==================== TAB 5: BOX MODEL ==================== -->
-<div class="tab-content" id="tab-boxmodel">
-<h1>The Box Model</h1>
-<p class="subtitle">כל אלמנט ב-HTML הוא קופסה מלבנית. הבנת מודל הקופסה = הבסיס לכל layout</p>
-
-<h2>4 שכבות הקופסה</h2>
-<div class="card">
-  <div class="bm-viz">
-    <div class="bm-m"><span class="bm-l" style="color:var(--text2)">Margin</span>
-      <div class="bm-b"><span class="bm-l" style="color:var(--accent)">Border</span>
-        <div class="bm-p"><span class="bm-l" style="color:var(--pink)">Padding</span>
-          <div class="bm-c">Content</div>
-        </div></div></div>
-  </div>
-  <table class="tbl">
-    <tr><th>שכבה</th><th>תפקיד</th><th>דוגמת קוד</th></tr>
-    <tr><td>Content</td><td>התוכן עצמו (טקסט, תמונות)</td><td>width: 300px; height: 200px;</td></tr>
-    <tr><td>Padding</td><td>מרווח פנימי בין Content ל-Border</td><td>padding: 20px;</td></tr>
-    <tr><td>Border</td><td>הגבול שמקיף את האלמנט</td><td>border: 2px solid red;</td></tr>
-    <tr><td>Margin</td><td>מרווח חיצוני בין האלמנט לסביבה</td><td>margin: 30px auto;</td></tr>
-  </table>
-  <div class="demo full"><div class="code-pane"><span class="label">CSS</span>
-<span class="cs">div</span> {
-    <span class="cp">width</span>: <span class="cv">300px</span>;                  <span class="cc">/* רוחב התוכן */</span>
-    <span class="cp">height</span>: <span class="cv">200px</span>;                 <span class="cc">/* גובה התוכן */</span>
-    <span class="cp">padding</span>: <span class="cv">20px</span>;                 <span class="cc">/* מרווח פנימי */</span>
-    <span class="cp">border</span>: <span class="cv">4px solid red</span>;          <span class="cc">/* גבול */</span>
-    <span class="cp">margin</span>: <span class="cv">30px auto</span>;             <span class="cc">/* מרווח חיצוני + מרכוז */</span>
-    <span class="cp">border-radius</span>: <span class="cv">8px</span>;            <span class="cc">/* עיגול פינות */</span>
-    <span class="cp">box-sizing</span>: <span class="cv">border-box</span>;        <span class="cc">/* width כולל padding+border */</span>
-}
-
-<span class="cc">/* קיצורים ל-margin/padding: */</span>
-<span class="cp">margin</span>: <span class="cv">10px</span>;                     <span class="cc">/* כל 4 הצדדים */</span>
-<span class="cp">margin</span>: <span class="cv">10px 20px</span>;               <span class="cc">/* top/bottom  left/right */</span>
-<span class="cp">margin</span>: <span class="cv">10px 20px 30px 40px</span>;     <span class="cc">/* top right bottom left (בכיוון השעון) */</span>
-<span class="cp">margin</span>: <span class="cv">0 auto</span>;                  <span class="cc">/* מרכוז אופקי */</span></div></div>
-  <div class="info warn"><strong>box-sizing: border-box</strong> חובה! בלי זה, רוחב אלמנט = width + padding + border. עם border-box, ה-width כולל הכל. Best practice: <code>* { box-sizing: border-box; }</code></div>
-</div>
-
-<h2>div & span</h2>
-<div class="card">
-  <p><code>&lt;div&gt;</code> = Division. אלמנט <strong>block</strong> - תופס שורה שלמה. לקיבוץ אלמנטים.</p>
-  <p><code>&lt;span&gt;</code> = Span. אלמנט <strong>inline</strong> - לא שובר שורה. לעיצוב חלק מטקסט.</p>
-  <table class="tbl">
-    <tr><th>Block (שורה שלמה)</th><th>Inline (רוחב מינימלי)</th></tr>
-    <tr><td>div, h1-h6, p, form, section, header, nav, ul, li</td><td>span, a, img, strong, em, input, button, label</td></tr>
-  </table>
-</div>
-</div>
-
-<!-- ==================== TAB 6: LAYOUT ==================== -->
-<div class="tab-content" id="tab-layout">
-<h1>Layout & Position</h1>
-<p class="subtitle">מיקום אלמנטים בדף - 5 סוגי Position + Flexbox אינטראקטיבי</p>
-
-<h2>5 סוגי Position</h2>
-<div class="card">
-  <table class="tbl">
-    <tr><th>ערך</th><th>התנהגות</th><th>שימוש נפוץ</th></tr>
-    <tr><td>static</td><td>ברירת מחדל. בזרימה הרגילה. top/left לא עובדים</td><td>כל אלמנט רגיל</td></tr>
-    <tr><td>relative</td><td>כמו static, אבל אפשר להזיז עם top/left יחסית למיקום המקורי</td><td>הורה ל-absolute, הזזה קלה</td></tr>
-    <tr><td>absolute</td><td>יוצא מהזרימה! ממוקם יחסית להורה relative הקרוב</td><td>Dropdown, tooltip, badge</td></tr>
-    <tr><td>fixed</td><td>קבוע יחסית לחלון. לא זז בגלילה</td><td>Navbar קבוע, כפתור צף</td></tr>
-    <tr><td>sticky</td><td>relative עד נקודה, ואז נדבק</td><td>Header שנדבק בגלילה</td></tr>
-  </table>
-</div>
-
-<h2>Flexbox Playground - אינטראקטיבי</h2>
-<div class="card">
-  <p>Flexbox מסדר אלמנטים בשורה/עמודה. לחצו על הכפתורים לראות שינויים בזמן אמת:</p>
-  <div class="flex-pg">
-    <p style="font-size:.78rem;color:var(--text3);margin-bottom:6px">justify-content:</p>
-    <div class="flex-ctrls">
-      <button class="cbtn" onclick="sf('flex-start',this)">start</button>
-      <button class="cbtn on" onclick="sf('center',this)">center</button>
-      <button class="cbtn" onclick="sf('flex-end',this)">end</button>
-      <button class="cbtn" onclick="sf('space-between',this)">space-between</button>
-      <button class="cbtn" onclick="sf('space-around',this)">space-around</button>
-      <button class="cbtn" onclick="sf('space-evenly',this)">space-evenly</button>
-    </div>
-    <div class="flex-area" id="fa" style="justify-content:center">
-      <div class="flex-box"></div><div class="flex-box" style="height:55px"></div><div class="flex-box"></div><div class="flex-box" style="height:30px"></div>
-    </div>
-    <p style="margin-top:8px;font-size:.78rem;color:var(--accent);font-family:var(--mono);direction:ltr" id="fc">justify-content: center;</p>
-  </div>
-</div>
-</div>
-
-<!-- ==================== TAB 7: MISSION 1 ==================== -->
-<div class="tab-content" id="tab-m1">
-<h1>משימה 1 - בסיסית</h1>
-<p class="subtitle">יצירת קובץ HTML + קובץ CSS עם כל 3 השיטות, ID, Class, hover ו-active</p>
-
-<div class="mission">
-  <div class="mission-t">דרישות</div>
-  <ol class="steps">
-    <li>צרו קובץ <code>index.html</code> וקובץ <code>style.css</code></li>
-    <li>הוסיפו 3 כותרות: h1, h2, h3 - כל אחת מעוצבת אחרת</li>
-    <li>השתמשו ב-<code>id</code> לאחד ו-<code>class</code> לשניים</li>
-    <li>הגדירו CSS בכל 3 השיטות: inline, internal, external</li>
-    <li>הוסיפו <code>:hover</code> (שינוי צבע במעבר עכבר)</li>
-    <li>הוסיפו <code>:active</code> (שינוי צבע בלחיצה)</li>
-    <li>הוסיפו טופס login בסיסי</li>
-  </ol>
-</div>
-
-<h2>שלב 1 - קובץ style.css (External CSS)</h2>
-<div class="demo full"><div class="code-pane"><span class="label">style.css</span>
-<span class="cc">/* =======================================
-   EXTERNAL CSS - קובץ עיצוב חיצוני
-   ======================================= */</span>
-
-<span class="cc">/* --- עיצוב כללי לדף --- */</span>
-<span class="cs">body</span> {
-    <span class="cp">font-family</span>: <span class="cv">"Segoe UI", Arial, sans-serif</span>;
-    <span class="cp">background-color</span>: <span class="cv">#f0f4f8</span>;
-    <span class="cp">color</span>: <span class="cv">#1e293b</span>;
-    <span class="cp">margin</span>: <span class="cv">0</span>;
-    <span class="cp">padding</span>: <span class="cv">20px</span>;
-    <span class="cp">direction</span>: <span class="cv">rtl</span>;
-}
-
-<span class="cc">/* --- h1 עם ID: סלקטור # --- */</span>
-<span class="cs">#main-header</span> {
-    <span class="cp">background</span>: <span class="cv">linear-gradient(135deg, #667eea, #764ba2)</span>;
-    <span class="cp">color</span>: <span class="cv">white</span>;
-    <span class="cp">padding</span>: <span class="cv">25px</span>;
-    <span class="cp">border-radius</span>: <span class="cv">12px</span>;
-    <span class="cp">text-align</span>: <span class="cv">center</span>;
-    <span class="cp">font-size</span>: <span class="cv">2.2em</span>;
-    <span class="cp">transition</span>: <span class="cv">all 0.3s ease</span>;   <span class="cc">/* מעבר חלק */</span>
-    <span class="cp">cursor</span>: <span class="cv">pointer</span>;
-}
-
-<span class="cc">/* hover = כשעכבר מעל */</span>
-<span class="cs">#main-header:hover</span> {
-    <span class="cp">background</span>: <span class="cv">linear-gradient(135deg, #f093fb, #f5576c)</span>;
-    <span class="cp">transform</span>: <span class="cv">scale(1.02)</span>;
-}
-
-<span class="cc">/* active = בזמן לחיצה */</span>
-<span class="cs">#main-header:active</span> {
-    <span class="cp">background</span>: <span class="cv">linear-gradient(135deg, #11998e, #38ef7d)</span>;
-    <span class="cp">transform</span>: <span class="cv">scale(0.98)</span>;
-}
-
-<span class="cc">/* --- עיצוב טופס --- */</span>
-<span class="cs">form</span> {
-    <span class="cp">background</span>: <span class="cv">white</span>;
-    <span class="cp">padding</span>: <span class="cv">25px</span>;
-    <span class="cp">border-radius</span>: <span class="cv">12px</span>;
-    <span class="cp">box-shadow</span>: <span class="cv">0 4px 15px rgba(0,0,0,0.1)</span>;
-    <span class="cp">max-width</span>: <span class="cv">400px</span>;
-    <span class="cp">margin</span>: <span class="cv">20px auto</span>;
-}
-<span class="cs">input[type="text"],
+<span class="tg">input[type="text"],
 input[type="password"]</span> {
-    <span class="cp">width</span>: <span class="cv">100%</span>;
-    <span class="cp">padding</span>: <span class="cv">10px</span>;
-    <span class="cp">border</span>: <span class="cv">2px solid #e2e8f0</span>;
-    <span class="cp">border-radius</span>: <span class="cv">8px</span>;
-    <span class="cp">margin-bottom</span>: <span class="cv">12px</span>;
-    <span class="cp">font-size</span>: <span class="cv">1em</span>;
-    <span class="cp">transition</span>: <span class="cv">border-color 0.3s</span>;
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+    <span class="pr">padding</span>: <span class="vl">10px</span>;
+    <span class="pr">border</span>: <span class="vl">2px solid #e2e8f0</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+    <span class="pr">margin-bottom</span>: <span class="vl">12px</span>;
+    <span class="pr">font-size</span>: <span class="vl">1em</span>;
+    <span class="pr">transition</span>: <span class="vl">border-color 0.3s</span>;
 }
-<span class="cs">input:focus</span> {
-    <span class="cp">border-color</span>: <span class="cv">#667eea</span>;
-    <span class="cp">outline</span>: <span class="cv">none</span>;
+
+<span class="tg">input:focus</span> {
+    <span class="pr">border-color</span>: <span class="vl">#667eea</span>;
+    <span class="pr">outline</span>: <span class="vl">none</span>;
 }
-<span class="cs">input[type="submit"]</span> {
-    <span class="cp">background</span>: <span class="cv">linear-gradient(135deg, #667eea, #764ba2)</span>;
-    <span class="cp">color</span>: <span class="cv">white</span>;
-    <span class="cp">border</span>: <span class="cv">none</span>;
-    <span class="cp">padding</span>: <span class="cv">12px</span>;
-    <span class="cp">width</span>: <span class="cv">100%</span>;
-    <span class="cp">border-radius</span>: <span class="cv">8px</span>;
-    <span class="cp">cursor</span>: <span class="cv">pointer</span>;
-    <span class="cp">font-size</span>: <span class="cv">1.1em</span>;
-}</div></div>
 
-<h2>שלב 2 - קובץ index.html</h2>
-<div class="demo full"><div class="code-pane"><span class="label">index.html</span>
-<span class="ct">&lt;!DOCTYPE html&gt;</span>
-<span class="ct">&lt;html</span> <span class="ca">lang</span>=<span class="cg">"he"</span> <span class="ca">dir</span>=<span class="cg">"rtl"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;meta</span> <span class="ca">charset</span>=<span class="cg">"UTF-8"</span><span class="ct">&gt;</span>
-    <span class="ct">&lt;meta</span> <span class="ca">name</span>=<span class="cg">"viewport"</span> <span class="ca">content</span>=<span class="cg">"width=device-width, initial-scale=1.0"</span><span class="ct">&gt;</span>
-    <span class="ct">&lt;title&gt;</span>CSS Mission<span class="ct">&lt;/title&gt;</span>
+<span class="tg">input[type="submit"]</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #667eea, #764ba2)</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+    <span class="pr">padding</span>: <span class="vl">12px</span>;
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+    <span class="pr">font-size</span>: <span class="vl">1.1em</span>;
+    <span class="pr">transition</span>: <span class="vl">all 0.3s</span>;
+}
 
-    <span class="cc">&lt;!-- שיטה 3: EXTERNAL CSS --&gt;</span>
-    <span class="ct">&lt;link</span> <span class="ca">rel</span>=<span class="cg">"stylesheet"</span> <span class="ca">href</span>=<span class="cg">"style.css"</span><span class="ct">&gt;</span>
+<span class="tg">input[type="submit"]:hover</span> {
+    <span class="pr">transform</span>: <span class="vl">translateY(-2px)</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 6px 20px rgba(102,126,234,0.4)</span>;
+}</code></pre>
 
-    <span class="cc">&lt;!-- שיטה 2: INTERNAL CSS --&gt;</span>
-    <span class="ct">&lt;style&gt;</span>
-        <span class="cs">#login-header</span> {
-            <span class="cp">color</span>: <span class="cv">green</span>;
-            <span class="cp">font-size</span>: <span class="cv">1.8em</span>;
-            <span class="cp">border-bottom</span>: <span class="cv">3px solid green</span>;
-            <span class="cp">padding-bottom</span>: <span class="cv">8px</span>;
-            <span class="cp">transition</span>: <span class="cv">color 0.3s</span>;
+        <h3>index.html - הקובץ הראשי</h3>
+        <pre data-lang="index.html"><code><span class="tg">&lt;!DOCTYPE html&gt;</span>
+<span class="tg">&lt;html</span> <span class="at">lang</span>=<span class="st">"he"</span> <span class="at">dir</span>=<span class="st">"rtl"</span><span class="tg">&gt;</span>
+<span class="tg">&lt;head&gt;</span>
+    <span class="tg">&lt;meta</span> <span class="at">charset</span>=<span class="st">"UTF-8"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;meta</span> <span class="at">name</span>=<span class="st">"viewport"</span> <span class="at">content</span>=<span class="st">"width=device-width, initial-scale=1.0"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;title&gt;</span>CSS Mission<span class="tg">&lt;/title&gt;</span>
+    <span class="cm">&lt;!-- שיטה 3: EXTERNAL CSS --&gt;</span>
+    <span class="tg">&lt;link</span> <span class="at">rel</span>=<span class="st">"stylesheet"</span> <span class="at">href</span>=<span class="st">"style.css"</span><span class="tg">&gt;</span>
+    <span class="cm">&lt;!-- שיטה 2: INTERNAL CSS --&gt;</span>
+    <span class="tg">&lt;style&gt;</span>
+        <span class="tg">#login-header</span> {
+            <span class="pr">color</span>: <span class="vl">green</span>;
+            <span class="pr">font-size</span>: <span class="vl">1.8em</span>;
+            <span class="pr">border-bottom</span>: <span class="vl">3px solid green</span>;
+            <span class="pr">padding-bottom</span>: <span class="vl">8px</span>;
+            <span class="pr">transition</span>: <span class="vl">color 0.3s</span>;
         }
-        <span class="cs">#login-header:hover</span> {
-            <span class="cp">color</span>: <span class="cv">darkgreen</span>;
+        <span class="tg">#login-header:hover</span> { <span class="pr">color</span>: <span class="vl">darkgreen</span>; }
+
+        <span class="tg">.third-header</span> {
+            <span class="pr">color</span>: <span class="vl">blueviolet</span>;
+            <span class="pr">font-size</span>: <span class="vl">1.4em</span>;
+            <span class="pr">background</span>: <span class="vl">#f3e8ff</span>;
+            <span class="pr">padding</span>: <span class="vl">10px 16px</span>;
+            <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+            <span class="pr">border-right</span>: <span class="vl">4px solid blueviolet</span>;
         }
-        <span class="cs">.third-header</span> {
-            <span class="cp">color</span>: <span class="cv">blueviolet</span>;
-            <span class="cp">font-size</span>: <span class="cv">1.4em</span>;
-            <span class="cp">background</span>: <span class="cv">#f3e8ff</span>;
-            <span class="cp">padding</span>: <span class="cv">10px 16px</span>;
-            <span class="cp">border-radius</span>: <span class="cv">8px</span>;
-            <span class="cp">border-right</span>: <span class="cv">4px solid blueviolet</span>;
-        }
-    <span class="ct">&lt;/style&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="cc">&lt;!-- h1: External CSS + ID --&gt;</span>
-    <span class="ct">&lt;h1</span> <span class="ca">id</span>=<span class="cg">"main-header"</span><span class="ct">&gt;</span>good morning<span class="ct">&lt;/h1&gt;</span>
+    <span class="tg">&lt;/style&gt;</span>
+<span class="tg">&lt;/head&gt;</span>
+<span class="tg">&lt;body&gt;</span>
+    <span class="cm">&lt;!-- h1: External CSS + ID --&gt;</span>
+    <span class="tg">&lt;h1</span> <span class="at">id</span>=<span class="st">"main-header"</span><span class="tg">&gt;</span>good morning<span class="tg">&lt;/h1&gt;</span>
 
-    <span class="cc">&lt;!-- h2: Internal CSS + ID --&gt;</span>
-    <span class="ct">&lt;h2</span> <span class="ca">id</span>=<span class="cg">"login-header"</span><span class="ct">&gt;</span>login page<span class="ct">&lt;/h2&gt;</span>
+    <span class="cm">&lt;!-- h2: Internal CSS + ID --&gt;</span>
+    <span class="tg">&lt;h2</span> <span class="at">id</span>=<span class="st">"login-header"</span><span class="tg">&gt;</span>login page<span class="tg">&lt;/h2&gt;</span>
 
-    <span class="cc">&lt;!-- h3: Internal CSS + Class --&gt;</span>
-    <span class="ct">&lt;h3</span> <span class="ca">class</span>=<span class="cg">"third-header"</span><span class="ct">&gt;</span>welcome section<span class="ct">&lt;/h3&gt;</span>
+    <span class="cm">&lt;!-- h3: Internal CSS + Class --&gt;</span>
+    <span class="tg">&lt;h3</span> <span class="at">class</span>=<span class="st">"third-header"</span><span class="tg">&gt;</span>welcome section<span class="tg">&lt;/h3&gt;</span>
 
-    <span class="cc">&lt;!-- שיטה 1: INLINE CSS --&gt;</span>
-    <span class="ct">&lt;p</span> <span class="ca">style</span>=<span class="cg">"color: crimson; font-size: 1.2em;
+    <span class="cm">&lt;!-- שיטה 1: INLINE CSS --&gt;</span>
+    <span class="tg">&lt;p</span> <span class="at">style</span>=<span class="st">"color: crimson; font-size: 1.2em;
        border-right: 3px solid crimson;
-       padding-right: 12px;"</span><span class="ct">&gt;</span>
+       padding-right: 12px;"</span><span class="tg">&gt;</span>
         פסקה עם Inline CSS
-    <span class="ct">&lt;/p&gt;</span>
+    <span class="tg">&lt;/p&gt;</span>
 
-    <span class="cc">&lt;!-- טופס Login --&gt;</span>
-    <span class="ct">&lt;form</span> <span class="ca">action</span>=<span class="cg">"#"</span> <span class="ca">method</span>=<span class="cg">"get"</span><span class="ct">&gt;</span>
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"username"</span><span class="ct">&gt;</span>username<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"text"</span> <span class="ca">id</span>=<span class="cg">"username"</span>
-               <span class="ca">name</span>=<span class="cg">"username"</span> <span class="ca">placeholder</span>=<span class="cg">"name"</span><span class="ct">&gt;</span>
+    <span class="cm">&lt;!-- Login Form --&gt;</span>
+    <span class="tg">&lt;form</span> <span class="at">action</span>=<span class="st">"#"</span> <span class="at">method</span>=<span class="st">"POST"</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"username"</span><span class="tg">&gt;</span>username<span class="tg">&lt;/label&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"text"</span> <span class="at">id</span>=<span class="st">"username"</span> <span class="at">name</span>=<span class="st">"username"</span> <span class="at">placeholder</span>=<span class="st">"name"</span><span class="tg">&gt;</span>
 
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"password"</span><span class="ct">&gt;</span>password<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"password"</span> <span class="ca">id</span>=<span class="cg">"password"</span>
-               <span class="ca">name</span>=<span class="cg">"password"</span> <span class="ca">placeholder</span>=<span class="cg">"password"</span><span class="ct">&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"password"</span><span class="tg">&gt;</span>password<span class="tg">&lt;/label&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"password"</span> <span class="at">id</span>=<span class="st">"password"</span> <span class="at">name</span>=<span class="st">"password"</span> <span class="at">placeholder</span>=<span class="st">"password"</span><span class="tg">&gt;</span>
 
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"rememberme"</span><span class="ct">&gt;</span>remember me<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"checkbox"</span> <span class="ca">id</span>=<span class="cg">"rememberme"</span>
-               <span class="ca">name</span>=<span class="cg">"rememberme"</span><span class="ct">&gt;</span>
+        <span class="tg">&lt;label</span> <span class="at">for</span>=<span class="st">"rememberme"</span><span class="tg">&gt;</span>remember me<span class="tg">&lt;/label&gt;</span>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"checkbox"</span> <span class="at">id</span>=<span class="st">"rememberme"</span> <span class="at">name</span>=<span class="st">"rememberme"</span><span class="tg">&gt;</span>
 
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"submit"</span> <span class="ca">id</span>=<span class="cg">"submit"</span>
-               <span class="ca">name</span>=<span class="cg">"submit"</span><span class="ct">&gt;</span>
-    <span class="ct">&lt;/form&gt;</span>
-<span class="ct">&lt;/body&gt;</span>
-<span class="ct">&lt;/html&gt;</span></div></div>
+        <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"submit"</span> <span class="at">value</span>=<span class="st">"Login"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;/form&gt;</span>
+<span class="tg">&lt;/body&gt;</span>
+<span class="tg">&lt;/html&gt;</span></code></pre>
 
-<h2>שלב 3 - התוצאה הויזואלית (שילוב הכל)</h2>
-<div class="demo full">
-  <div class="preview-pane" style="background:#f0f4f8;padding:20px;align-items:stretch"><span class="label">HTML + CSS Combined Result</span>
-    <div style="width:100%;direction:rtl">
-      <h1 style="background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:20px;border-radius:12px;text-align:center;font-size:26px;margin-bottom:14px;cursor:pointer;transition:all .3s" onmouseover="this.style.background='linear-gradient(135deg,#f093fb,#f5576c)';this.style.transform='scale(1.02)'" onmouseout="this.style.background='linear-gradient(135deg,#667eea,#764ba2)';this.style.transform=''">good morning</h1>
-      <h2 style="color:green;font-size:1.5em;border-bottom:3px solid green;padding-bottom:8px;margin-bottom:14px;cursor:pointer;transition:color .3s" onmouseover="this.style.color='darkgreen'" onmouseout="this.style.color='green'">login page</h2>
-      <h3 style="color:blueviolet;font-size:1.2em;background:#f3e8ff;padding:10px 16px;border-radius:8px;border-right:4px solid blueviolet;margin-bottom:14px">welcome section</h3>
-      <p style="color:crimson;font-size:1.1em;border-right:3px solid crimson;padding-right:12px;margin-bottom:18px">פסקה עם Inline CSS</p>
-      <div style="background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.1);max-width:340px;margin:0 auto;direction:ltr">
-        <label style="display:block;font-size:13px;color:#475569;margin-bottom:3px">username</label>
-        <input type="text" placeholder="name" style="width:100%;padding:9px;border:2px solid #e2e8f0;border-radius:8px;margin-bottom:10px;font-size:14px">
-        <label style="display:block;font-size:13px;color:#475569;margin-bottom:3px">password</label>
-        <input type="password" placeholder="password" style="width:100%;padding:9px;border:2px solid #e2e8f0;border-radius:8px;margin-bottom:10px;font-size:14px">
-        <div style="margin-bottom:12px;display:flex;align-items:center;gap:6px"><input type="checkbox"><label style="font-size:13px;color:#475569">remember me</label></div>
-        <input type="submit" value="Submit" style="background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:11px;width:100%;border-radius:8px;cursor:pointer;font-size:15px">
-      </div>
-    </div>
-  </div>
-</div>
-<div class="info tip">העבירו עכבר מעל "good morning" (hover = ורוד) ולחצו (active = ירוק)!</div>
-</div>
-
-<!-- ==================== TAB 8: MISSION 2 ==================== -->
-<div class="tab-content" id="tab-m2">
-<h1>משימה 2 - חנות אונליין מלאה</h1>
-<p class="subtitle">4 דפי HTML + קובץ CSS חיצוני | גריד מוצרים + טפסים + ניווט</p>
-
-<div class="mission"><div class="mission-t">מבנה הפרויקט - 5 קבצים</div></div>
-<div class="file-tree">
-  <div class="file-node"><div class="ic">🏠</div><div class="nm">index.html</div><div class="ds">ראשי + ניווט</div></div>
-  <div class="file-arr">⇄</div>
-  <div class="file-node"><div class="ic">🛍️</div><div class="nm">products.html</div><div class="ds">9 מוצרים grid</div></div>
-  <div class="file-arr">⇄</div>
-  <div class="file-node"><div class="ic">📋</div><div class="nm">info.html</div><div class="ds">מידע + טבלה</div></div>
-  <div class="file-arr">⇄</div>
-  <div class="file-node"><div class="ic">🛒</div><div class="nm">order.html</div><div class="ds">טופס הזמנה</div></div>
-</div>
-<div class="file-tree">
-  <div class="file-node" style="border-color:var(--green);flex:none;width:180px"><div class="ic">🎨</div><div class="nm">style.css</div><div class="ds">עיצוב לכל הדפים</div></div>
-</div>
-
-<h2>products.html - קוד מלא + תוצאה</h2>
-<div class="card">
-  <h3>קובץ HTML:</h3>
-  <div class="demo full"><div class="code-pane"><span class="label">products.html</span>
-<span class="ct">&lt;!DOCTYPE html&gt;</span>
-<span class="ct">&lt;html</span> <span class="ca">lang</span>=<span class="cg">"he"</span> <span class="ca">dir</span>=<span class="cg">"rtl"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;meta</span> <span class="ca">charset</span>=<span class="cg">"UTF-8"</span><span class="ct">&gt;</span>
-    <span class="ct">&lt;title&gt;</span>המוצרים שלנו<span class="ct">&lt;/title&gt;</span>
-    <span class="ct">&lt;link</span> <span class="ca">rel</span>=<span class="cg">"stylesheet"</span> <span class="ca">href</span>=<span class="cg">"style.css"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="cc">&lt;!-- ניווט - בכל דף! --&gt;</span>
-    <span class="ct">&lt;nav&gt;</span>
-        <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cg">"index.html"</span><span class="ct">&gt;</span>ראשי<span class="ct">&lt;/a&gt;</span>
-        <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cg">"products.html"</span><span class="ct">&gt;</span>מוצרים<span class="ct">&lt;/a&gt;</span>
-        <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cg">"info.html"</span><span class="ct">&gt;</span>מידע<span class="ct">&lt;/a&gt;</span>
-        <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cg">"order.html"</span><span class="ct">&gt;</span>הזמנה<span class="ct">&lt;/a&gt;</span>
-    <span class="ct">&lt;/nav&gt;</span>
-
-    <span class="ct">&lt;h1&gt;</span>המוצרים שלנו<span class="ct">&lt;/h1&gt;</span>
-
-    <span class="cc">&lt;!-- גריד 3x3 --&gt;</span>
-    <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cg">"products"</span><span class="ct">&gt;</span>
-
-        <span class="cc">&lt;!-- מוצר 1 --&gt;</span>
-        <span class="ct">&lt;div</span> <span class="ca">class</span>=<span class="cg">"card"</span><span class="ct">&gt;</span>
-            <span class="ct">&lt;a</span> <span class="ca">href</span>=<span class="cg">"info.html"</span><span class="ct">&gt;</span>
-                <span class="ct">&lt;img</span> <span class="ca">src</span>=<span class="cg">"https://via.placeholder.com/200x150"</span>
-                     <span class="ca">alt</span>=<span class="cg">"מחשב נייד"</span><span class="ct">&gt;</span>
-                <span class="ct">&lt;h3&gt;</span>מחשב נייד<span class="ct">&lt;/h3&gt;</span>
-                <span class="ct">&lt;p</span> <span class="ca">class</span>=<span class="cg">"price"</span><span class="ct">&gt;</span>4,500 ש"ח<span class="ct">&lt;/p&gt;</span>
-            <span class="ct">&lt;/a&gt;</span>
-        <span class="ct">&lt;/div&gt;</span>
-
-        <span class="cc">&lt;!-- חזרו x8 עם מוצרים שונים --&gt;</span>
-        <span class="cc">&lt;!-- ... מוצר 2 עד 9 ... --&gt;</span>
-
-    <span class="ct">&lt;/div&gt;</span>
-<span class="ct">&lt;/body&gt;</span>
-<span class="ct">&lt;/html&gt;</span></div></div>
-
-  <h3>ה-CSS הרלוונטי (מתוך style.css):</h3>
-  <div class="demo full"><div class="code-pane"><span class="label">style.css - חלק products</span>
-<span class="cc">/* גריד 3 עמודות */</span>
-<span class="cs">.products</span> {
-    <span class="cp">display</span>: <span class="cv">grid</span>;
-    <span class="cp">grid-template-columns</span>: <span class="cv">repeat(3, 1fr)</span>;
-    <span class="cp">gap</span>: <span class="cv">20px</span>;
-    <span class="cp">padding</span>: <span class="cv">20px</span>;
-}
-
-<span class="cs">.card</span> {
-    <span class="cp">border</span>: <span class="cv">1px solid #ddd</span>;
-    <span class="cp">border-radius</span>: <span class="cv">12px</span>;
-    <span class="cp">padding</span>: <span class="cv">15px</span>;
-    <span class="cp">text-align</span>: <span class="cv">center</span>;
-    <span class="cp">transition</span>: <span class="cv">all 0.3s ease</span>;
-    <span class="cp">background</span>: <span class="cv">white</span>;
-}
-
-<span class="cs">.card:hover</span> {
-    <span class="cp">transform</span>: <span class="cv">translateY(-5px)</span>;
-    <span class="cp">box-shadow</span>: <span class="cv">0 10px 25px rgba(0,0,0,0.1)</span>;
-}
-
-<span class="cs">.card img</span> {
-    <span class="cp">width</span>: <span class="cv">100%</span>;
-    <span class="cp">border-radius</span>: <span class="cv">8px</span>;
-}
-
-<span class="cs">.card a</span> {
-    <span class="cp">text-decoration</span>: <span class="cv">none</span>;
-    <span class="cp">color</span>: <span class="cv">inherit</span>;
-}
-
-<span class="cs">.price</span> {
-    <span class="cp">color</span>: <span class="cv">#2563eb</span>;
-    <span class="cp">font-weight</span>: <span class="cv">bold</span>;
-    <span class="cp">font-size</span>: <span class="cv">1.1em</span>;
-}</div></div>
-
-  <h3>התוצאה המשולבת:</h3>
-  <div class="demo full">
-    <div class="preview-pane" style="background:#f0f4f8;padding:16px;align-items:stretch"><span class="label">products.html + style.css</span>
-      <div style="width:100%;direction:rtl">
-        <div style="background:#1e293b;padding:10px 16px;border-radius:8px;margin-bottom:14px;display:flex;gap:12px;justify-content:center">
-          <a style="color:#94a3b8;text-decoration:none;font-size:13px;padding:4px 10px;border-radius:4px" href="#">ראשי</a>
-          <a style="color:#fff;text-decoration:none;font-size:13px;padding:4px 10px;border-radius:4px;background:#4f46e5" href="#">מוצרים</a>
-          <a style="color:#94a3b8;text-decoration:none;font-size:13px;padding:4px 10px;border-radius:4px" href="#">מידע</a>
-          <a style="color:#94a3b8;text-decoration:none;font-size:13px;padding:4px 10px;border-radius:4px" href="#">הזמנה</a>
+        <h3>תוצאה ויזואלית</h3>
+        <div class="demo-area">
+            <div style="background:#f0f4f8;border-radius:8px;padding:20px;direction:rtl;font-family:'Segoe UI',sans-serif">
+                <!-- h1 -->
+                <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:20px;border-radius:12px;text-align:center;font-size:1.8em;font-weight:bold;margin-bottom:16px;cursor:pointer;transition:all 0.3s" onmouseover="this.style.background='linear-gradient(135deg,#f093fb,#f5576c)'" onmouseout="this.style.background='linear-gradient(135deg,#667eea,#764ba2)'" onmousedown="this.style.background='linear-gradient(135deg,#11998e,#38ef7d)'" onmouseup="this.style.background='linear-gradient(135deg,#f093fb,#f5576c)'">good morning</div>
+                <!-- h2 -->
+                <div style="color:green;font-size:1.5em;font-weight:bold;border-bottom:3px solid green;padding-bottom:8px;margin-bottom:12px">login page</div>
+                <!-- h3 -->
+                <div style="color:blueviolet;font-size:1.2em;font-weight:bold;background:#f3e8ff;padding:10px 16px;border-radius:8px;border-right:4px solid blueviolet;margin-bottom:12px">welcome section</div>
+                <!-- inline p -->
+                <div style="color:crimson;font-size:1.1em;border-right:3px solid crimson;padding-right:12px;margin-bottom:16px">פסקה עם Inline CSS</div>
+                <!-- form -->
+                <div class="form-demo" style="margin:0 auto">
+                    <h4 style="color:#1e293b">Login</h4>
+                    <label>username</label>
+                    <input type="text" placeholder="name">
+                    <label>password</label>
+                    <input type="password" placeholder="password">
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="demo-rem">
+                        <label for="demo-rem" style="margin:0">remember me</label>
+                    </div>
+                    <button type="button">Login</button>
+                </div>
+            </div>
         </div>
-        <h2 style="text-align:center;color:#1e293b;font-size:20px;margin-bottom:12px">המוצרים שלנו</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff;transition:all .3s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><div style="font-size:22px;margin-bottom:4px">💻</div>מחשב נייד<div style="color:#2563eb;font-weight:700;margin-top:2px">4,500₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">⌨️</div>מקלדת<div style="color:#2563eb;font-weight:700;margin-top:2px">350₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">🖱️</div>עכבר<div style="color:#2563eb;font-weight:700;margin-top:2px">150₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">🎧</div>אוזניות<div style="color:#2563eb;font-weight:700;margin-top:2px">280₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">🖥️</div>מסך 27"<div style="color:#2563eb;font-weight:700;margin-top:2px">1,200₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">📱</div>טלפון<div style="color:#2563eb;font-weight:700;margin-top:2px">3,200₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">🎮</div>בקר<div style="color:#2563eb;font-weight:700;margin-top:2px">220₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">💾</div>SSD 1TB<div style="color:#2563eb;font-weight:700;margin-top:2px">400₪</div></div>
-          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;font-size:11px;background:#fff"><div style="font-size:22px;margin-bottom:4px">🔌</div>מטען מהיר<div style="color:#2563eb;font-weight:700;margin-top:2px">120₪</div></div>
-        </div>
-      </div>
+        <p style="text-align:center;font-size:0.85rem;color:var(--text-dim)">העבירו עכבר על "good morning" (hover = ורוד) ולחצו (active = ירוק)!</p>
     </div>
-  </div>
-</div>
 
-<h2>order.html - קוד מלא + תוצאה</h2>
-<div class="card">
-  <h3>קובץ HTML:</h3>
-  <div class="demo full"><div class="code-pane"><span class="label">order.html</span>
-<span class="ct">&lt;!DOCTYPE html&gt;</span>
-<span class="ct">&lt;html</span> <span class="ca">lang</span>=<span class="cg">"he"</span> <span class="ca">dir</span>=<span class="cg">"rtl"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;head&gt;</span>
-    <span class="ct">&lt;meta</span> <span class="ca">charset</span>=<span class="cg">"UTF-8"</span><span class="ct">&gt;</span>
-    <span class="ct">&lt;title&gt;</span>טופס הזמנה<span class="ct">&lt;/title&gt;</span>
-    <span class="ct">&lt;link</span> <span class="ca">rel</span>=<span class="cg">"stylesheet"</span> <span class="ca">href</span>=<span class="cg">"style.css"</span><span class="ct">&gt;</span>
-<span class="ct">&lt;/head&gt;</span>
-<span class="ct">&lt;body&gt;</span>
-    <span class="ct">&lt;h1&gt;</span>טופס הזמנה<span class="ct">&lt;/h1&gt;</span>
-    <span class="ct">&lt;form</span> <span class="ca">action</span>=<span class="cg">"#"</span> <span class="ca">method</span>=<span class="cg">"POST"</span><span class="ct">&gt;</span>
+    <hr class="sep">
 
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"name"</span><span class="ct">&gt;</span>שם מלא:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"text"</span> <span class="ca">id</span>=<span class="cg">"name"</span> <span class="ca">name</span>=<span class="cg">"name"</span> <span class="ca">required</span><span class="ct">&gt;</span>
-
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"email"</span><span class="ct">&gt;</span>אימייל:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"email"</span> <span class="ca">id</span>=<span class="cg">"email"</span> <span class="ca">name</span>=<span class="cg">"email"</span> <span class="ca">required</span><span class="ct">&gt;</span>
-
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"phone"</span><span class="ct">&gt;</span>טלפון:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"tel"</span> <span class="ca">id</span>=<span class="cg">"phone"</span> <span class="ca">name</span>=<span class="cg">"phone"</span><span class="ct">&gt;</span>
-
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"address"</span><span class="ct">&gt;</span>כתובת למשלוח:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"text"</span> <span class="ca">id</span>=<span class="cg">"address"</span> <span class="ca">name</span>=<span class="cg">"address"</span><span class="ct">&gt;</span>
-
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"product"</span><span class="ct">&gt;</span>מוצר:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;select</span> <span class="ca">id</span>=<span class="cg">"product"</span> <span class="ca">name</span>=<span class="cg">"product"</span><span class="ct">&gt;</span>
-            <span class="ct">&lt;option</span> <span class="ca">value</span>=<span class="cg">""</span><span class="ct">&gt;</span>בחרו מוצר...<span class="ct">&lt;/option&gt;</span>
-            <span class="ct">&lt;option&gt;</span>מחשב נייד - 4,500₪<span class="ct">&lt;/option&gt;</span>
-            <span class="ct">&lt;option&gt;</span>מקלדת - 350₪<span class="ct">&lt;/option&gt;</span>
-            <span class="ct">&lt;option&gt;</span>עכבר - 150₪<span class="ct">&lt;/option&gt;</span>
-        <span class="ct">&lt;/select&gt;</span>
-
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"qty"</span><span class="ct">&gt;</span>כמות:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"number"</span> <span class="ca">id</span>=<span class="cg">"qty"</span> <span class="ca">name</span>=<span class="cg">"quantity"</span>
-               <span class="ca">min</span>=<span class="cg">"1"</span> <span class="ca">max</span>=<span class="cg">"10"</span> <span class="ca">value</span>=<span class="cg">"1"</span><span class="ct">&gt;</span>
-
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"date"</span><span class="ct">&gt;</span>תאריך משלוח:<span class="ct">&lt;/label&gt;</span>
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"date"</span> <span class="ca">id</span>=<span class="cg">"date"</span> <span class="ca">name</span>=<span class="cg">"delivery_date"</span><span class="ct">&gt;</span>
-
-        <span class="ct">&lt;input</span> <span class="ca">type</span>=<span class="cg">"checkbox"</span> <span class="ca">id</span>=<span class="cg">"terms"</span> <span class="ca">required</span><span class="ct">&gt;</span>
-        <span class="ct">&lt;label</span> <span class="ca">for</span>=<span class="cg">"terms"</span><span class="ct">&gt;</span>אני מסכים לתנאי השימוש<span class="ct">&lt;/label&gt;</span>
-
-        <span class="ct">&lt;button</span> <span class="ca">type</span>=<span class="cg">"submit"</span><span class="ct">&gt;</span>שלח הזמנה<span class="ct">&lt;/button&gt;</span>
-    <span class="ct">&lt;/form&gt;</span>
-<span class="ct">&lt;/body&gt;</span>
-<span class="ct">&lt;/html&gt;</span></div></div>
-
-  <h3>התוצאה הויזואלית:</h3>
-  <div class="demo full">
-    <div class="preview-pane" style="background:#f0f4f8;padding:16px;align-items:stretch"><span class="label">order.html + style.css</span>
-      <div style="width:100%;direction:rtl;max-width:380px;margin:0 auto">
-        <h2 style="text-align:center;color:#1e293b;font-size:20px;margin-bottom:12px">טופס הזמנה</h2>
-        <div style="background:#fff;padding:18px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.08);font-size:13px">
-          <label style="display:block;font-weight:600;margin-bottom:2px;color:#374151">שם מלא:</label>
-          <input type="text" placeholder="ישראל ישראלי" style="width:100%;padding:8px;border:2px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:13px" required>
-          <label style="display:block;font-weight:600;margin-bottom:2px;color:#374151">אימייל:</label>
-          <input type="email" placeholder="you@example.com" style="width:100%;padding:8px;border:2px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:13px">
-          <label style="display:block;font-weight:600;margin-bottom:2px;color:#374151">טלפון:</label>
-          <input type="tel" placeholder="050-1234567" style="width:100%;padding:8px;border:2px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:13px">
-          <label style="display:block;font-weight:600;margin-bottom:2px;color:#374151">מוצר:</label>
-          <select style="width:100%;padding:8px;border:2px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:13px"><option>בחרו מוצר...</option><option>💻 מחשב - 4,500₪</option><option>⌨️ מקלדת - 350₪</option></select>
-          <div style="display:flex;gap:8px;margin-bottom:10px">
-            <div style="flex:1"><label style="display:block;font-weight:600;margin-bottom:2px;color:#374151">כמות:</label><input type="number" min="1" max="10" value="1" style="width:100%;padding:8px;border:2px solid #e5e7eb;border-radius:8px;font-size:13px"></div>
-            <div style="flex:1"><label style="display:block;font-weight:600;margin-bottom:2px;color:#374151">תאריך:</label><input type="date" style="width:100%;padding:8px;border:2px solid #e5e7eb;border-radius:8px;font-size:13px"></div>
-          </div>
-          <div style="margin-bottom:12px;display:flex;align-items:center;gap:6px"><input type="checkbox"><label style="color:#374151;font-size:12px">מסכים לתנאי השימוש</label></div>
-          <button style="width:100%;padding:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px" onclick="alert('ההזמנה נשלחה!')">שלח הזמנה</button>
+    <!-- ======== SECURITY NOTE ======== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-num" style="background:var(--red)">!</div>
+            <h2>זווית סייבר - iframe ונגישות</h2>
         </div>
-      </div>
+
+        <div class="card card-danger">
+            <div class="card-title">iframe - סכנת Clickjacking</div>
+            <p>תוקף שם אתר לגיטימי (כמו בנק) בתוך iframe שקוף מעל אתר תמים. המשתמש חושב שהוא לוחץ על "פרס" אבל בפועל מבצע פעולה באתר הבנק.</p>
+            <p style="margin:0"><strong>הגנות:</strong> <span class="inline-code">X-Frame-Options: DENY</span> בתגובת השרת, <span class="inline-code">sandbox</span> attribute על ה-iframe, ו-CSP headers.</p>
+        </div>
+
+        <div class="card card-warn">
+            <div class="card-title">alt="" בתמונות - נגישות וחוק</div>
+            <p style="margin:0">בישראל חובה חוקית להנגיש אתרים. ה-attribute <span class="inline-code">alt</span> ב-<span class="inline-code">&lt;img&gt;</span> מתאר את התמונה לקוראי מסך. מי שמטעה או לא שם alt חשוף לתביעות. זה לא אופציונלי.</p>
+        </div>
+
+        <div class="card card-accent">
+            <div class="card-title">iframe להטמעת YouTube</div>
+            <p style="margin:0">ביוטיוב: לחצן ימני על הסרטון ← "העתקת קוד הטמעה". מדביקים את ה-iframe ב-HTML וזה עובד. אפשר גם להטמיע אתר שלם: <span class="inline-code">&lt;iframe src="..." &gt;&lt;/iframe&gt;</span>. בסיס למתקפות, אז תמיד בדקו שהמקור אמין.</p>
+        </div>
     </div>
-  </div>
+
+    <!-- ======== FOOTER ======== -->
+    <footer>
+        <p>CSS Masterclass - מדריך מקיף לקורס Web Fundamentals</p>
+        <p style="margin-top:8px">מבוסס על חומר HackerU + הרחבות מקצועיות</p>
+        <p style="margin-top:8px"><a href="https://tzukermanor.github.io/css---web-application-fundamentals/" target="_blank">CSS Fundamentals Page</a> &nbsp;|&nbsp; <a href="https://tzukermanor.github.io/web-application-fundamentals/" target="_blank">Web Application Fundamentals</a></p>
+        <p style="margin-top:12px;font-size:0.7rem;color:var(--text-dim)">פתחו DevTools (F12), שנו ערכים בזמן אמת, וראו מה קורה. זו הדרך הכי טובה ללמוד CSS.</p>
+    </footer>
+
 </div>
 
-<div class="info warn">
-  <strong>דגשים למשימה:</strong><br>
-  כל שדה חייב <code>name</code> + <code>id</code> + <code>label</code> עם <code>for</code> תואם.<br>
-  מכל דף אפשר להגיע לכל דף אחר - שימו <code>&lt;nav&gt;</code> בכל עמוד.<br>
-  <code>action="#"</code> כדי להישאר באותו דף (אין שרת).<br>
-  CSS Grid חובה למוצרים - בלעדיו הם ייסדרו אחד מתחת לשני.
-</div>
-</div>
-
-</main>
-
-<script>
-document.querySelectorAll('.tab-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('tab-'+b.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})})});
-function sf(v,b){document.getElementById('fa').style.justifyContent=v;document.getElementById('fc').textContent='justify-content: '+v+';';document.querySelectorAll('.cbtn').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
-</script>
 </body>
 </html>
