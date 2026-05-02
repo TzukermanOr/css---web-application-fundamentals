@@ -1067,6 +1067,712 @@
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
         ::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.25); border-radius: 3px; }
 
+        /* =============================================
+           SEARCH BOX
+        ============================================= */
+        #search-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px 10px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            width: 140px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        #search-box:focus {
+            border-color: var(--cyan);
+            width: 180px;
+            box-shadow: 0 0 0 2px var(--cyan-dim);
+        }
+
+        .search-highlight {
+            background: var(--amber);
+            color: var(--bg-deep);
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        /* =============================================
+           FILTER DEMO (interactive)
+        ============================================= */
+        .filter-demo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 14px 0;
+        }
+
+        .filter-preview {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .filter-image {
+            width: 220px;
+            height: 140px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 700;
+            transition: filter 0.3s;
+        }
+
+        .filter-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .filter-control {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .filter-control label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .filter-control label span {
+            font-family: var(--font-code);
+            color: var(--cyan);
+            font-size: 0.72rem;
+        }
+
+        .filter-control input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 5px;
+            background: var(--bg-deep);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .filter-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: var(--cyan);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .filter-control input[type="range"]::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background: var(--cyan);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .filter-output {
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            word-break: break-all;
+        }
+
+        .filter-output .pr-out { color: var(--cyan); }
+        .filter-output .vl-out { color: var(--amber); }
+
+        /* =============================================
+           CLIP-PATH DEMO
+        ============================================= */
+        .clip-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin: 14px 0;
+        }
+
+        .clip-shape {
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .clip-circle { clip-path: circle(50% at 50% 50%); }
+        .clip-triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+        .clip-pentagon { clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+        .clip-star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+        .clip-hexagon { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+        .clip-arrow { clip-path: polygon(0% 25%, 60% 25%, 60% 0%, 100% 50%, 60% 100%, 60% 75%, 0% 75%); }
+
+        /* =============================================
+           ASPECT RATIO DEMO
+        ============================================= */
+        .ratio-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 14px 0;
+        }
+
+        .ratio-box {
+            background: var(--cyan-dim);
+            border: 1px solid var(--cyan);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .ratio-1-1 { aspect-ratio: 1 / 1; }
+        .ratio-16-9 { aspect-ratio: 16 / 9; }
+        .ratio-4-3 { aspect-ratio: 4 / 3; }
+
+        @media (max-width: 600px) {
+            .filter-controls { grid-template-columns: 1fr; }
+        }
+
+        /* =============================================
+           TOC CHECKMARK
+        ============================================= */
+        .nav-link.read::before {
+            content: '✓ ';
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* =============================================
+           CSS COUNTERS DEMO
+        ============================================= */
+        .counter-demo {
+            counter-reset: my-counter;
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .counter-demo li {
+            counter-increment: my-counter;
+            background: var(--bg-card);
+            border-right: 3px solid var(--cyan);
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            position: relative;
+            padding-right: 50px;
+        }
+
+        .counter-demo li::before {
+            content: counter(my-counter);
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--cyan);
+            color: var(--bg-deep);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* =============================================
+           UI PATTERN DEMOS
+        ============================================= */
+
+        /* Button variants */
+        .btn-demo {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 14px 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            border: 1px solid transparent;
+        }
+
+        .btn-filled {
+            background: var(--cyan);
+            color: var(--bg-deep);
+        }
+        .btn-filled:hover {
+            background: #0891b2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--cyan-glow);
+        }
+
+        .btn-outlined {
+            background: transparent;
+            color: var(--cyan);
+            border-color: var(--cyan);
+        }
+        .btn-outlined:hover {
+            background: var(--cyan-dim);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--cyan);
+            border-color: transparent;
+        }
+        .btn-ghost:hover {
+            background: var(--cyan-dim);
+        }
+
+        .btn-pill {
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            color: var(--bg-deep);
+            border-radius: 50px;
+            padding: 10px 26px;
+        }
+        .btn-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(244, 114, 182, 0.4);
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            color: var(--cyan);
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .btn-icon:hover {
+            background: var(--cyan-dim);
+            border-color: var(--cyan);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed var(--cyan);
+            cursor: help;
+            color: var(--cyan);
+        }
+
+        .tooltip::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: var(--bg-deep);
+            border: 1px solid var(--cyan);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%) translateY(11px);
+            border: 5px solid transparent;
+            border-top-color: var(--cyan);
+            opacity: 0;
+            transition: all 0.25s;
+            z-index: 100;
+        }
+
+        .tooltip:hover::after,
+        .tooltip:hover::before {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Modal (CSS-only via :target) */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modal-backdrop:target {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--bg-panel);
+            border: 1px solid var(--cyan);
+            border-radius: 14px;
+            padding: 26px;
+            max-width: 380px;
+            margin: 20px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        /* Loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--bg-card);
+            border-top-color: var(--cyan);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            display: inline-block;
+        }
+
+        .spinner-dual {
+            border-top-color: var(--cyan);
+            border-right-color: var(--magenta);
+        }
+
+        /* Skeleton screen */
+        @keyframes skeleton {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .skeleton {
+            background: linear-gradient(
+                90deg,
+                var(--bg-card) 0%,
+                rgba(34, 211, 238, 0.08) 50%,
+                var(--bg-card) 100%
+            );
+            background-size: 200% 100%;
+            animation: skeleton 1.5s infinite;
+            border-radius: 6px;
+        }
+
+        .skeleton-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            max-width: 280px;
+        }
+
+        .skeleton-line {
+            height: 12px;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+        }
+
+        /* Toggle switch */
+        .toggle-switch {
+            display: inline-block;
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            right: 3px;
+            top: 2px;
+            background: var(--text-secondary);
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--cyan-dim);
+            border-color: var(--cyan);
+        }
+
+        .toggle-switch input:checked + .toggle-slider::before {
+            background: var(--cyan);
+            transform: translateX(-24px);
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(34, 211, 238, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            border-radius: 16px;
+            padding: 24px;
+            color: var(--text-primary);
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-bg {
+            background: linear-gradient(135deg, #f472b6, #8b5cf6, #06b6d4);
+            padding: 30px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        /* Neumorphism */
+        .neu-card {
+            background: #e0e5ec;
+            border-radius: 16px;
+            padding: 22px;
+            color: #555;
+            font-weight: 600;
+            box-shadow:
+                8px 8px 16px #b8bec7,
+                -8px -8px 16px #ffffff;
+            transition: all 0.25s;
+        }
+
+        .neu-card:active {
+            box-shadow:
+                inset 6px 6px 12px #b8bec7,
+                inset -6px -6px 12px #ffffff;
+        }
+
+        .neu-bg {
+            background: #e0e5ec;
+            padding: 24px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Badge */
+        .ui-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            margin: 2px;
+        }
+        .badge-info { background: var(--cyan-dim); color: var(--cyan); }
+        .badge-success { background: var(--green-dim); color: var(--green); }
+        .badge-warning { background: var(--amber-dim); color: var(--amber); }
+        .badge-danger { background: var(--red-dim); color: var(--red); }
+
+        /* Accordion */
+        .accordion details {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            transition: border-color 0.25s;
+        }
+
+        .accordion details[open] {
+            border-color: var(--cyan);
+        }
+
+        .accordion summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 4px 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion summary::after {
+            content: '+';
+            color: var(--cyan);
+            font-size: 1.4rem;
+            line-height: 1;
+            transition: transform 0.25s;
+        }
+
+        .accordion details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .accordion details > p {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Progress bar (UI demo) */
+        .ui-progress {
+            background: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 8px;
+            margin: 6px 0;
+        }
+
+        .ui-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        /* Container Query demo */
+        .cq-wrapper {
+            container-type: inline-size;
+            border: 2px dashed var(--cyan);
+            border-radius: 10px;
+            padding: 12px;
+            resize: horizontal;
+            overflow: auto;
+            min-width: 200px;
+            max-width: 100%;
+        }
+
+        .cq-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--text-primary);
+        }
+
+        .cq-card-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        @container (min-width: 400px) {
+            .cq-card {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 12px;
+                align-items: center;
+            }
+            .cq-card-icon {
+                margin-bottom: 0;
+            }
+        }
+
+        /* Scroll snap demo */
+        .snap-container {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            gap: 12px;
+            padding: 8px 0;
+            scrollbar-width: thin;
+        }
+
+        .snap-item {
+            flex: 0 0 80%;
+            scroll-snap-align: center;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
         /* Selection */
         ::selection {
             background: var(--cyan);
@@ -1095,12 +1801,16 @@
             <a class="nav-link" href="#s9">Flex/Grid</a>
             <a class="nav-link" href="#s10">אפקטים</a>
             <a class="nav-link" href="#s11">Responsive</a>
-            <a class="nav-link" href="#s12">iframe</a>
-            <a class="nav-link" href="#s13">משימה 1</a>
-            <a class="nav-link" href="#s14">משימה 2</a>
+            <a class="nav-link" href="#s12">CSS מתקדם</a>
+            <a class="nav-link" href="#s13">iframe</a>
+            <a class="nav-link" href="#s14">UI Patterns</a>
+            <a class="nav-link" href="#s15">ביצועים+A11y</a>
+            <a class="nav-link" href="#s16">משימה 1</a>
+            <a class="nav-link" href="#s17">משימה 2</a>
         </div>
         <div class="nav-controls">
-            <span id="section-progress">0 / 14</span>
+            <input id="search-box" type="text" placeholder="🔍 חפש..." autocomplete="off">
+            <span id="section-progress">0 / 17</span>
             <button id="theme-toggle" title="החלף ערכת נושא">🌙</button>
         </div>
     </div>
@@ -1121,11 +1831,11 @@
         </p>
         <div class="hero-stats">
             <div class="hero-stat">
-                <div class="num">14</div>
+                <div class="num">17</div>
                 <div class="label">נושאים</div>
             </div>
             <div class="hero-stat">
-                <div class="num">80+</div>
+                <div class="num">150+</div>
                 <div class="label">דוגמאות קוד</div>
             </div>
             <div class="hero-stat">
@@ -1846,7 +2556,10 @@
             <span class="inline-code">cursor: wait</span> (שעון חול) |
             <span class="inline-code">cursor: crosshair</span> (צלב)
         </p>
-    </div><div class="section-header"><div class="section-num">06</div><h2>טיפוגרפיה ויחידות מידה</h2></div>
+    </div>
+
+    <div class="section" id="s6">
+        <div class="section-header"><div class="section-num">06</div><h2>טיפוגרפיה ויחידות מידה</h2></div>
 
         <h3>כל תכונות הטקסט והפונט</h3>
         <table>
@@ -2214,8 +2927,467 @@
 <span class="tg">html</span> { <span class="pr">direction</span>: <span class="vl">rtl</span>; }</code></pre></div>
     </div>
 
-    <!-- ===== 12: IFRAME & SECURITY ===== -->
-    <div class="section" id="s12"><div class="section-header"><div class="section-num">12</div><h2>iframe, נגישות וזווית סייבר</h2></div>
+    <!-- =======================================================================
+         SECTION 12 - CSS ADVANCED
+    ======================================================================= -->
+    <div class="section" id="s12">
+        <div class="section-header">
+            <div class="section-num">12</div>
+            <h2>CSS מתקדם - Filters, Clip-path, Counters ועוד</h2>
+        </div>
+
+        <p>
+            הסעיף הזה מכסה תכונות CSS מתקדמות שיוצרות אפקטים מרשימים בלי JavaScript.
+            כל מה שכאן עובד בכל הדפדפנים המודרניים. אלה הכלים שמבדילים בין CSS בסיסי
+            ל-CSS מקצועי.
+        </p>
+
+        <!-- ===== FILTERS ===== -->
+        <h3>1. CSS Filters - אפקטים על תמונות ואלמנטים</h3>
+        <p>
+            <span class="inline-code">filter</span> מאפשר להחיל אפקטים גרפיים על אלמנטים
+            (תמונות, divs, רקעים) - טשטוש, בהירות, רוויה, שחור-לבן, ועוד.
+            זה כמו פילטרים של אינסטגרם, רק ב-CSS.
+        </p>
+
+        <table>
+            <thead><tr><th>פילטר</th><th>מה עושה</th><th>טווח ערכים</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">blur(5px)</span></td><td>טשטוש</td><td>0px ומעלה</td></tr>
+                <tr><td><span class="inline-code">brightness(1.5)</span></td><td>בהירות</td><td>0=שחור, 1=רגיל, &gt;1=בהיר יותר</td></tr>
+                <tr><td><span class="inline-code">contrast(1.5)</span></td><td>ניגודיות</td><td>0=אפור, 1=רגיל, &gt;1=חד יותר</td></tr>
+                <tr><td><span class="inline-code">grayscale(100%)</span></td><td>שחור-לבן</td><td>0%-100%</td></tr>
+                <tr><td><span class="inline-code">sepia(80%)</span></td><td>גוון חום (ישן)</td><td>0%-100%</td></tr>
+                <tr><td><span class="inline-code">saturate(2)</span></td><td>רוויית צבע</td><td>0=ללא צבע, 1=רגיל, &gt;1=רווי יותר</td></tr>
+                <tr><td><span class="inline-code">hue-rotate(90deg)</span></td><td>סיבוב גוון</td><td>0deg-360deg</td></tr>
+                <tr><td><span class="inline-code">invert(100%)</span></td><td>היפוך צבעים</td><td>0%-100%</td></tr>
+                <tr><td><span class="inline-code">opacity(0.5)</span></td><td>שקיפות</td><td>0-1</td></tr>
+                <tr><td><span class="inline-code">drop-shadow(...)</span></td><td>צל (עוקב צורה!)</td><td>x y blur color</td></tr>
+            </tbody>
+        </table>
+
+        <h4>Demo אינטראקטיבי - שחקו עם הסליידרים!</h4>
+        <div class="filter-demo">
+            <div class="filter-preview">
+                <div class="filter-image" id="filter-image">CSS</div>
+            </div>
+            <div class="filter-controls">
+                <div class="filter-control">
+                    <label>blur <span id="blur-val">0px</span></label>
+                    <input type="range" id="filter-blur" min="0" max="20" step="1" value="0">
+                </div>
+                <div class="filter-control">
+                    <label>brightness <span id="brightness-val">100%</span></label>
+                    <input type="range" id="filter-brightness" min="0" max="200" step="5" value="100">
+                </div>
+                <div class="filter-control">
+                    <label>contrast <span id="contrast-val">100%</span></label>
+                    <input type="range" id="filter-contrast" min="0" max="200" step="5" value="100">
+                </div>
+                <div class="filter-control">
+                    <label>grayscale <span id="grayscale-val">0%</span></label>
+                    <input type="range" id="filter-grayscale" min="0" max="100" step="5" value="0">
+                </div>
+                <div class="filter-control">
+                    <label>sepia <span id="sepia-val">0%</span></label>
+                    <input type="range" id="filter-sepia" min="0" max="100" step="5" value="0">
+                </div>
+                <div class="filter-control">
+                    <label>hue-rotate <span id="hue-val">0deg</span></label>
+                    <input type="range" id="filter-hue" min="0" max="360" step="10" value="0">
+                </div>
+            </div>
+            <div class="filter-output" id="filter-output">
+                <span class="pr-out">filter</span>: <span class="vl-out">none</span>;
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* פילטר יחיד */</span>
+<span class="tg">.blurred</span>      { <span class="pr">filter</span>: <span class="vl">blur(5px)</span>; }
+<span class="tg">.dark</span>         { <span class="pr">filter</span>: <span class="vl">brightness(0.6)</span>; }
+<span class="tg">.bw</span>           { <span class="pr">filter</span>: <span class="vl">grayscale(100%)</span>; }
+<span class="tg">.vintage</span>      { <span class="pr">filter</span>: <span class="vl">sepia(80%) contrast(1.2)</span>; }
+
+<span class="cm">/* שילוב פילטרים - מופרדים ברווח */</span>
+<span class="tg">.instagram-look</span> {
+    <span class="pr">filter</span>: <span class="vl">brightness(1.1) contrast(1.2) saturate(1.3)</span>;
+}
+
+<span class="cm">/* drop-shadow vs box-shadow - ההבדל הענק! */</span>
+<span class="cm">/* box-shadow = צל מלבני סביב האלמנט */</span>
+<span class="tg">.box-sh</span> { <span class="pr">box-shadow</span>: <span class="vl">5px 5px 10px black</span>; }
+
+<span class="cm">/* drop-shadow = צל לפי הצורה האמיתית של התוכן! */</span>
+<span class="cm">/* (טוב לתמונות PNG עם רקע שקוף, לאייקונים, לטקסט) */</span>
+<span class="tg">.drop-sh</span> { <span class="pr">filter</span>: <span class="vl">drop-shadow(5px 5px 10px black)</span>; }
+
+<span class="cm">/* hover עם פילטר - אפקט נחמד */</span>
+<span class="tg">.photo</span> { <span class="pr">transition</span>: <span class="vl">filter 0.3s</span>; }
+<span class="tg">.photo:hover</span> { <span class="pr">filter</span>: <span class="vl">brightness(1.1) saturate(1.4)</span>; }
+
+<span class="cm">/* === BACKDROP-FILTER - מטשטש את הרקע מאחורי === */</span>
+<span class="tg">.glass-effect</span> {
+    <span class="pr">background</span>: <span class="vl">rgba(255, 255, 255, 0.2)</span>;
+    <span class="pr">backdrop-filter</span>: <span class="vl">blur(10px)</span>;     <span class="cm">/* אפקט זכוכית! */</span>
+    <span class="pr">-webkit-backdrop-filter</span>: <span class="vl">blur(10px)</span>; <span class="cm">/* Safari */</span>
+    <span class="pr">border</span>: <span class="vl">1px solid rgba(255, 255, 255, 0.3)</span>;
+    <span class="pr">border-radius</span>: <span class="vl">10px</span>;
+}</code></pre></div>
+
+        <div class="card card-accent">
+            <div class="card-title">drop-shadow vs box-shadow</div>
+            <p style="margin:0">
+                <strong>box-shadow</strong> נותן צל מלבני סביב הקופסה של האלמנט.
+                <strong>drop-shadow</strong> (filter) נותן צל לפי הצורה האמיתית - עובד על
+                תמונות PNG שקופות, אייקונים SVG, וטקסט. אם יש לך לוגו עם רקע שקוף -
+                drop-shadow ייתן לו צל לפי הצורה. box-shadow ייתן צל מלבני.
+            </p>
+        </div>
+
+        <!-- ===== CLIP-PATH ===== -->
+        <h3>2. CSS Clip-path - חיתוך אלמנטים לצורות</h3>
+        <p>
+            <span class="inline-code">clip-path</span> מאפשר לחתוך אלמנטים לכל צורה -
+            עיגולים, משולשים, כוכבים, או צורות מותאמות אישית. האלמנט עדיין שם,
+            אבל רק החלק "החתוך" נראה.
+        </p>
+
+        <h4>Demo - כל הצורות חיות</h4>
+        <div class="clip-demo">
+            <div class="clip-shape clip-circle">circle</div>
+            <div class="clip-shape clip-triangle">triangle</div>
+            <div class="clip-shape clip-pentagon">pentagon</div>
+            <div class="clip-shape clip-star">star</div>
+            <div class="clip-shape clip-hexagon">hexagon</div>
+            <div class="clip-shape clip-arrow">arrow</div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* עיגול */</span>
+<span class="tg">.circle</span> { <span class="pr">clip-path</span>: <span class="vl">circle(50% at 50% 50%)</span>; }
+
+<span class="cm">/* אליפסה */</span>
+<span class="tg">.ellipse</span> { <span class="pr">clip-path</span>: <span class="vl">ellipse(40% 50% at 50% 50%)</span>; }
+
+<span class="cm">/* פוליגון - רשימת נקודות (x y) - הצורה ייחודית */</span>
+<span class="tg">.triangle</span> {
+    <span class="pr">clip-path</span>: <span class="vl">polygon(50% 0%, 0% 100%, 100% 100%)</span>;
+    <span class="cm">/* 3 נקודות: למעלה במרכז, שמאל למטה, ימין למטה */</span>
+}
+
+<span class="tg">.star</span> {
+    <span class="pr">clip-path</span>: <span class="vl">polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)</span>;
+}
+
+<span class="tg">.hexagon</span> {
+    <span class="pr">clip-path</span>: <span class="vl">polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)</span>;
+}
+
+<span class="cm">/* אנימציה של clip-path - מורפינג! */</span>
+<span class="tg">.morph</span> {
+    <span class="pr">clip-path</span>: <span class="vl">circle(20% at 50% 50%)</span>;
+    <span class="pr">transition</span>: <span class="vl">clip-path 0.5s</span>;
+}
+<span class="tg">.morph:hover</span> {
+    <span class="pr">clip-path</span>: <span class="vl">circle(50% at 50% 50%)</span>;
+}</code></pre></div>
+
+        <div class="card card-success">
+            <div class="card-title">כלי עזר ל-clip-path</div>
+            <p style="margin:0">
+                לא חייבים לחשב נקודות בעצמכם!
+                <a href="https://bennettfeely.com/clippy/" target="_blank">Clippy (bennettfeely.com)</a>
+                הוא כלי ויזואלי שמייצר את הקוד של polygon אוטומטית. גוררים נקודות וכותב את ה-CSS.
+            </p>
+        </div>
+
+        <!-- ===== ASPECT RATIO ===== -->
+        <h3>3. Aspect Ratio - יחס גובה-רוחב קבוע</h3>
+        <p>
+            <span class="inline-code">aspect-ratio</span> שומר על יחס בין רוחב לגובה.
+            לפני הגיע ל-CSS היה צריך טריקים מורכבים עם padding-top:56.25%.
+            עכשיו פשוט: <span class="inline-code">aspect-ratio: 16/9</span> וזהו.
+            שימושי מאוד לתמונות, וידאו, iframes, וכרטיסים.
+        </p>
+
+        <h4>Demo - 3 יחסים שונים</h4>
+        <div class="ratio-demo">
+            <div class="ratio-box ratio-1-1">1 / 1<br><small>ריבוע</small></div>
+            <div class="ratio-box ratio-16-9">16 / 9<br><small>וידאו</small></div>
+            <div class="ratio-box ratio-4-3">4 / 3<br><small>תמונה ישנה</small></div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* תמונה תמיד 16:9 - לא משנה הגובה */</span>
+<span class="tg">.video-thumb</span> {
+    <span class="pr">aspect-ratio</span>: <span class="vl">16 / 9</span>;
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+    <span class="pr">background</span>: <span class="vl">url("thumb.jpg") center/cover</span>;
+}
+
+<span class="cm">/* iframe responsive עם יחס מושלם */</span>
+<span class="tg">.youtube-embed</span> {
+    <span class="pr">aspect-ratio</span>: <span class="vl">16 / 9</span>;
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+}
+<span class="tg">.youtube-embed iframe</span> {
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+    <span class="pr">height</span>: <span class="vl">100%</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+}
+
+<span class="cm">/* כרטיסי מוצרים בריבוע מושלם */</span>
+<span class="tg">.product-card</span> {
+    <span class="pr">aspect-ratio</span>: <span class="vl">1 / 1</span>;  <span class="cm">/* תמיד ריבוע */</span>
+    <span class="pr">width</span>: <span class="vl">100%</span>;
+}
+
+<span class="cm">/* ערכים נפוצים */</span>
+<span class="cm">/* 1/1   = ריבוע (Instagram) */</span>
+<span class="cm">/* 16/9  = וידאו (YouTube, TV) */</span>
+<span class="cm">/* 4/3   = תמונה ישנה */</span>
+<span class="cm">/* 21/9  = ultra-wide */</span>
+<span class="cm">/* 9/16  = portrait (Stories, TikTok) */</span></code></pre></div>
+
+        <!-- ===== CSS COUNTERS ===== -->
+        <h3>4. CSS Counters - מונים אוטומטיים</h3>
+        <p>
+            <span class="inline-code">counter</span> מאפשר ליצור מונים אוטומטיים ב-CSS - בלי JavaScript.
+            שימושי לרשימות מסודרות מותאמות, ספירת פרקים, סעיפים, וכו'.
+        </p>
+
+        <h4>Demo - רשימה ממוספרת אוטומטית</h4>
+        <div class="demo-area">
+            <ul class="counter-demo">
+                <li>הכנת הסביבה - התקנת VS Code ופתיחת תיקייה</li>
+                <li>יצירת קובץ index.html עם תבנית בסיסית</li>
+                <li>יצירת קובץ style.css וקישור אליו</li>
+                <li>כתיבת הסטיילינג הראשון</li>
+                <li>בדיקה בדפדפן ופתיחת DevTools</li>
+            </ul>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* יצירת מונה */</span>
+<span class="tg">ol.steps</span> {
+    <span class="pr">counter-reset</span>: <span class="vl">step-counter</span>;  <span class="cm">/* התחל מאפס */</span>
+    <span class="pr">list-style</span>: <span class="vl">none</span>;             <span class="cm">/* הסר את הברירת מחדל */</span>
+    <span class="pr">padding</span>: <span class="vl">0</span>;
+}
+
+<span class="tg">ol.steps li</span> {
+    <span class="pr">counter-increment</span>: <span class="vl">step-counter</span>; <span class="cm">/* הוסף 1 לכל פריט */</span>
+    <span class="pr">padding</span>: <span class="vl">12px 50px 12px 16px</span>;
+    <span class="pr">position</span>: <span class="vl">relative</span>;
+}
+
+<span class="tg">ol.steps li::before</span> {
+    <span class="pr">content</span>: <span class="vl">counter(step-counter)</span>;     <span class="cm">/* הצג את המספר */</span>
+    <span class="pr">position</span>: <span class="vl">absolute</span>;
+    <span class="pr">right</span>: <span class="vl">12px</span>;
+    <span class="pr">background</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">width</span>: <span class="vl">28px</span>;
+    <span class="pr">height</span>: <span class="vl">28px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">50%</span>;
+}
+
+<span class="cm">/* מונה מקונן (1.1, 1.2, 2.1, וכו') */</span>
+<span class="tg">ol</span> { <span class="pr">counter-reset</span>: <span class="vl">section</span>; }
+<span class="tg">ol li</span>::before {
+    <span class="pr">counter-increment</span>: <span class="vl">section</span>;
+    <span class="pr">content</span>: <span class="vl">counters(section, ".") ". "</span>;
+}
+
+<span class="cm">/* פורמטים: decimal, roman, alpha */</span>
+<span class="pr">content</span>: <span class="vl">counter(myCounter, upper-roman)</span>;  <span class="cm">/* I, II, III */</span>
+<span class="pr">content</span>: <span class="vl">counter(myCounter, lower-alpha)</span>;  <span class="cm">/* a, b, c */</span></code></pre></div>
+
+        <!-- ===== CUSTOM SCROLLBAR ===== -->
+        <h3>5. Custom Scrollbar - גלילה מעוצבת</h3>
+        <p>
+            הדף הזה עצמו משתמש ב-scrollbar מעוצב! בדפדפנים מבוססי WebKit
+            (Chrome, Edge, Safari) אפשר לעצב את ה-scrollbar עם pseudo-elements ייחודיים.
+            Firefox משתמש ב-API נפרד.
+        </p>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* === CHROME / EDGE / SAFARI (WebKit) === */</span>
+
+<span class="cm">/* כל ה-scrollbar */</span>
+<span class="tg">::-webkit-scrollbar</span> {
+    <span class="pr">width</span>: <span class="vl">10px</span>;        <span class="cm">/* רוחב לגלילה אנכית */</span>
+    <span class="pr">height</span>: <span class="vl">10px</span>;       <span class="cm">/* גובה לגלילה אופקית */</span>
+}
+
+<span class="cm">/* הרקע (track) */</span>
+<span class="tg">::-webkit-scrollbar-track</span> {
+    <span class="pr">background</span>: <span class="vl">#f1f1f1</span>;
+    <span class="pr">border-radius</span>: <span class="vl">5px</span>;
+}
+
+<span class="cm">/* החלק הזז (thumb) */</span>
+<span class="tg">::-webkit-scrollbar-thumb</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(180deg, #22d3ee, #f472b6)</span>;
+    <span class="pr">border-radius</span>: <span class="vl">5px</span>;
+}
+
+<span class="cm">/* hover על thumb */</span>
+<span class="tg">::-webkit-scrollbar-thumb:hover</span> {
+    <span class="pr">background</span>: <span class="vl">#0891b2</span>;
+}
+
+<span class="cm">/* === FIREFOX === */</span>
+<span class="tg">html</span> {
+    <span class="pr">scrollbar-width</span>: <span class="vl">thin</span>;          <span class="cm">/* auto | thin | none */</span>
+    <span class="pr">scrollbar-color</span>: <span class="vl">#22d3ee #f1f1f1</span>; <span class="cm">/* thumb track */</span>
+}
+
+<span class="cm">/* החבאת scrollbar (אבל גלילה עובדת) */</span>
+<span class="tg">.no-scrollbar</span> {
+    <span class="pr">scrollbar-width</span>: <span class="vl">none</span>;          <span class="cm">/* Firefox */</span>
+    <span class="pr">-ms-overflow-style</span>: <span class="vl">none</span>;        <span class="cm">/* IE/Edge ישן */</span>
+}
+<span class="tg">.no-scrollbar::-webkit-scrollbar</span> { <span class="pr">display</span>: <span class="vl">none</span>; } <span class="cm">/* Chrome */</span></code></pre></div>
+
+        <!-- ===== CSS NESTING ===== -->
+        <h3>6. CSS Nesting - קינון (חדש מ-2023!)</h3>
+        <p>
+            <span class="inline-code">CSS Nesting</span> זו תכונה חדשה שמאפשרת לקנן סלקטורים
+            אחד בתוך השני - בדיוק כמו ב-SASS/SCSS, אבל ב-CSS רגיל!
+            תומך מ-2023 בכל הדפדפנים המודרניים.
+        </p>
+
+        <div class="compare">
+            <div class="compare-bad">
+                <div class="compare-label">הדרך הישנה - חזרות</div>
+                <div class="code-wrapper" style="margin:0"><pre><code><span class="tg">.card</span> { <span class="pr">padding</span>: <span class="vl">20px</span>; }
+<span class="tg">.card h2</span> { <span class="pr">color</span>: <span class="vl">blue</span>; }
+<span class="tg">.card p</span> { <span class="pr">color</span>: <span class="vl">gray</span>; }
+<span class="tg">.card:hover</span> {
+    <span class="pr">background</span>: <span class="vl">white</span>;
+}
+<span class="tg">.card:hover h2</span> {
+    <span class="pr">color</span>: <span class="vl">red</span>;
+}</code></pre></div>
+            </div>
+            <div class="compare-good">
+                <div class="compare-label">הדרך החדשה - קינון</div>
+                <div class="code-wrapper" style="margin:0"><pre><code><span class="tg">.card</span> {
+    <span class="pr">padding</span>: <span class="vl">20px</span>;
+    <span class="kw">& h2</span> { <span class="pr">color</span>: <span class="vl">blue</span>; }
+    <span class="kw">& p</span> { <span class="pr">color</span>: <span class="vl">gray</span>; }
+    <span class="kw">&:hover</span> {
+        <span class="pr">background</span>: <span class="vl">white</span>;
+        <span class="kw">& h2</span> { <span class="pr">color</span>: <span class="vl">red</span>; }
+    }
+}</code></pre></div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* קינון מלא עם media queries */</span>
+<span class="tg">.button</span> {
+    <span class="pr">padding</span>: <span class="vl">10px 20px</span>;
+    <span class="pr">background</span>: <span class="vl">blue</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+
+    <span class="kw">&:hover</span> {
+        <span class="pr">background</span>: <span class="vl">darkblue</span>;
+        <span class="pr">transform</span>: <span class="vl">translateY(-2px)</span>;
+    }
+
+    <span class="kw">&:active</span> {
+        <span class="pr">transform</span>: <span class="vl">scale(0.97)</span>;
+    }
+
+    <span class="kw">&.large</span> {  <span class="cm">/* כפתור עם class large */</span>
+        <span class="pr">padding</span>: <span class="vl">15px 30px</span>;
+        <span class="pr">font-size</span>: <span class="vl">1.2em</span>;
+    }
+
+    <span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="vl">600px</span>) {
+        <span class="pr">width</span>: <span class="vl">100%</span>;  <span class="cm">/* media query בתוך הסלקטור! */</span>
+    }
+}</code></pre></div>
+
+        <!-- ===== LOGICAL PROPERTIES ===== -->
+        <h3>7. Logical Properties - תכונות לוגיות (RTL friendly!)</h3>
+        <p>
+            במקום <span class="inline-code">margin-left</span> ו-<span class="inline-code">margin-right</span>
+            יש <span class="inline-code">margin-inline-start</span> ו-<span class="inline-code">margin-inline-end</span>.
+            הם <strong>מתחלפים אוטומטית</strong> בין RTL ו-LTR. <strong>קריטי לאתרי עברית/ערבית!</strong>
+        </p>
+
+        <table>
+            <thead><tr><th>הדרך הישנה</th><th>הדרך הלוגית</th><th>מה עושה</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">margin-left</span></td><td><span class="inline-code">margin-inline-start</span></td><td>שוליים בתחילת הציר האופקי (ימין ב-RTL)</td></tr>
+                <tr><td><span class="inline-code">margin-right</span></td><td><span class="inline-code">margin-inline-end</span></td><td>שוליים בסוף הציר האופקי</td></tr>
+                <tr><td><span class="inline-code">margin-top</span></td><td><span class="inline-code">margin-block-start</span></td><td>שוליים בתחילת הציר האנכי</td></tr>
+                <tr><td><span class="inline-code">margin-bottom</span></td><td><span class="inline-code">margin-block-end</span></td><td>שוליים בסוף הציר האנכי</td></tr>
+                <tr><td><span class="inline-code">padding-left</span></td><td><span class="inline-code">padding-inline-start</span></td><td>ריפוד בתחילת הציר האופקי</td></tr>
+                <tr><td><span class="inline-code">border-left</span></td><td><span class="inline-code">border-inline-start</span></td><td>גבול בתחילת הציר האופקי</td></tr>
+                <tr><td><span class="inline-code">left</span></td><td><span class="inline-code">inset-inline-start</span></td><td>מיקום בתחילת הציר האופקי</td></tr>
+                <tr><td><span class="inline-code">width</span></td><td><span class="inline-code">inline-size</span></td><td>גודל הציר האופקי</td></tr>
+                <tr><td><span class="inline-code">height</span></td><td><span class="inline-code">block-size</span></td><td>גודל הציר האנכי</td></tr>
+            </tbody>
+        </table>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* הבעיה הישנה: צריך להגדיר 2 פעם לפי כיוון */</span>
+<span class="tg">html[dir="ltr"] .sidebar</span> { <span class="pr">margin-right</span>: <span class="vl">20px</span>; }
+<span class="tg">html[dir="rtl"] .sidebar</span> { <span class="pr">margin-left</span>: <span class="vl">20px</span>; }
+
+<span class="cm">/* הפתרון החדש: כתיבה אחת לשני הכיוונים! */</span>
+<span class="tg">.sidebar</span> { <span class="pr">margin-inline-end</span>: <span class="vl">20px</span>; }
+
+<span class="cm">/* === שורט-קאטים שימושיים === */</span>
+<span class="cm">/* margin-inline = margin-left + margin-right */</span>
+<span class="pr">margin-inline</span>: <span class="vl">20px</span>;             <span class="cm">/* גם וגם */</span>
+<span class="pr">margin-inline</span>: <span class="vl">10px 30px</span>;         <span class="cm">/* start, end */</span>
+
+<span class="cm">/* margin-block = margin-top + margin-bottom */</span>
+<span class="pr">margin-block</span>: <span class="vl">15px</span>;
+<span class="pr">padding-block</span>: <span class="vl">20px</span>;
+
+<span class="cm">/* === דוגמה מלאה - card עם logical properties === */</span>
+<span class="tg">.card</span> {
+    <span class="pr">padding-inline</span>: <span class="vl">20px</span>;     <span class="cm">/* padding בצדדים */</span>
+    <span class="pr">padding-block</span>: <span class="vl">15px</span>;      <span class="cm">/* padding למעלה/מטה */</span>
+    <span class="pr">border-inline-start</span>: <span class="vl">3px solid blue</span>;
+    <span class="pr">margin-block-end</span>: <span class="vl">20px</span>;
+    <span class="cm">/* יעבוד מצוין גם ב-RTL וגם ב-LTR! */</span>
+}</code></pre></div>
+
+        <div class="card card-success">
+            <div class="card-title">למה זה קריטי לכם</div>
+            <p style="margin:0">
+                אתרים בעברית הם RTL. אם תכתבו <span class="inline-code">margin-left: 20px</span>
+                על אלמנט, זה יתנהג שונה ב-RTL לעומת LTR. אם בעתיד תרצו להוסיף תמיכה באנגלית,
+                תצטרכו לכתוב מחדש את כל ה-CSS. עם logical properties - כותבים פעם אחת ועובד.
+            </p>
+        </div>
+
+        <!-- ===== LINKS ===== -->
+        <h3>קישורים שימושיים להמשך למידה</h3>
+        <ul>
+            <li><a href="https://developer.mozilla.org/he/docs/Web/CSS" target="_blank">MDN - תיעוד מלא של CSS (בעברית!)</a></li>
+            <li><a href="https://css-tricks.com/" target="_blank">CSS-Tricks - מאמרים, טיפים, ודוגמאות</a></li>
+            <li><a href="https://web.dev/learn/css" target="_blank">web.dev/learn/css - קורס מקיף מ-Google</a></li>
+            <li><a href="https://flexboxfroggy.com/" target="_blank">Flexbox Froggy - משחק ללמידת Flexbox</a></li>
+            <li><a href="https://cssgridgarden.com/" target="_blank">Grid Garden - משחק ללמידת CSS Grid</a></li>
+            <li><a href="https://bennettfeely.com/clippy/" target="_blank">Clippy - generator ויזואלי ל-clip-path</a></li>
+            <li><a href="https://uigradients.com/" target="_blank">uiGradients - מאות gradients מוכנים</a></li>
+            <li><a href="https://www.cssmatic.com/" target="_blank">CSSmatic - generators לצללים, gradients, borders</a></li>
+            <li><a href="https://animista.net/" target="_blank">Animista - אנימציות CSS מוכנות</a></li>
+            <li><a href="https://caniuse.com/" target="_blank">Can I Use - בדיקת תמיכה בדפדפנים</a></li>
+        </ul>
+    </div>
+
+    <!-- ===== 13: IFRAME & SECURITY (was 12) ===== -->
+    <div class="section" id="s13"><div class="section-header"><div class="section-num">13</div><h2>iframe, נגישות וזווית סייבר</h2></div>
         <p><span class="inline-code">&lt;iframe&gt;</span> = "חלון" בתוך הדף שלכם שמציג אתר אחר. שימושי להטמעת YouTube, מפות Google, ווידג'טים.</p>
         <div class="code-wrapper"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
         <pre><code><span class="cm">&lt;!-- הטמעת YouTube - לחצן ימני על סרטון => "העתקת קוד הטמעה" --&gt;</span>
@@ -2251,8 +3423,1042 @@
 
     <hr class="sep">
 
-    <!-- ===== 13: MISSION 1 ===== -->
-    <div class="section" id="s13"><div class="section-header"><div class="section-num">13</div><h2>משימה 1 - בסיסית (index.html + style.css)</h2></div>
+    <!-- =======================================================================
+         SECTION 14 - UI PATTERNS חיים
+    ======================================================================= -->
+    <div class="section" id="s14">
+        <div class="section-header">
+            <div class="section-num">14</div>
+            <h2>UI Patterns - רכיבי ממשק מוכנים לשימוש</h2>
+        </div>
+
+        <p>
+            הסקשן הזה מרכז את <strong>רכיבי הממשק (UI Components)</strong> הנפוצים ביותר באתרים מודרניים.
+            כל הקוד עובד, כל הדמואים חיים, ואפשר להעתיק את הכל ולהשתמש בפרויקטים אמיתיים.
+            זה הפרק שתחזרו אליו הכי הרבה.
+        </p>
+
+        <!-- ===== BUTTONS ===== -->
+        <h3>1. Button Variants - 5 סוגי כפתורים</h3>
+        <p>
+            כל אתר מודרני צריך מספר וריאנטים של כפתורים: ראשי (primary), משני (secondary),
+            רעיוני (ghost), ועוד. כך נראים הסטנדרטים בתעשייה:
+        </p>
+
+        <div class="demo-area">
+            <div class="btn-demo">
+                <button class="btn btn-filled">Filled (ראשי)</button>
+                <button class="btn btn-outlined">Outlined</button>
+                <button class="btn btn-ghost">Ghost</button>
+                <button class="btn btn-pill">Pill</button>
+                <button class="btn btn-icon" title="Icon Button">⚙️</button>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* Filled - הכפתור הראשי. הכי בולט */</span>
+<span class="tg">.btn-filled</span> {
+    <span class="pr">background</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">padding</span>: <span class="vl">10px 20px</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+    <span class="pr">font-weight</span>: <span class="vl">600</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+    <span class="pr">transition</span>: <span class="vl">all 0.25s</span>;
+}
+<span class="tg">.btn-filled:hover</span> {
+    <span class="pr">background</span>: <span class="vl">#0891b2</span>;
+    <span class="pr">transform</span>: <span class="vl">translateY(-2px)</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 6px 16px rgba(34, 211, 238, 0.4)</span>;
+}
+
+<span class="cm">/* Outlined - מסגרת בלבד. שני בחשיבות */</span>
+<span class="tg">.btn-outlined</span> {
+    <span class="pr">background</span>: <span class="vl">transparent</span>;
+    <span class="pr">color</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">border</span>: <span class="vl">1px solid #22d3ee</span>;
+    <span class="pr">padding</span>: <span class="vl">10px 20px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">8px</span>;
+}
+<span class="tg">.btn-outlined:hover</span> { <span class="pr">background</span>: <span class="vl">rgba(34, 211, 238, 0.1)</span>; }
+
+<span class="cm">/* Ghost - בלי רקע ובלי מסגרת. שלישי בחשיבות */</span>
+<span class="tg">.btn-ghost</span> {
+    <span class="pr">background</span>: <span class="vl">transparent</span>;
+    <span class="pr">color</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+    <span class="pr">padding</span>: <span class="vl">10px 20px</span>;
+}
+<span class="tg">.btn-ghost:hover</span> { <span class="pr">background</span>: <span class="vl">rgba(34, 211, 238, 0.1)</span>; }
+
+<span class="cm">/* Pill - מעוגל לגמרי */</span>
+<span class="tg">.btn-pill</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #22d3ee, #f472b6)</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">border-radius</span>: <span class="vl">50px</span>;     <span class="cm">/* ערך גדול = פילול */</span>
+    <span class="pr">padding</span>: <span class="vl">10px 26px</span>;
+}
+
+<span class="cm">/* Icon - כפתור עגול עם אייקון בלבד */</span>
+<span class="tg">.btn-icon</span> {
+    <span class="pr">width</span>: <span class="vl">40px</span>;
+    <span class="pr">height</span>: <span class="vl">40px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">50%</span>;
+    <span class="pr">display</span>: <span class="vl">inline-flex</span>;
+    <span class="pr">align-items</span>: <span class="vl">center</span>;
+    <span class="pr">justify-content</span>: <span class="vl">center</span>;
+}</code></pre></div>
+
+        <!-- ===== TOOLTIPS ===== -->
+        <h3>2. Tooltip - חלוניות עזרה (CSS-only)</h3>
+        <p>
+            Tooltips ב-CSS טהור (בלי JavaScript!) באמצעות <span class="inline-code">::after</span>
+            ו-<span class="inline-code">::before</span> pseudo-elements ו-<span class="inline-code">data-*</span> attributes.
+        </p>
+
+        <div class="demo-area">
+            <p style="text-align:center;font-size:1rem">
+                ריחפו על המילים המודגשות:
+                CSS משתמש ב-<span class="tooltip" data-tip="Cascading Style Sheets">CSS</span>
+                כדי לעצב <span class="tooltip" data-tip="HyperText Markup Language">HTML</span>
+                בעזרת <span class="tooltip" data-tip="Document Object Model - מודל הדף בזיכרון">DOM</span>
+            </p>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">HTML+CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">&lt;!-- HTML: data-tip מכיל את הטקסט --&gt;</span>
+<span class="tg">&lt;span</span> <span class="at">class</span>=<span class="st">"tooltip"</span> <span class="at">data-tip</span>=<span class="st">"זה ההסבר!"</span><span class="tg">&gt;</span>
+    ריחף עליי
+<span class="tg">&lt;/span&gt;</span>
+
+<span class="cm">/* CSS: ::after מציג את ה-data-tip בריחוף */</span>
+<span class="tg">.tooltip</span> {
+    <span class="pr">position</span>: <span class="vl">relative</span>;
+    <span class="pr">border-bottom</span>: <span class="vl">1px dashed #22d3ee</span>;
+    <span class="pr">cursor</span>: <span class="vl">help</span>;
+}
+
+<span class="tg">.tooltip::after</span> {
+    <span class="pr">content</span>: <span class="vl">attr(data-tip)</span>;       <span class="cm">/* attr() קורא את ה-attribute */</span>
+    <span class="pr">position</span>: <span class="vl">absolute</span>;
+    <span class="pr">bottom</span>: <span class="vl">130%</span>;                    <span class="cm">/* מעל האלמנט */</span>
+    <span class="pr">left</span>: <span class="vl">50%</span>;
+    <span class="pr">transform</span>: <span class="vl">translateX(-50%)</span>;       <span class="cm">/* מרכוז אופקי */</span>
+    <span class="pr">background</span>: <span class="vl">#1e293b</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">padding</span>: <span class="vl">6px 12px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">6px</span>;
+    <span class="pr">font-size</span>: <span class="vl">0.8rem</span>;
+    <span class="pr">white-space</span>: <span class="vl">nowrap</span>;            <span class="cm">/* לא לשבור שורה */</span>
+    <span class="pr">opacity</span>: <span class="vl">0</span>;                       <span class="cm">/* מוסתר ברירת מחדל */</span>
+    <span class="pr">pointer-events</span>: <span class="vl">none</span>;
+    <span class="pr">transition</span>: <span class="vl">opacity 0.25s</span>;
+}
+
+<span class="cm">/* בריחוף - ה-tooltip מופיע */</span>
+<span class="tg">.tooltip:hover::after</span> { <span class="pr">opacity</span>: <span class="vl">1</span>; }
+
+<span class="cm">/* חץ קטן (משולש) באמצעות ::before */</span>
+<span class="tg">.tooltip::before</span> {
+    <span class="pr">content</span>: <span class="vl">''</span>;
+    <span class="pr">position</span>: <span class="vl">absolute</span>;
+    <span class="pr">bottom</span>: <span class="vl">130%</span>;
+    <span class="pr">left</span>: <span class="vl">50%</span>;
+    <span class="pr">border</span>: <span class="vl">5px solid transparent</span>;
+    <span class="pr">border-top-color</span>: <span class="vl">#1e293b</span>;     <span class="cm">/* הצבע של החץ */</span>
+    <span class="pr">opacity</span>: <span class="vl">0</span>;
+    <span class="pr">transition</span>: <span class="vl">opacity 0.25s</span>;
+}
+<span class="tg">.tooltip:hover::before</span> { <span class="pr">opacity</span>: <span class="vl">1</span>; }</code></pre></div>
+
+        <!-- ===== MODAL ===== -->
+        <h3>3. Modal/Dialog - חלון קופץ (CSS-only עם :target)</h3>
+        <p>
+            ניתן לבנות מודאל פונקציונלי <strong>ללא JavaScript</strong> באמצעות
+            ה-pseudo-class <span class="inline-code">:target</span> שמופעל כש-URL מכיל
+            את ה-id של האלמנט. שיטה ישנה ויעילה.
+        </p>
+
+        <div class="demo-area">
+            <div style="text-align:center">
+                <a href="#demo-modal" class="btn btn-filled">פתח את המודאל</a>
+            </div>
+        </div>
+
+        <!-- The actual modal - hidden until :target -->
+        <div class="modal-backdrop" id="demo-modal">
+            <div class="modal-box">
+                <a href="#!" class="modal-close" title="סגור">×</a>
+                <h3 style="color:var(--cyan);margin-top:0">זה מודאל ב-CSS טהור!</h3>
+                <p>אין כאן בכלל JavaScript. הקסם הוא <span class="inline-code">:target</span> selector + <span class="inline-code">href="#id"</span>.</p>
+                <p style="margin-bottom:0">לחצו על ה-X או מחוץ למסגרת לסגירה (משבצת href="#!" משנה את ה-URL).</p>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">HTML+CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">&lt;!-- HTML --&gt;</span>
+<span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"#my-modal"</span><span class="tg">&gt;</span>פתח מודאל<span class="tg">&lt;/a&gt;</span>
+
+<span class="tg">&lt;div</span> <span class="at">class</span>=<span class="st">"modal-backdrop"</span> <span class="at">id</span>=<span class="st">"my-modal"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;div</span> <span class="at">class</span>=<span class="st">"modal-box"</span><span class="tg">&gt;</span>
+        <span class="tg">&lt;a</span> <span class="at">href</span>=<span class="st">"#!"</span> <span class="at">class</span>=<span class="st">"modal-close"</span><span class="tg">&gt;</span>×<span class="tg">&lt;/a&gt;</span>
+        <span class="tg">&lt;h3&gt;</span>כותרת המודאל<span class="tg">&lt;/h3&gt;</span>
+        <span class="tg">&lt;p&gt;</span>תוכן המודאל...<span class="tg">&lt;/p&gt;</span>
+    <span class="tg">&lt;/div&gt;</span>
+<span class="tg">&lt;/div&gt;</span>
+
+<span class="cm">/* CSS - מוסתר כברירת מחדל */</span>
+<span class="tg">.modal-backdrop</span> {
+    <span class="pr">position</span>: <span class="vl">fixed</span>;
+    <span class="pr">inset</span>: <span class="vl">0</span>;                    <span class="cm">/* קיצור: top:0 right:0 bottom:0 left:0 */</span>
+    <span class="pr">background</span>: <span class="vl">rgba(0, 0, 0, 0.7)</span>; <span class="cm">/* רקע כהה */</span>
+    <span class="pr">backdrop-filter</span>: <span class="vl">blur(5px)</span>;     <span class="cm">/* טשטוש הרקע */</span>
+    <span class="pr">display</span>: <span class="vl">none</span>;
+    <span class="pr">align-items</span>: <span class="vl">center</span>;
+    <span class="pr">justify-content</span>: <span class="vl">center</span>;
+    <span class="pr">z-index</span>: <span class="vl">9999</span>;
+}
+
+<span class="cm">/* :target - מתי שה-URL = #my-modal, המודאל מופיע! */</span>
+<span class="tg">.modal-backdrop:target</span> {
+    <span class="pr">display</span>: <span class="vl">flex</span>;
+}
+
+<span class="cm">/* אנימציה של הופעה */</span>
+<span class="kw">@keyframes</span> <span class="tg">modalIn</span> {
+    <span class="kw">from</span> { <span class="pr">opacity</span>: <span class="vl">0</span>; <span class="pr">transform</span>: <span class="vl">scale(0.85)</span>; }
+    <span class="kw">to</span>   { <span class="pr">opacity</span>: <span class="vl">1</span>; <span class="pr">transform</span>: <span class="vl">scale(1)</span>; }
+}
+<span class="tg">.modal-box</span> { <span class="pr">animation</span>: <span class="vl">modalIn 0.3s ease</span>; }</code></pre></div>
+
+        <div class="card card-warn">
+            <div class="card-title">בפרויקט אמיתי - השתמשו ב-&lt;dialog&gt;</div>
+            <p style="margin:0">
+                התגית <span class="inline-code">&lt;dialog&gt;</span> ב-HTML5 היא הדרך
+                הסטנדרטית למודאלים מודרניים. תומכת ב-keyboard (Esc לסגירה), accessibility מובנית,
+                ויש לה JavaScript API פשוט (<span class="inline-code">.showModal()</span>, <span class="inline-code">.close()</span>).
+                שיטת ה-:target טובה ללמידה ולמקרים פשוטים בלי JavaScript.
+            </p>
+        </div>
+
+        <!-- ===== LOADING SPINNER ===== -->
+        <h3>4. Loading Spinner - אנימציית טעינה</h3>
+        <p>
+            כל אתר צריך לפעמים להראות שמשהו טוען. ספינר ב-CSS = 4 שורות קוד.
+        </p>
+
+        <div class="demo-area" style="text-align:center">
+            <div style="display:flex;gap:30px;justify-content:center;align-items:center;flex-wrap:wrap">
+                <div>
+                    <div class="spinner"></div>
+                    <p style="font-size:.75rem;margin-top:8px;color:var(--text-dim)">classic</p>
+                </div>
+                <div>
+                    <div class="spinner spinner-dual"></div>
+                    <p style="font-size:.75rem;margin-top:8px;color:var(--text-dim)">dual color</p>
+                </div>
+                <div>
+                    <div class="spinner" style="border-width:2px;width:24px;height:24px"></div>
+                    <p style="font-size:.75rem;margin-top:8px;color:var(--text-dim)">small</p>
+                </div>
+                <div>
+                    <div class="spinner" style="width:60px;height:60px;border-width:6px"></div>
+                    <p style="font-size:.75rem;margin-top:8px;color:var(--text-dim)">large</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="kw">@keyframes</span> <span class="tg">spin</span> {
+    <span class="kw">to</span> { <span class="pr">transform</span>: <span class="vl">rotate(360deg)</span>; }
+}
+
+<span class="tg">.spinner</span> {
+    <span class="pr">width</span>: <span class="vl">40px</span>;
+    <span class="pr">height</span>: <span class="vl">40px</span>;
+    <span class="pr">border</span>: <span class="vl">4px solid #eee</span>;            <span class="cm">/* טבעת אפורה */</span>
+    <span class="pr">border-top-color</span>: <span class="vl">#22d3ee</span>;        <span class="cm">/* רק החלק העליון בצבע */</span>
+    <span class="pr">border-radius</span>: <span class="vl">50%</span>;
+    <span class="pr">animation</span>: <span class="vl">spin 0.9s linear infinite</span>; <span class="cm">/* infinite = לנצח */</span>
+}
+
+<span class="cm">/* גרסה דו-צבעית */</span>
+<span class="tg">.spinner-dual</span> {
+    <span class="pr">border-top-color</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">border-right-color</span>: <span class="vl">#f472b6</span>;
+}</code></pre></div>
+
+        <!-- ===== SKELETON SCREEN ===== -->
+        <h3>5. Skeleton Screen - מסך טעינה כמו פייסבוק</h3>
+        <p>
+            במקום ספינר משעמם, אתרים מודרניים (Facebook, LinkedIn, YouTube) מציגים
+            "שלד" של התוכן עם אנימציה של ברק זז. נותן תחושה שהתוכן כבר כמעט שם.
+        </p>
+
+        <div class="demo-area">
+            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+                <div class="skeleton-card">
+                    <div class="skeleton skeleton-circle"></div>
+                    <div class="skeleton skeleton-line" style="width:80%"></div>
+                    <div class="skeleton skeleton-line" style="width:60%"></div>
+                    <div class="skeleton skeleton-line" style="width:90%"></div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton" style="height:120px;margin-bottom:10px"></div>
+                    <div class="skeleton skeleton-line" style="width:100%"></div>
+                    <div class="skeleton skeleton-line" style="width:70%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="kw">@keyframes</span> <span class="tg">skeleton-shimmer</span> {
+    <span class="vl">0%</span>   { <span class="pr">background-position</span>: <span class="vl">-200% 0</span>; }
+    <span class="vl">100%</span> { <span class="pr">background-position</span>: <span class="vl">200% 0</span>; }
+}
+
+<span class="tg">.skeleton</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(
+        90deg,
+        #f0f0f0 0%,
+        #e0e0e0 50%,
+        #f0f0f0 100%
+    )</span>;
+    <span class="pr">background-size</span>: <span class="vl">200% 100%</span>;
+    <span class="pr">animation</span>: <span class="vl">skeleton-shimmer 1.5s infinite</span>;
+    <span class="pr">border-radius</span>: <span class="vl">6px</span>;
+}
+
+<span class="tg">.skeleton-line</span> { <span class="pr">height</span>: <span class="vl">12px</span>; <span class="pr">margin-bottom</span>: <span class="vl">8px</span>; }
+<span class="tg">.skeleton-circle</span> { <span class="pr">width</span>: <span class="vl">50px</span>; <span class="pr">height</span>: <span class="vl">50px</span>; <span class="pr">border-radius</span>: <span class="vl">50%</span>; }</code></pre></div>
+
+        <!-- ===== TOGGLE SWITCH ===== -->
+        <h3>6. Toggle Switch - מתג iOS-style</h3>
+        <p>
+            מתג יפה מבוסס על checkbox רגיל מוסתר. הטריק:
+            checkbox <span class="inline-code">:checked</span> משנה את הסגנון של ה-slider שאחריו.
+        </p>
+
+        <div class="demo-area" style="text-align:center">
+            <label class="toggle-switch">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+            </label>
+            <label class="toggle-switch" style="margin-right:20px">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+            </label>
+            <p style="margin-top:10px;font-size:.8rem;color:var(--text-dim)">לחצו לשינוי</p>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">HTML+CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">&lt;!-- HTML: label עוטף checkbox + slider --&gt;</span>
+<span class="tg">&lt;label</span> <span class="at">class</span>=<span class="st">"toggle-switch"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;input</span> <span class="at">type</span>=<span class="st">"checkbox"</span><span class="tg">&gt;</span>
+    <span class="tg">&lt;span</span> <span class="at">class</span>=<span class="st">"toggle-slider"</span><span class="tg">&gt;&lt;/span&gt;</span>
+<span class="tg">&lt;/label&gt;</span>
+
+<span class="cm">/* CSS */</span>
+<span class="tg">.toggle-switch</span> {
+    <span class="pr">position</span>: <span class="vl">relative</span>;
+    <span class="pr">display</span>: <span class="vl">inline-block</span>;
+    <span class="pr">width</span>: <span class="vl">50px</span>;
+    <span class="pr">height</span>: <span class="vl">26px</span>;
+}
+
+<span class="cm">/* מסתירים את ה-checkbox המקורי */</span>
+<span class="tg">.toggle-switch input</span> {
+    <span class="pr">opacity</span>: <span class="vl">0</span>;
+    <span class="pr">width</span>: <span class="vl">0</span>;
+    <span class="pr">height</span>: <span class="vl">0</span>;
+}
+
+<span class="cm">/* ה-slider = הרקע (אובאל) */</span>
+<span class="tg">.toggle-slider</span> {
+    <span class="pr">position</span>: <span class="vl">absolute</span>;
+    <span class="pr">inset</span>: <span class="vl">0</span>;
+    <span class="pr">background</span>: <span class="vl">#ccc</span>;
+    <span class="pr">border-radius</span>: <span class="vl">26px</span>;
+    <span class="pr">transition</span>: <span class="vl">0.3s</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+}
+
+<span class="cm">/* ה-thumb = העיגול הנע */</span>
+<span class="tg">.toggle-slider::before</span> {
+    <span class="pr">content</span>: <span class="vl">''</span>;
+    <span class="pr">position</span>: <span class="vl">absolute</span>;
+    <span class="pr">width</span>: <span class="vl">20px</span>;
+    <span class="pr">height</span>: <span class="vl">20px</span>;
+    <span class="pr">right</span>: <span class="vl">3px</span>;
+    <span class="pr">top</span>: <span class="vl">3px</span>;
+    <span class="pr">background</span>: <span class="vl">white</span>;
+    <span class="pr">border-radius</span>: <span class="vl">50%</span>;
+    <span class="pr">transition</span>: <span class="vl">0.3s</span>;
+}
+
+<span class="cm">/* כשה-checkbox מסומן - שינוי צבע + הזזה */</span>
+<span class="tg">.toggle-switch input:checked + .toggle-slider</span> {
+    <span class="pr">background</span>: <span class="vl">#22d3ee</span>;
+}
+<span class="tg">.toggle-switch input:checked + .toggle-slider::before</span> {
+    <span class="pr">transform</span>: <span class="vl">translateX(-24px)</span>;
+}</code></pre></div>
+
+        <!-- ===== GLASSMORPHISM ===== -->
+        <h3>7. Glassmorphism - אפקט זכוכית קפואה</h3>
+        <p>
+            אפקט הזכוכית הוא הטרנד העיצובי של 2020-2024.
+            <strong>התנאי:</strong> צריך רקע צבעוני מאחור כדי שהטשטוש יראה.
+        </p>
+
+        <div class="demo-area">
+            <div class="glass-bg">
+                <div class="glass-card">
+                    <h4 style="margin:0 0 6px;color:white;font-size:1.1rem">🪟 Glassmorphism</h4>
+                    <p style="margin:0;color:rgba(255,255,255,0.85);font-size:.85rem">אפקט זכוכית קפואה - עכבר על הרקע מאחור עובר דרך הטשטוש.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* רקע צבעוני - הכרחי שיהיה משהו לטשטש! */</span>
+<span class="tg">.bg</span> {
+    <span class="pr">background</span>: <span class="vl">linear-gradient(135deg, #f472b6, #8b5cf6, #06b6d4)</span>;
+    <span class="pr">padding</span>: <span class="vl">40px</span>;
+}
+
+<span class="cm">/* הכרטיס ה"זכוכיתי" */</span>
+<span class="tg">.glass-card</span> {
+    <span class="pr">background</span>: <span class="vl">rgba(255, 255, 255, 0.1)</span>;       <span class="cm">/* שקיפות נמוכה */</span>
+    <span class="pr">backdrop-filter</span>: <span class="vl">blur(15px)</span>;             <span class="cm">/* הטשטוש - הקסם! */</span>
+    <span class="pr">-webkit-backdrop-filter</span>: <span class="vl">blur(15px)</span>;      <span class="cm">/* Safari */</span>
+    <span class="pr">border</span>: <span class="vl">1px solid rgba(255, 255, 255, 0.2)</span>; <span class="cm">/* גבול דק לגוון */</span>
+    <span class="pr">border-radius</span>: <span class="vl">16px</span>;
+    <span class="pr">box-shadow</span>: <span class="vl">0 8px 24px rgba(0, 0, 0, 0.2)</span>;
+    <span class="pr">padding</span>: <span class="vl">24px</span>;
+}</code></pre></div>
+
+        <!-- ===== NEUMORPHISM ===== -->
+        <h3>8. Neumorphism - אפקט "תפוח לחוץ"</h3>
+        <p>
+            ניאומורפיזם הוא סגנון רך שדומה לפלסטיק לחוץ. רגיש לרקע - דורש רקע אפור-בהיר.
+            הקסם: <strong>2 צללים בו-זמנית</strong> - אחד כהה ואחד בהיר, בכיוונים מנוגדים.
+        </p>
+
+        <div class="demo-area">
+            <div class="neu-bg">
+                <div class="neu-card">לחצו עליי 👆</div>
+                <div class="neu-card" style="border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center">❤️</div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* הרקע חייב להיות אפור-בהיר */</span>
+<span class="tg">.bg</span> { <span class="pr">background</span>: <span class="vl">#e0e5ec</span>; }
+
+<span class="tg">.neu-card</span> {
+    <span class="pr">background</span>: <span class="vl">#e0e5ec</span>;  <span class="cm">/* אותו צבע כמו הרקע! */</span>
+    <span class="pr">border-radius</span>: <span class="vl">16px</span>;
+    <span class="pr">padding</span>: <span class="vl">22px</span>;
+    <span class="cm">/* 2 צללים: כהה מימין-למטה, בהיר משמאל-מעל */</span>
+    <span class="pr">box-shadow</span>:
+        <span class="vl">8px 8px 16px #b8bec7</span>,         <span class="cm">/* צל כהה (חיצוני) */</span>
+        <span class="vl">-8px -8px 16px #ffffff</span>;       <span class="cm">/* "אור" בהיר (חיצוני) */</span>
+    <span class="pr">transition</span>: <span class="vl">all 0.25s</span>;
+}
+
+<span class="cm">/* בלחיצה - הצללים הופכים פנימיים (inset) - תחושת "לחוץ" */</span>
+<span class="tg">.neu-card:active</span> {
+    <span class="pr">box-shadow</span>:
+        <span class="kw">inset</span> <span class="vl">6px 6px 12px #b8bec7</span>,
+        <span class="kw">inset</span> <span class="vl">-6px -6px 12px #ffffff</span>;
+}</code></pre></div>
+
+        <!-- ===== BADGES ===== -->
+        <h3>9. Badges & Chips - תגיות וסטטוסים</h3>
+        <div class="demo-area" style="text-align:center">
+            <span class="ui-badge badge-info">Info</span>
+            <span class="ui-badge badge-success">✓ Success</span>
+            <span class="ui-badge badge-warning">⚠ Warning</span>
+            <span class="ui-badge badge-danger">✕ Danger</span>
+            <span class="ui-badge badge-info">v1.2.0</span>
+            <span class="ui-badge badge-success">NEW</span>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="tg">.badge</span> {
+    <span class="pr">display</span>: <span class="vl">inline-block</span>;
+    <span class="pr">padding</span>: <span class="vl">3px 10px</span>;
+    <span class="pr">border-radius</span>: <span class="vl">12px</span>;
+    <span class="pr">font-size</span>: <span class="vl">0.72rem</span>;
+    <span class="pr">font-weight</span>: <span class="vl">600</span>;
+}
+<span class="tg">.badge-success</span> { <span class="pr">background</span>: <span class="vl">#dcfce7</span>; <span class="pr">color</span>: <span class="vl">#16a34a</span>; }
+<span class="tg">.badge-warning</span> { <span class="pr">background</span>: <span class="vl">#fef3c7</span>; <span class="pr">color</span>: <span class="vl">#d97706</span>; }
+<span class="tg">.badge-danger</span>  { <span class="pr">background</span>: <span class="vl">#fee2e2</span>; <span class="pr">color</span>: <span class="vl">#dc2626</span>; }
+<span class="tg">.badge-info</span>    { <span class="pr">background</span>: <span class="vl">#dbeafe</span>; <span class="pr">color</span>: <span class="vl">#2563eb</span>; }</code></pre></div>
+
+        <!-- ===== ACCORDION ===== -->
+        <h3>10. Accordion - תפריט מתקפל (HTML5 native)</h3>
+        <p>
+            בלי JavaScript! התגיות <span class="inline-code">&lt;details&gt;</span>
+            ו-<span class="inline-code">&lt;summary&gt;</span> ב-HTML5 נותנות אקורדיון מובנה.
+            רק צריך לעצב.
+        </p>
+
+        <div class="demo-area">
+            <div class="accordion">
+                <details>
+                    <summary>מה זה CSS?</summary>
+                    <p>CSS = Cascading Style Sheets, השפה לעיצוב דפי אינטרנט. אחראית על צבעים, גדלים, מיקום, ואנימציות.</p>
+                </details>
+                <details>
+                    <summary>מה ההבדל בין id ל-class?</summary>
+                    <p>id ייחודי - פעם אחת בדף. class ניתן לשימוש חוזר על מספר אלמנטים. ב-CSS משתמשים ב-#id ו-.class.</p>
+                </details>
+                <details>
+                    <summary>מתי להשתמש ב-Flexbox ומתי ב-Grid?</summary>
+                    <p>Flexbox למימד אחד (שורה או עמודה) - תפריטים, שורות כפתורים. Grid למימד דו-ממדי - layouts מורכבים, גלריות.</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">HTML+CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">&lt;!-- HTML: details + summary - חייב הכל native! --&gt;</span>
+<span class="tg">&lt;details&gt;</span>
+    <span class="tg">&lt;summary&gt;</span>שאלה?<span class="tg">&lt;/summary&gt;</span>
+    <span class="tg">&lt;p&gt;</span>תשובה...<span class="tg">&lt;/p&gt;</span>
+<span class="tg">&lt;/details&gt;</span>
+
+<span class="cm">/* CSS - מסירים את החץ הברירת מחדל ומוסיפים שלנו */</span>
+<span class="tg">summary</span> {
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+    <span class="pr">list-style</span>: <span class="vl">none</span>;        <span class="cm">/* הסרת חץ Firefox */</span>
+}
+<span class="tg">summary::-webkit-details-marker</span> { <span class="pr">display</span>: <span class="vl">none</span>; } <span class="cm">/* Chrome */</span>
+
+<span class="cm">/* החץ שלנו - מסתובב בפתיחה */</span>
+<span class="tg">summary::after</span> {
+    <span class="pr">content</span>: <span class="vl">'+'</span>;
+    <span class="pr">transition</span>: <span class="vl">transform 0.25s</span>;
+}
+<span class="tg">details[open] summary::after</span> {
+    <span class="pr">transform</span>: <span class="vl">rotate(45deg)</span>; <span class="cm">/* + הופך ל-× */</span>
+}</code></pre></div>
+
+        <!-- ===== PROGRESS BAR ===== -->
+        <h3>11. Progress Bar - פס התקדמות</h3>
+        <div class="demo-area">
+            <p style="margin-bottom:4px;font-size:.85rem">25% הושלם</p>
+            <div class="ui-progress"><div class="ui-progress-fill" style="width:25%"></div></div>
+            <p style="margin:10px 0 4px;font-size:.85rem">60% הושלם</p>
+            <div class="ui-progress"><div class="ui-progress-fill" style="width:60%"></div></div>
+            <p style="margin:10px 0 4px;font-size:.85rem">90% הושלם</p>
+            <div class="ui-progress"><div class="ui-progress-fill" style="width:90%"></div></div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="tg">.progress</span> {
+    <span class="pr">background</span>: <span class="vl">#e2e8f0</span>;
+    <span class="pr">border-radius</span>: <span class="vl">10px</span>;
+    <span class="pr">overflow</span>: <span class="vl">hidden</span>;     <span class="cm">/* כך הציפוי הפנימי לא יוצא */</span>
+    <span class="pr">height</span>: <span class="vl">8px</span>;
+}
+
+<span class="tg">.progress-fill</span> {
+    <span class="pr">height</span>: <span class="vl">100%</span>;
+    <span class="pr">background</span>: <span class="vl">linear-gradient(90deg, #22d3ee, #f472b6)</span>;
+    <span class="pr">border-radius</span>: <span class="vl">10px</span>;
+    <span class="pr">transition</span>: <span class="vl">width 0.5s</span>;
+}
+
+<span class="cm">/* HTML: */</span>
+<span class="cm">/* &lt;div class="progress"&gt;
+    &lt;div class="progress-fill" style="width: 60%"&gt;&lt;/div&gt;
+&lt;/div&gt; */</span></code></pre></div>
+    </div>
+
+
+    <hr class="sep">
+
+    <!-- =======================================================================
+         SECTION 15 - PERFORMANCE, A11Y, DEVTOOLS, 2024 FEATURES
+    ======================================================================= -->
+    <div class="section" id="s15">
+        <div class="section-header">
+            <div class="section-num">15</div>
+            <h2>ביצועים, נגישות, DevTools ונושאים חדשים</h2>
+        </div>
+
+        <p>
+            הסקשן הזה מכסה 4 נושאים שמבדילים בין מתחילים לפרופשינלים:
+            <strong>ביצועים</strong> (איך לכתוב CSS שלא מאט את הדפדפן),
+            <strong>נגישות</strong> (אתר שכולם יכולים להשתמש בו),
+            <strong>DevTools</strong> (הכלי הכי חשוב למפתחים),
+            ו-<strong>תכונות חדשות</strong> מ-2023-2024.
+        </p>
+
+        <!-- ===== ACCESSIBILITY ===== -->
+        <h3>נגישות - Accessibility (a11y)</h3>
+        <p>
+            <strong>נגישות = אתר שמתאים לכולם.</strong> אנשים עם מוגבלויות (עיוורון, כבדות שמיעה,
+            מוגבלות מוטורית), אנשים על מסכים קטנים, אנשים בסביבת רעש.
+            בישראל - חוק. בעולם - WCAG (Web Content Accessibility Guidelines).
+        </p>
+
+        <h4>1. <span class="inline-code">prefers-reduced-motion</span> - כיבוי אנימציות</h4>
+        <p>
+            אנשים עם מחלת תנועה, אפילפסיה, או רגישות לאנימציות יכולים להגדיר במערכת ההפעלה
+            "צמצום אנימציות". CSS יכול לזהות את זה ולהתאים את עצמו.
+        </p>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* כיבוי אנימציות למי שביקש */</span>
+<span class="kw">@media</span> (<span class="pr">prefers-reduced-motion</span>: <span class="vl">reduce</span>) {
+    <span class="tg">*, *::before, *::after</span> {
+        <span class="pr">animation-duration</span>: <span class="vl">0.01ms !important</span>;
+        <span class="pr">animation-iteration-count</span>: <span class="vl">1 !important</span>;
+        <span class="pr">transition-duration</span>: <span class="vl">0.01ms !important</span>;
+        <span class="pr">scroll-behavior</span>: <span class="vl">auto !important</span>;
+    }
+}
+
+<span class="cm">/* גרסה מוקפדת יותר - שומרת על fade בלבד */</span>
+<span class="kw">@media</span> (<span class="pr">prefers-reduced-motion</span>: <span class="vl">no-preference</span>) {
+    <span class="tg">.card</span> {
+        <span class="pr">transition</span>: <span class="vl">transform 0.3s, box-shadow 0.3s</span>;
+    }
+}</code></pre></div>
+
+        <h4>2. <span class="inline-code">:focus-visible</span> - פוקוס נגיש</h4>
+        <p>
+            מסגרת ה-focus סביב כפתורים מציקה למשתמשי עכבר אבל קריטית למשתמשי מקלדת (Tab).
+            <span class="inline-code">:focus-visible</span> פותר את שני הצדדים -
+            מציג focus רק כשבאמת משתמשים במקלדת.
+        </p>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* ❌ ישן: מסיר את הכל - רע לנגישות! */</span>
+<span class="tg">button:focus</span> { <span class="pr">outline</span>: <span class="vl">none</span>; }
+
+<span class="cm">/* ✅ חדש: focus רק במקלדת */</span>
+<span class="tg">button:focus</span> { <span class="pr">outline</span>: <span class="vl">none</span>; }
+<span class="tg">button:focus-visible</span> {
+    <span class="pr">outline</span>: <span class="vl">3px solid #22d3ee</span>;
+    <span class="pr">outline-offset</span>: <span class="vl">2px</span>;
+}
+<span class="cm">/* עכשיו: עם עכבר = אין מסגרת. עם Tab = מסגרת ברורה */</span></code></pre></div>
+
+        <h4>3. <span class="inline-code">prefers-color-scheme</span> - Dark Mode אוטומטי</h4>
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* Light mode - ברירת מחדל */</span>
+<span class="tg">:root</span> {
+    <span class="pr">--bg</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">--text</span>: <span class="vl">#1e293b</span>;
+}
+
+<span class="cm">/* Dark mode - אוטומטי לפי הגדרות המערכת! */</span>
+<span class="kw">@media</span> (<span class="pr">prefers-color-scheme</span>: <span class="vl">dark</span>) {
+    <span class="tg">:root</span> {
+        <span class="pr">--bg</span>: <span class="vl">#0f172a</span>;
+        <span class="pr">--text</span>: <span class="vl">#e2e8f0</span>;
+    }
+}
+
+<span class="tg">body</span> {
+    <span class="pr">background</span>: <span class="kw">var</span>(<span class="vl">--bg</span>);
+    <span class="pr">color</span>: <span class="kw">var</span>(<span class="vl">--text</span>);
+}</code></pre></div>
+
+        <h4>4. ניגודיות צבעים - WCAG</h4>
+        <table>
+            <thead><tr><th>רמה</th><th>יחס ניגודיות מינימלי</th><th>למי מתאים</th></tr></thead>
+            <tbody>
+                <tr><td>WCAG AA (סטנדרט)</td><td>4.5 : 1 (טקסט רגיל)<br>3 : 1 (טקסט גדול 18px+)</td><td>חובה ברוב האתרים</td></tr>
+                <tr><td>WCAG AAA (מחמיר)</td><td>7 : 1 (טקסט רגיל)<br>4.5 : 1 (טקסט גדול)</td><td>אתרים ממשלתיים, רפואה</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            <strong>איך בודקים?</strong> כלים: <a href="https://webaim.org/resources/contrastchecker/" target="_blank">WebAIM Contrast Checker</a>,
+            DevTools של Chrome (Inspect → Accessibility), <a href="https://www.tpgi.com/color-contrast-checker/" target="_blank">TPGi CCA</a>.
+        </p>
+
+        <div class="card card-warn">
+            <div class="card-title">5 כללי הזהב לנגישות</div>
+            <p style="margin-bottom:6px"><strong>1. alt בכל תמונה.</strong> בלי יוצא דופן.</p>
+            <p style="margin-bottom:6px"><strong>2. label לכל input.</strong> עם <span class="inline-code">for=</span> מקושר.</p>
+            <p style="margin-bottom:6px"><strong>3. ניגודיות מינימום 4.5:1.</strong> אל תעצמו לטקסט אפור על רקע אפור.</p>
+            <p style="margin-bottom:6px"><strong>4. focus visible.</strong> השתמשו ב-:focus-visible.</p>
+            <p style="margin:0"><strong>5. ניווט מקלדת.</strong> כל פעולה אפשרית עם עכבר חייבת להיות אפשרית גם עם Tab + Enter.</p>
+        </div>
+
+        <!-- ===== PRINT STYLES ===== -->
+        <h3>סגנונות הדפסה - <span class="inline-code">@media print</span></h3>
+        <p>
+            כשמשתמש לוחץ Ctrl+P, הוא רוצה לראות תוכן - לא navbar, לא דף שחור, לא פרסומות.
+            CSS להדפסה הוא בסיסי ומחמם את הלב כשעובד.
+        </p>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="kw">@media</span> <span class="vl">print</span> {
+    <span class="cm">/* הסתרת אלמנטים לא רלוונטיים */</span>
+    <span class="tg">nav</span>, <span class="tg">.sidebar</span>, <span class="tg">footer</span>, <span class="tg">.no-print</span>, <span class="tg">.ad</span> {
+        <span class="pr">display</span>: <span class="vl">none !important</span>;
+    }
+
+    <span class="cm">/* רקע לבן וטקסט שחור = דיו פחות */</span>
+    <span class="tg">body</span> {
+        <span class="pr">background</span>: <span class="vl">white !important</span>;
+        <span class="pr">color</span>: <span class="vl">black !important</span>;
+        <span class="pr">font-size</span>: <span class="vl">12pt</span>;            <span class="cm">/* pt לדיו */</span>
+    }
+
+    <span class="cm">/* הצגת href של לינקים בסוגריים */</span>
+    <span class="tg">a::after</span> {
+        <span class="pr">content</span>: <span class="vl">" (" attr(href) ")"</span>;
+        <span class="pr">font-size</span>: <span class="vl">0.85em</span>;
+        <span class="pr">color</span>: <span class="vl">#666</span>;
+    }
+
+    <span class="cm">/* מניעת חיתוך כותרות בסוף דף */</span>
+    <span class="tg">h1, h2, h3</span> {
+        <span class="pr">page-break-after</span>: <span class="vl">avoid</span>;
+    }
+
+    <span class="cm">/* page-break - שבירה ידנית של עמוד */</span>
+    <span class="tg">.new-page</span> { <span class="pr">page-break-before</span>: <span class="vl">always</span>; }
+}</code></pre></div>
+
+        <!-- ===== PERFORMANCE ===== -->
+        <h3>ביצועים - Performance</h3>
+        <p>
+            CSS לא נראה כמו צוואר בקבוק לביצועים, אבל יש כללים שיכולים לשפר/להאט אתר משמעותית.
+        </p>
+
+        <h4>1. <span class="inline-code">will-change</span> - רמז לדפדפן</h4>
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* אומרים לדפדפן: "האלמנט עומד להשתנות, תכין GPU" */</span>
+<span class="tg">.card-hover</span> {
+    <span class="pr">will-change</span>: <span class="vl">transform, opacity</span>;
+    <span class="pr">transition</span>: <span class="vl">transform 0.3s</span>;
+}
+
+<span class="cm">/* ⚠️ אזהרה: לא לשים על הכל! */</span>
+<span class="cm">/* will-change צורך זיכרון. רק על אלמנטים שבאמת מאונימים */</span>
+<span class="cm">/* בלי will-change = ברירת מחדל. הדפדפן מנהל בעצמו */</span></code></pre></div>
+
+        <h4>2. <span class="inline-code">transform</span> במקום <span class="inline-code">left/top</span></h4>
+        <div class="compare">
+            <div class="compare-bad">
+                <div class="compare-label">איטי - מחייב reflow</div>
+                <div class="code-wrapper" style="margin:0"><pre><code><span class="cm">/* גורם reflow ו-repaint לכל הדף */</span>
+<span class="tg">.move</span> {
+    <span class="pr">transition</span>: <span class="vl">left 0.3s</span>;
+}
+<span class="tg">.move:hover</span> {
+    <span class="pr">left</span>: <span class="vl">100px</span>;
+}</code></pre></div>
+            </div>
+            <div class="compare-good">
+                <div class="compare-label">מהיר - GPU</div>
+                <div class="code-wrapper" style="margin:0"><pre><code><span class="cm">/* GPU - חלק */</span>
+<span class="tg">.move</span> {
+    <span class="pr">transition</span>: <span class="vl">transform 0.3s</span>;
+}
+<span class="tg">.move:hover</span> {
+    <span class="pr">transform</span>: <span class="vl">translateX(100px)</span>;
+}</code></pre></div>
+            </div>
+        </div>
+
+        <h4>3. <span class="inline-code">font-display</span> - טעינת פונטים</h4>
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* בלי font-display: דף ריק עד שהפונט נטען (FOIT - Flash Of Invisible Text) */</span>
+<span class="cm">/* עם swap: הטקסט נראה מיד עם פונט ברירת מחדל, ועובר לפונט שלך כשנטען */</span>
+<span class="kw">@font-face</span> {
+    <span class="pr">font-family</span>: <span class="st">'MyFont'</span>;
+    <span class="pr">src</span>: <span class="vl">url('font.woff2') format('woff2')</span>;
+    <span class="pr">font-display</span>: <span class="vl">swap</span>;  <span class="cm">/* ← קריטי לביצועים */</span>
+}
+
+<span class="cm">/* ערכים אחרים */</span>
+<span class="cm">/* auto    - ברירת מחדל (תלוי דפדפן) */</span>
+<span class="cm">/* swap    - הצג מיד fallback, החלף כשנטען (מומלץ) */</span>
+<span class="cm">/* fallback - 100ms דף ריק, אז fallback, אז swap */</span>
+<span class="cm">/* optional - השתמש רק אם נטען מהר */</span></code></pre></div>
+
+        <h4>4. CSS Containment - בידוד חישובים</h4>
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* contain אומר לדפדפן: "החישובים פה מבודדים. אל תמשוך את כל הדף!" */</span>
+<span class="tg">.widget</span> {
+    <span class="pr">contain</span>: <span class="vl">layout style paint</span>;
+    <span class="cm">/* layout = השינויים בפנים לא משפיעים על המיקום החיצוני */</span>
+    <span class="cm">/* style = שינוי class בפנים לא משפיע החוצה */</span>
+    <span class="cm">/* paint = ציורים בפנים לא יוצאים מהקופסה */</span>
+}
+
+<span class="cm">/* קיצור - contain: strict; כולל את כל ה-3 + size */</span>
+<span class="tg">.isolated</span> { <span class="pr">contain</span>: <span class="vl">strict</span>; }</code></pre></div>
+
+        <h4>5. תמונות עצלניות - <span class="inline-code">loading="lazy"</span></h4>
+        <div class="code-wrapper"><span class="code-lang">HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">&lt;!-- תמונה תיטען רק כשהמשתמש מתקרב אליה בגלילה --&gt;</span>
+<span class="cm">&lt;!-- חוסך מגה-בייטים בטעינה הראשונית --&gt;</span>
+<span class="tg">&lt;img</span> <span class="at">src</span>=<span class="st">"big-photo.jpg"</span>
+     <span class="at">alt</span>=<span class="st">"תיאור"</span>
+     <span class="at">loading</span>=<span class="st">"lazy"</span><span class="tg">&gt;</span>
+
+<span class="cm">&lt;!-- iframe גם תומך! --&gt;</span>
+<span class="tg">&lt;iframe</span> <span class="at">src</span>=<span class="st">"..."</span> <span class="at">loading</span>=<span class="st">"lazy"</span><span class="tg">&gt;&lt;/iframe&gt;</span></code></pre></div>
+
+        <!-- ===== DEVTOOLS ===== -->
+        <h3>DevTools - הכלי החשוב ביותר למפתח</h3>
+        <p>
+            לחיצה על <strong>F12</strong> (או Ctrl+Shift+I, או לחצן ימני → Inspect) פותחת את כלי הפיתוח.
+            <strong>זה לא פחות חשוב מהקוד עצמו.</strong> כל מפתח Front-End חייב לדעת DevTools.
+        </p>
+
+        <table>
+            <thead><tr><th>טאב</th><th>למה משמש</th><th>שימושים נפוצים</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Elements</strong></td><td>בדיקה ועריכה של HTML/CSS</td><td>שינוי CSS בזמן אמת, רואים את ה-DOM</td></tr>
+                <tr><td><strong>Console</strong></td><td>JavaScript + שגיאות</td><td>בדיקת errors, הרצת JS</td></tr>
+                <tr><td><strong>Network</strong></td><td>בקשות לשרת</td><td>זמני טעינה, גודל קבצים, status codes</td></tr>
+                <tr><td><strong>Performance</strong></td><td>מדידת ביצועים</td><td>למה האתר איטי, jank, FPS</td></tr>
+                <tr><td><strong>Application</strong></td><td>אחסון בדפדפן</td><td>cookies, localStorage, sessionStorage</td></tr>
+                <tr><td><strong>Sources</strong></td><td>קבצי המקור</td><td>debugging JavaScript, breakpoints</td></tr>
+                <tr><td><strong>Lighthouse</strong></td><td>ניקוד ביצועים+נגישות+SEO</td><td>בדיקה כוללת של איכות האתר</td></tr>
+            </tbody>
+        </table>
+
+        <h4>פאנל Elements - מה לעשות שם</h4>
+        <ul>
+            <li><strong>Hover על אלמנט בעץ</strong> - הוא מודגש בדף</li>
+            <li><strong>Right-click → Edit as HTML</strong> - לערוך את ה-HTML בזמן אמת</li>
+            <li><strong>פאנל Styles בצד</strong> - כל ה-CSS שחל. אפשר לערוך, להוסיף, למחוק</li>
+            <li><strong>Computed</strong> - הערך הסופי של כל property (אחרי הכל)</li>
+            <li><strong>Box Model viewer</strong> - רואים grafically את margin/padding/border</li>
+            <li><strong>:hov</strong> - לכפות מצב <span class="inline-code">:hover</span> כדי לדבג</li>
+            <li><strong>Layout (Flexbox/Grid)</strong> - מציג קווים ויזואליים של flex/grid</li>
+        </ul>
+
+        <h4>קיצורי דרך שמורים זהב</h4>
+        <table>
+            <thead><tr><th>קיצור</th><th>פעולה</th></tr></thead>
+            <tbody>
+                <tr><td><span class="inline-code">F12</span> או <span class="inline-code">Ctrl+Shift+I</span></td><td>פתיחה/סגירה של DevTools</td></tr>
+                <tr><td><span class="inline-code">Ctrl+Shift+C</span></td><td>בחירת אלמנט בקליק</td></tr>
+                <tr><td><span class="inline-code">Ctrl+Shift+M</span></td><td>מצב מובייל (Responsive)</td></tr>
+                <tr><td><span class="inline-code">Ctrl+R</span> / <span class="inline-code">F5</span></td><td>רענון</td></tr>
+                <tr><td><span class="inline-code">Ctrl+Shift+R</span></td><td>רענון בלי cache (קריטי!)</td></tr>
+                <tr><td><span class="inline-code">Ctrl+/</span> (ב-Sources)</td><td>הערה / הסרת הערה</td></tr>
+                <tr><td><span class="inline-code">Esc</span></td><td>פתיחת Console מתחת ל-DevTools</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ===== NEW 2024 FEATURES ===== -->
+        <h3>תכונות חדשות 2023-2024</h3>
+
+        <h4>1. <span class="inline-code">@container</span> Queries - העתיד של Responsive!</h4>
+        <p>
+            <strong>המהפכה האמיתית.</strong> media queries בודקות גודל מסך.
+            container queries בודקות <strong>גודל ההורה</strong>.
+            רכיב יכול להגיב לגודל הקונטיינר שלו, לא לגודל המסך!
+        </p>
+
+        <p style="text-align:center;font-size:.85rem;color:var(--text-dim)">↓ Demo: גררו את הפינה השמאלית-תחתונה כדי לשנות את רוחב הקונטיינר ↓</p>
+
+        <div class="demo-area">
+            <div class="cq-wrapper">
+                <div class="cq-card">
+                    <div class="cq-card-icon">📦</div>
+                    <div>
+                        <h4 style="margin:0 0 4px;color:var(--text-primary)">Container Query</h4>
+                        <p style="margin:0;font-size:.85rem">מתחת ל-400px = vertical layout. מעל 400px = horizontal layout!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* 1. הגדר את ההורה כקונטיינר */</span>
+<span class="tg">.parent</span> {
+    <span class="pr">container-type</span>: <span class="vl">inline-size</span>; <span class="cm">/* ניטור רוחב */</span>
+    <span class="pr">container-name</span>: <span class="vl">card-host</span>;   <span class="cm">/* שם (אופציונלי) */</span>
+}
+
+<span class="cm">/* 2. שאל לפי גודל הקונטיינר, לא המסך! */</span>
+<span class="kw">@container</span> (<span class="pr">min-width</span>: <span class="vl">400px</span>) {
+    <span class="tg">.card</span> {
+        <span class="pr">display</span>: <span class="vl">grid</span>;
+        <span class="pr">grid-template-columns</span>: <span class="vl">auto 1fr</span>;
+    }
+}
+
+<span class="cm">/* עם שם ספציפי: */</span>
+<span class="kw">@container</span> <span class="vl">card-host</span> (<span class="pr">min-width</span>: <span class="vl">600px</span>) {
+    <span class="tg">.card</span> { <span class="pr">font-size</span>: <span class="vl">1.2rem</span>; }
+}</code></pre></div>
+
+        <h4>2. <span class="inline-code">scroll-snap</span> - גלילה "מגנטית"</h4>
+        <p>
+            הגלילה "נדבקת" לכל אלמנט. נפוץ ב-Stories, גלריות, ו-carousels.
+        </p>
+
+        <div class="demo-area">
+            <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:8px">↓ גללו אופקית - הגלילה נדבקת לכל פריט ↓</p>
+            <div class="snap-container">
+                <div class="snap-item">פריט 1</div>
+                <div class="snap-item">פריט 2</div>
+                <div class="snap-item">פריט 3</div>
+                <div class="snap-item">פריט 4</div>
+            </div>
+        </div>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* קונטיינר */</span>
+<span class="tg">.snap-container</span> {
+    <span class="pr">overflow-x</span>: <span class="vl">scroll</span>;
+    <span class="pr">scroll-snap-type</span>: <span class="vl">x mandatory</span>;
+    <span class="cm">/* mandatory = חובה להידבק. proximity = רק אם קרוב */</span>
+    <span class="pr">display</span>: <span class="vl">flex</span>;
+    <span class="pr">gap</span>: <span class="vl">12px</span>;
+}
+
+<span class="cm">/* הילדים */</span>
+<span class="tg">.snap-item</span> {
+    <span class="pr">scroll-snap-align</span>: <span class="vl">center</span>;
+    <span class="cm">/* center | start | end - איפה הוא נדבק */</span>
+    <span class="pr">flex</span>: <span class="vl">0 0 80%</span>;             <span class="cm">/* רוחב קבוע */</span>
+}
+
+<span class="cm">/* גם בציר Y - לטיק-טוק vibe */</span>
+<span class="tg">.tiktok</span> {
+    <span class="pr">scroll-snap-type</span>: <span class="vl">y mandatory</span>;
+    <span class="pr">overflow-y</span>: <span class="vl">scroll</span>;
+    <span class="pr">height</span>: <span class="vl">100vh</span>;
+}
+<span class="tg">.tiktok > section</span> {
+    <span class="pr">scroll-snap-align</span>: <span class="vl">start</span>;
+    <span class="pr">height</span>: <span class="vl">100vh</span>;
+}</code></pre></div>
+
+        <h4>3. <span class="inline-code">:has()</span> - "הסלקטור של ההורה"</h4>
+        <p>
+            סוף סוף! במשך 20 שנה ב-CSS לא היה אפשר לבחור הורה לפי הילדים שלו.
+            <span class="inline-code">:has()</span> מאפשר את זה. נתמך בכל הדפדפנים מסוף 2023.
+        </p>
+
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* card שיש בו תמונה - שונה מ-card שאין בו */</span>
+<span class="tg">.card:has(img)</span> {
+    <span class="pr">padding</span>: <span class="vl">0</span>;
+    <span class="pr">overflow</span>: <span class="vl">hidden</span>;
+}
+<span class="tg">.card:has(img) h2</span> {
+    <span class="pr">padding</span>: <span class="vl">16px</span>;
+}
+
+<span class="cm">/* form שיש בו שדה לא תקין - הדגש את כפתור השליחה */</span>
+<span class="tg">form:has(input:invalid) button[type="submit"]</span> {
+    <span class="pr">opacity</span>: <span class="vl">0.5</span>;
+    <span class="pr">pointer-events</span>: <span class="vl">none</span>;
+}
+
+<span class="cm">/* עיצוב label של checkbox מסומן */</span>
+<span class="tg">label:has(input:checked)</span> {
+    <span class="pr">background</span>: <span class="vl">#dcfce7</span>;
+    <span class="pr">border-color</span>: <span class="vl">green</span>;
+}
+
+<span class="cm">/* article שאין בו h1 - אזהרה (טוב לדבגינג!) */</span>
+<span class="tg">article:not(:has(h1))</span> {
+    <span class="pr">border</span>: <span class="vl">2px dashed red</span>;
+}</code></pre></div>
+
+        <h4>4. <span class="inline-code">accent-color</span> - צבע ל-checkbox/radio</h4>
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* בעבר היה בלתי אפשרי לשנות צבע של checkbox */</span>
+<span class="cm">/* היו עושים hack מורכב עם display:none + label::before */</span>
+<span class="cm">/* היום: שורה אחת! */</span>
+<span class="tg">input[type="checkbox"]</span>,
+<span class="tg">input[type="radio"]</span>,
+<span class="tg">progress</span> {
+    <span class="pr">accent-color</span>: <span class="vl">#22d3ee</span>;
+}
+
+<span class="cm">/* עובד גם על range, progress */</span>
+<span class="tg">input[type="range"]</span> {
+    <span class="pr">accent-color</span>: <span class="vl">#f472b6</span>;
+}</code></pre></div>
+
+        <h4>5. <span class="inline-code">color-mix()</span> - מיזוג צבעים</h4>
+        <div class="code-wrapper"><span class="code-lang">CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">/* מיזוג של 50% כחול עם 50% אדום = סגול */</span>
+<span class="pr">background</span>: <span class="kw">color-mix</span>(<span class="kw">in</span> srgb, blue <span class="vl">50%</span>, red);
+
+<span class="cm">/* גרסה כהה יותר של הצבע הראשי - אוטומטית */</span>
+<span class="tg">:root</span> {
+    <span class="pr">--primary</span>: <span class="vl">#22d3ee</span>;
+    <span class="pr">--primary-dark</span>: <span class="kw">color-mix</span>(<span class="kw">in</span> srgb, <span class="kw">var</span>(<span class="vl">--primary</span>) <span class="vl">80%</span>, black);
+    <span class="pr">--primary-light</span>: <span class="kw">color-mix</span>(<span class="kw">in</span> srgb, <span class="kw">var</span>(<span class="vl">--primary</span>) <span class="vl">30%</span>, white);
+}</code></pre></div>
+
+        <h4>6. View Transitions API - מעברים בין דפים</h4>
+        <p>
+            אנימציה בין מצבים שונים של הדף, אפילו בין ניווטים. נחמד מאוד.
+        </p>
+
+        <div class="code-wrapper"><span class="code-lang">JS+CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code><span class="cm">// JavaScript:</span>
+document.startViewTransition(() => {
+    <span class="cm">// כל שינוי DOM כאן יקבל מעבר חלק</span>
+    document.getElementById('content').innerHTML = newContent;
+});
+
+<span class="cm">/* CSS: */</span>
+<span class="kw">@keyframes</span> <span class="tg">fadeIn</span> {
+    <span class="kw">from</span> { <span class="pr">opacity</span>: <span class="vl">0</span>; }
+    <span class="kw">to</span>   { <span class="pr">opacity</span>: <span class="vl">1</span>; }
+}
+
+<span class="tg">::view-transition-new(root)</span> {
+    <span class="pr">animation</span>: <span class="vl">fadeIn 0.4s</span>;
+}</code></pre></div>
+
+        <h3>קישורים מקצועיים</h3>
+        <ul>
+            <li><a href="https://developer.chrome.com/docs/devtools/" target="_blank">Chrome DevTools - תיעוד רשמי מקיף</a></li>
+            <li><a href="https://web.dev/learn/accessibility/" target="_blank">web.dev/learn/accessibility - קורס נגישות חינמי מ-Google</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank">WCAG 2.1 Quick Reference - תקני נגישות</a></li>
+            <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank">WebAIM Contrast Checker - בדיקת ניגודיות</a></li>
+            <li><a href="https://web.dev/articles/vitals" target="_blank">Web Vitals - מדדי ביצועים של Google</a></li>
+            <li><a href="https://wave.webaim.org/" target="_blank">WAVE - סורק נגישות אוטומטי</a></li>
+            <li><a href="https://pagespeed.web.dev/" target="_blank">PageSpeed Insights - בדיקת ביצועים</a></li>
+            <li><a href="https://caniuse.com/" target="_blank">caniuse.com - תמיכה בדפדפנים לכל תכונה</a></li>
+        </ul>
+
+        <div class="card card-success">
+            <div class="card-title">סיכום - מה ההבדל בין מתחיל למקצוען?</div>
+            <p>
+                מתחיל יודע לכתוב CSS שעובד. מקצוען יודע לכתוב CSS ש:
+            </p>
+            <p style="margin-bottom:6px"><strong>1. עובד בכל הדפדפנים</strong> (caniuse.com)</p>
+            <p style="margin-bottom:6px"><strong>2. נגיש לכולם</strong> (a11y, WCAG, focus-visible)</p>
+            <p style="margin-bottom:6px"><strong>3. מהיר</strong> (transform, will-change במידה, lazy loading)</p>
+            <p style="margin-bottom:6px"><strong>4. מותאם להעדפות המשתמש</strong> (reduced-motion, color-scheme)</p>
+            <p style="margin-bottom:6px"><strong>5. ניתן לתחזוקה</strong> (CSS variables, BEM, קוד מסודר)</p>
+            <p style="margin:0"><strong>6. עובד טוב גם בהדפסה</strong> (@media print)</p>
+        </div>
+    </div>
+
+
+    <hr class="sep">
+
+    <!-- ===== 16: MISSION 1 ===== -->
+    <div class="section" id="s16"><div class="section-header"><div class="section-num">16</div><h2>משימה 1 - בסיסית (index.html + style.css)</h2></div>
         <div class="mission"><h3>הדרישות:</h3><ol>
         <li>צרו <strong>3 כותרות</strong> (h1, h2, h3) - כל אחת מעוצבת אחרת</li>
         <li>השתמשו ב-<strong>id</strong> לאחת ו-<strong>class</strong> לשתיים</li>
@@ -2400,7 +4606,7 @@ input[type="password"]</span> {
     </div>
 
     <!-- ===== 14: MISSION 2 ===== -->
-    <div class="section" id="s14"><div class="section-header"><div class="section-num">14</div><h2>משימה 2 - חנות אונליין (4 דפים)</h2></div>
+    <div class="section" id="s17"><div class="section-header"><div class="section-num">17</div><h2>משימה 2 - חנות אונליין (4 דפים)</h2></div>
         <div class="mission"><h3>בנו אתר חנות: 4 דפי HTML + style.css חיצוני</h3><ol>
         <li><strong>index.html</strong> - דף ראשי: כותרת, פסקה, nav, iframe YouTube, קישורים חיצוניים</li>
         <li><strong>products.html</strong> - 9 מוצרים ב-<strong>CSS Grid 3x3</strong>. כל מוצר: תמונה + שם + מחיר. כל כרטיס = קישור ל-info.html</li>
@@ -2899,7 +5105,7 @@ select</span> {
 function copyCode(btn) {
     const wrapper = btn.closest('.code-wrapper');
     const pre = wrapper.querySelector('pre');
-    const text = pre.innerText;
+    const text = pre.textContent;
     navigator.clipboard.writeText(text).then(function() {
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
@@ -2955,7 +5161,7 @@ toggle.addEventListener('click', function() {
 // ===== SCROLL HANDLER =====
 var lastScroll = 0;
 var topnav = document.getElementById('topnav');
-var sections = document.querySelectorAll('.section');
+var sections = document.querySelectorAll('.section[id]');
 
 window.addEventListener('scroll', function() {
     // Progress bar
@@ -3099,6 +5305,144 @@ if (m1h1) {
         this.style.transform = 'scale(1.02)';
     });
 }
+
+// ===== FILTER DEMO INTERACTIVE =====
+function updateFilter() {
+    var blur = document.getElementById('filter-blur').value;
+    var brightness = document.getElementById('filter-brightness').value;
+    var contrast = document.getElementById('filter-contrast').value;
+    var grayscale = document.getElementById('filter-grayscale').value;
+    var sepia = document.getElementById('filter-sepia').value;
+    var hue = document.getElementById('filter-hue').value;
+
+    // Update value displays
+    document.getElementById('blur-val').textContent = blur + 'px';
+    document.getElementById('brightness-val').textContent = brightness + '%';
+    document.getElementById('contrast-val').textContent = contrast + '%';
+    document.getElementById('grayscale-val').textContent = grayscale + '%';
+    document.getElementById('sepia-val').textContent = sepia + '%';
+    document.getElementById('hue-val').textContent = hue + 'deg';
+
+    // Build filter string (only include non-default values)
+    var filters = [];
+    if (blur > 0) filters.push('blur(' + blur + 'px)');
+    if (brightness != 100) filters.push('brightness(' + (brightness/100) + ')');
+    if (contrast != 100) filters.push('contrast(' + (contrast/100) + ')');
+    if (grayscale > 0) filters.push('grayscale(' + grayscale + '%)');
+    if (sepia > 0) filters.push('sepia(' + sepia + '%)');
+    if (hue > 0) filters.push('hue-rotate(' + hue + 'deg)');
+
+    var filterStr = filters.length > 0 ? filters.join(' ') : 'none';
+    document.getElementById('filter-image').style.filter = filterStr;
+
+    // Update output
+    document.getElementById('filter-output').innerHTML =
+        '<span class="pr-out">filter</span>: <span class="vl-out">' + filterStr + '</span>;';
+}
+
+// Attach filter listeners
+['filter-blur', 'filter-brightness', 'filter-contrast',
+ 'filter-grayscale', 'filter-sepia', 'filter-hue'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateFilter);
+});
+
+// ===== SEARCH BOX =====
+var searchBox = document.getElementById('search-box');
+if (searchBox) {
+    var searchTimeout;
+
+    function clearHighlights() {
+        var highlights = document.querySelectorAll('.search-highlight');
+        highlights.forEach(function(el) {
+            var parent = el.parentNode;
+            parent.replaceChild(document.createTextNode(el.textContent), el);
+            parent.normalize();
+        });
+    }
+
+    function highlightText(node, term) {
+        if (!term || term.length < 2) return 0;
+        var count = 0;
+        var regex = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+
+        function walk(n) {
+            if (n.nodeType === 3) { // text node
+                var text = n.textContent;
+                if (regex.test(text)) {
+                    var span = document.createElement('span');
+                    span.innerHTML = text.replace(regex, '<span class="search-highlight">$1</span>');
+                    n.parentNode.replaceChild(span, n);
+                    count++;
+                }
+            } else if (n.nodeType === 1 &&
+                       n.tagName !== 'SCRIPT' &&
+                       n.tagName !== 'STYLE' &&
+                       !n.classList.contains('search-highlight') &&
+                       !n.closest('#topnav')) {
+                // Check children but skip code blocks (would break syntax highlighting)
+                if (n.tagName === 'PRE' || n.tagName === 'CODE') {
+                    return;
+                }
+                Array.from(n.childNodes).forEach(walk);
+            }
+        }
+        walk(node);
+        return count;
+    }
+
+    searchBox.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            clearHighlights();
+            var term = searchBox.value.trim();
+            if (term.length >= 2) {
+                document.querySelectorAll('.section').forEach(function(s) {
+                    highlightText(s, term);
+                });
+                // Scroll to first match
+                var firstMatch = document.querySelector('.search-highlight');
+                if (firstMatch) {
+                    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }, 250);
+    });
+
+    // Esc clears search
+    searchBox.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            searchBox.value = '';
+            clearHighlights();
+            searchBox.blur();
+        }
+    });
+
+    // Ctrl+K focuses search
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            searchBox.focus();
+        }
+    });
+}
+
+// ===== TOC CHECKMARKS - mark visited sections =====
+// When a section becomes 50% visible, mark its nav link with checkmark
+var tocObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting && entry.target.id) {
+            var navLink = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
+            if (navLink) {
+                navLink.classList.add('read');
+            }
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.section[id]').forEach(function(s) {
+    tocObserver.observe(s);
+});
 </script>
 
 </body>
